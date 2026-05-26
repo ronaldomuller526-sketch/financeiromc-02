@@ -52,6 +52,7 @@
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
     }/* SETUP SCREEN */
+
     #setup-screen {
         display: none !important;
     }
@@ -154,10 +155,12 @@
         color: var(--accent);
         text-decoration: none;
     }/* MAIN APP */
+
     #app {
         display: none;
         min-height: 100vh;
     }/* SIDEBAR */
+
     .layout {
         display: flex;
         min-height: 100vh;
@@ -297,6 +300,7 @@
         background: var(--green);
         box-shadow: 0 0 6px var(--green);
     }/* MAIN CONTENT */
+
     .main {
         flex: 1;
         margin-left: 220px;
@@ -327,6 +331,7 @@
         color: var(--text2);
         font-size: 14px;
     }/* METRICS */
+
     .metrics-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -397,6 +402,7 @@
         color: var(--text3);
         margin-top: 4px;
     }/* CARDS */
+
     .card {
         background: var(--bg2);
         border: 1px solid var(--border);
@@ -421,6 +427,7 @@
     .card-body {
         padding: 0;
     }/* TABLE */
+
     .data-table {
         width: 100%;
         border-collapse: collapse;
@@ -457,6 +464,7 @@
         color: var(--text3);
         margin-top: 2px;
     }/* BADGES */
+
     .badge {
         display: inline-flex;
         align-items: center;
@@ -499,6 +507,7 @@
         border-radius: 50%;
         background: currentColor;
     }/* LANÇAR */
+
     .lancamento-layout {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -614,6 +623,7 @@
         color: var(--text3);
         margin-top: 4px;
     }/* AI RESULT */
+
     .ai-result-box {
         background: linear-gradient(135deg, rgba(79, 124, 255, 0.08), rgba(79, 124, 255, 0.03));
         border: 1px solid rgba(79, 124, 255, 0.2);
@@ -687,6 +697,7 @@
         font-family: var(--mono);
         font-size: 11px;
     }/* FORM */
+
     .form-card {
         background: var(--bg2);
         border: 1px solid var(--border);
@@ -782,6 +793,7 @@
         stroke-linecap: round;
         stroke-linejoin: round;
     }/* WPP PREVIEW */
+
     .wpp-box {
         background: rgba(37, 211, 102, 0.07);
         border: 1px solid rgba(37, 211, 102, 0.2);
@@ -838,6 +850,7 @@
     .btn-wpp:hover {
         background: #1ebd5a;
     }/* EMPRESAS */
+
     .empresas-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -900,6 +913,7 @@
         color: var(--text3);
         margin-top: 2px;
     }/* COMPARAR */
+
     .comparar-grid {
         display: grid;
         grid-template-columns: 2fr 1fr;
@@ -941,6 +955,7 @@
         background: var(--accent);
         transition: width .6s cubic-bezier(.4, 0, .2, 1);
     }/* TOAST */
+
     .toast {
         position: fixed;
         bottom: 2rem;
@@ -1010,6 +1025,7 @@
         color: var(--text2);
         margin-top: 2px;
     }/* LOADING */
+
     .loading-overlay {
         position: fixed;
         inset: 0;
@@ -1036,6 +1052,7 @@
         font-size: 14px;
         color: var(--text2);
     }/* EMPTY STATE */
+
     .empty-state {
         text-align: center;
         padding: 3rem 2rem;
@@ -1073,6 +1090,7 @@
     .empty-text {
         font-size: 13px;
     }/* ALERTAS PAGE */
+
     .alertas-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1142,6 +1160,7 @@
     .btn-outline:hover {
         background: var(--bg3);
     }/* MODAL */
+
     .modal-overlay {
         position: fixed;
         inset: 0;
@@ -1209,6 +1228,7 @@
         font-size: 14px;
         cursor: pointer;
     }/* RESPONSIVE */
+
     @media (max-width: 768px) {
         .sidebar {
             width: 60px;
@@ -1250,6 +1270,7 @@
             grid-template-columns: 1fr;
         }
     }/* NOTION DB BADGE */
+
     .notion-link {
         display: inline-flex;
         align-items: center;
@@ -1268,6 +1289,7 @@
         color: var(--text2);
         border-color: var(--border2);
     }/* MARK PAID BTN */
+
     .btn-pago {
         display: inline-flex;
         align-items: center;
@@ -1305,18 +1327,28 @@
                 <strong style="color:var(--text)">Como obter as chaves:</strong>
                 <br>
 
-                      1. 
+
+                                      1. 
+                                
                 <a href="https://www.notion.so/my-integrations" target="_blank">notion.so/my-integrations</a>
-                 → criar integração → copiar token
+
+                                 → criar integração → copiar token
+                                
                 <br>
 
-                      2. 
+
+                                      2. 
+                                
                 <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>
-                 → API Keys → criar chave
+
+                                 → API Keys → criar chave
+                                
                 <br>
 
-                      3. Cole os IDs dos databases criados no seu Notion
-                    
+
+                                      3. Cole os IDs dos databases criados no seu Notion
+                                    
+                            
             </div>
 
             <div class="form-group">
@@ -1325,11 +1357,11 @@
             </div>
             <div class="form-group">
                 <label>ID do database — Contas a Pagar</label>
-                <input type="text" id="db-contas" placeholder="c7e0311365f84b81b4f1129e357dd8f7" value="c7e0311365f84b81b4f1129e357dd8f7">
+                <input type="text" id="db-contas" placeholder="31065193e49483e9b21c814d3a9f5c48" value="31065193e49483e9b21c814d3a9f5c48">
             </div>
             <div class="form-group">
                 <label>ID do database — Empresas</label>
-                <input type="text" id="db-empresas" placeholder="b9137defc34b4bcca8f9b8f2ebc126fd" value="b9137defc34b4bcca8f9b8f2ebc126fd">
+                <input type="text" id="db-empresas" placeholder="34565193e49482a186a981b0bb8faf7b" value="34565193e49482a186a981b0bb8faf7b">
             </div>
             <div class="form-group">
                 <label>Chave API Anthropic (leitura de boletos)</label>
@@ -1341,8 +1373,10 @@
                     <polyline points="20 6 9 17 4 12"/>
                 </svg>
 
-                      Salvar e entrar
-                    
+
+                                      Salvar e entrar
+                                    
+                            
             </button>
         </div>
     </div>
@@ -1461,14 +1495,16 @@
                                 <select id="dash-empresa-sel" onchange="renderDashboard()" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 12px;color:var(--text);font-family:var(--font);font-size:13px;outline:none">
                                     <option value="todas">Todas as empresas</option>
                                 </select>
-                                <a href="https://www.notion.so/c7e0311365f84b81b4f1129e357dd8f7" target="_blank" class="notion-link">
+                                <a href="https://www.notion.so/31065193e49483e9b21c814d3a9f5c48" target="_blank" class="notion-link">
                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M4 4h7V2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h7v-2H4V4z"/>
                                         <path d="M20.5 11.5l-2-2L17 11l1 1H9v2h9l-1 1 1.5 1.5 2-2 .5-.5-.5-.5z"/>
                                     </svg>
 
-                                                    Ver no Notion
-                                                  
+
+                                                                                        Ver no Notion
+                                                                                      
+                                                                    
                                 </a>
                                 <button class="btn-outline" onclick="carregarDados()">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1477,8 +1513,10 @@
                                         <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
                                     </svg>
 
-                                                    Atualizar
-                                                  
+
+                                                                                        Atualizar
+                                                                                      
+                                                                    
                                 </button>
                             </div>
                         </div>
@@ -1676,8 +1714,10 @@
                                         <polyline points="7 3 7 8 15 8"/>
                                     </svg>
 
-                                                    Salvar no Notion
-                                                  
+
+                                                                                        Salvar no Notion
+                                                                                      
+                                                                    
                                 </button>
                             </div>
 
@@ -1688,8 +1728,8 @@
                                 </div>
                                 <div class="wpp-msg" id="wpp-text"></div>
                                 <button class="btn-wpp" onclick="abrirWhatsapp()">
-                                                Abrir no WhatsApp
-                                              </button>
+                                                                                Abrir no WhatsApp
+                                                                              </button>
                             </div>
                         </div>
                     </div>
@@ -1710,8 +1750,10 @@
                                     <line x1="8" y1="12" x2="16" y2="12"/>
                                 </svg>
 
-                                              Nova empresa
-                                            
+
+                                                                              Nova empresa
+                                                                            
+                                                            
                             </button>
                         </div>
                     </div>
@@ -1933,9 +1975,9 @@
     <script>
     // ─── CONFIG ───────────────────────────────────────────────
     const CONFIG = {
-        token: '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',
-        dbContas: 'c7e0311365f84b81b4f1129e357dd8f7',
-        dbEmpresas: 'b9137defc34b4bcca8f9b8f2ebc126fd',
+        token: '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',
+        dbContas: '31065193e49483e9b21c814d3a9f5c48',
+        dbEmpresas: '34565193e49482a186a981b0bb8faf7b',
         anthropicKey: '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'
     };
 
@@ -1954,6 +1996,19 @@
     function iniciarApp() {
         document.getElementById('app').style.display = 'block';
         setNotionStatus(true);
+
+        // Aplicar restrições de acesso por papel
+        const role = sessionStorage.getItem('gmc-role');
+        if (role === 'funcionario') {
+            // Esconder abas restritas
+            const abasRestritas = ['comparar', 'empresas', 'fechamento'];
+            abasRestritas.forEach(aba => {
+                const btn = document.querySelector(`[onclick="navTo('${aba}', this)"]`);
+                if (btn)
+                    btn.style.display = 'none';
+            });
+        }
+
         carregarDados();
         carregarEmpresas();
     }
@@ -2237,6 +2292,11 @@
 
 
 
+
+
+
+
+
             ;
             return;
         }
@@ -2262,24 +2322,29 @@
             return `<tr>
       <td>
         <div style="font-weight:500;font-size:13px">${
+
             c.descricao || '—'}</div>
         <div class="td-empresa">${c.empresa}</div>
         ${linhaHtml}
       </td>
       <td>${
+
             c.categoria || '—'}</td>
       <td>${statusBadge}</td>
       <td>${tipoBadge}</td>
       <td style="font-weight:600;color:var(--text)">
         ${
+
             fmtBRL(c.valor)}
         ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red);font-weight:400">inclui ${fmtBRL(c.jurosMulta)} juros/multa</div>` : ''}
       </td>
       <td style="color:var(--text2);font-size:12px">${
+
             fmtData(c.vencimento)}</td>
       <td style="color:var(--green);font-size:12px">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
       <td style="display:flex;gap:6px;align-items:center">
         <button class="btn-pago" onclick="marcarPago('${
+
             c.id}', this)">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Pago
@@ -2287,9 +2352,14 @@
         ${
 
 
+
+
+
             c.status === 'Pago' ? `<button class="btn-pago" onclick="desfazerPago('${c.id}', this)" style="color:var(--red);border-color:var(--red)">↩ Desfazer</button>` : ''}
       </td>
     </tr>`
+
+
 
             ;
         }).join('');
@@ -2321,8 +2391,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         rows}</tbody>
     </table>`
+
         ;
     }
 
@@ -2432,6 +2516,10 @@
 
 
 
+
+
+
+
             ;
             return;
         }
@@ -2453,15 +2541,21 @@
         <div>
           <div class="empresa-name">${
 
+
+
             emp.nome}</div>
           <div class="empresa-seg">${emp.segmento}</div>
         </div>
         <span class="badge ${
+
             emp.status === 'Ativa' ? 'badge-green' : 'badge-gray'}">${emp.status}</span>
       </div>
       <div class="empresa-metrics">
         <div class="emp-metric">
           <div class="emp-metric-val">${
+
+
+
 
 
             fmtBRL(totalPendente)}</div>
@@ -2471,11 +2565,17 @@
           <div class="emp-metric-val">${
 
 
+
+
+
             fmtBRL(totalPago)}</div>
           <div class="emp-metric-label">Pagos</div>
         </div>
         <div class="emp-metric">
           <div class="emp-metric-val ${
+
+
+
 
 
             atrasados > 0 ? 'danger' : ''}">${atrasados}</div>
@@ -2484,6 +2584,11 @@
       </div>
       <div style="margin-top:10px;font-size:11px;color:var(--text3);text-align:right">Ver boletos →</div>
     </div>`
+
+
+
+
+
 
 
 
@@ -2523,27 +2628,36 @@
           <span style="font-size:10px;color:var(--text3);font-family:var(--mono);max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${linha}</span>
           <button onclick="event.stopPropagation();navigator.clipboard.writeText('${linha.replace(/'/g, '')}').then(()=>{this.textContent='✓';setTimeout(()=>this.textContent='copiar',2000)})" style="flex-shrink:0;padding:1px 6px;background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;font-size:10px;color:var(--text2);cursor:pointer;font-family:var(--font)">copiar</button>
         </div>`
+
             : '';
 
             return `<tr>
       <td>
         <div style="font-weight:500;font-size:13px">${
+
             c.descricao || '—'}</div>
         <div class="td-empresa">${c.categoria || ''}</div>
         ${linhaHtml}
       </td>
       <td>${
+
             statusBadge}</td>
       <td style="font-size:12px;color:var(--text2)">${fmtData(c.vencimento)}</td>
       <td style="font-weight:600">${fmtBRL(c.valor)}</td>
       <td>
         <button class="btn-pago" onclick="event.stopPropagation();marcarPagoModal('${
+
             c.id}', this)">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Pago
         </button>
       </td>
     </tr>`
+
+
+
+
+
 
 
 
@@ -2562,8 +2676,12 @@
         <tbody>${
 
 
+
+
+
         rows}</tbody>
       </table>`
+
 
         : `<div class="empty-state"><div class="empty-title">Nenhum boleto pendente</div></div>`;
 
@@ -2681,15 +2799,21 @@
         <div class="bar-top">
           <span class="bar-name">${
 
+
+
         nome}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
         <div class="bar-track">
           <div class="bar-fill" style="width:${
 
+
+
         Math.round(val / maxEmp * 100)}%"></div>
         </div>
       </div>`
+
+
 
         ).join('')
         : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Sem dados neste mês</div>';
@@ -2713,15 +2837,21 @@
         <div class="bar-top">
           <span class="bar-name">${
 
+
+
         cat}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
         <div class="bar-track">
           <div class="bar-fill" style="width:${
 
+
+
         Math.round(val / maxCat * 100)}%"></div>
         </div>
       </div>`
+
+
 
         ).join('')
         : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Sem dados</div>';
@@ -2764,10 +2894,12 @@
         grid.innerHTML = `
     <div class="alerta-card">
       <div class="alerta-title" style="color:var(--red)">🔴 Atrasados (${
+
         atrasados.length})</div>
       ${atrasados.slice(0, 5).map(c => `
         <div class="alerta-item">
           <span class="alerta-item-name">${
+
         c.descricao} <span style="color:var(--text3)">${c.empresa}</span></span>
           <span class="alerta-item-val danger">${fmtBRL(c.valor)}</span>
         </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum atrasado 👍</div>'}
@@ -2775,10 +2907,13 @@
     <div class="alerta-card">
       <div class="alerta-title" style="color:var(--yellow)">🟡 Vence hoje (${
 
+
+
         venHoje.length})</div>
       ${venHoje.map(c => `
         <div class="alerta-item">
           <span class="alerta-item-name">${
+
         c.descricao}</span>
           <span class="alerta-item-val warning">${fmtBRL(c.valor)}</span>
         </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum vence hoje</div>'}
@@ -2786,17 +2921,23 @@
     <div class="alerta-card" style="grid-column:1/-1">
       <div class="alerta-title" style="color:var(--text2)">📅 Esta semana (${
 
+
+
         venSemana.length})</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
       ${
+
         venSemana.map(c => `
         <div class="alerta-item">
           <span class="alerta-item-name">${
+
         c.descricao} <span style="color:var(--text3)">· ${fmtData(c.vencimento)}</span></span>
           <span class="alerta-item-val">${fmtBRL(c.valor)}</span>
         </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum esta semana</div>'}
       </div>
     </div>`
+
+
 
         ;
     }
@@ -3298,12 +3439,16 @@
         <div class="bar-top">
           <span class="bar-name">${
 
+
+
         cat}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
         <div class="bar-track"><div class="bar-fill" style="width:${
+
         Math.round(val / maxCat * 100)}%"></div></div>
       </div>`
+
         ).join('')
         : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum pagamento neste mês</div>';
 
@@ -3322,12 +3467,16 @@
         <div class="bar-top">
           <span class="bar-name">${
 
+
+
         emp}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
         <div class="bar-track"><div class="bar-fill" style="width:${
+
         Math.round(val / maxEmp * 100)}%"></div></div>
       </div>`
+
         ).join('')
         : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum dado</div>';
 
@@ -3342,6 +3491,9 @@
         <tbody>${
 
 
+
+
+
         sorted.map(c => `<tr>
           <td style="font-weight:500;font-size:13px">${c.descricao || '—'}</td>
           <td style="font-size:12px;color:var(--text2)">${c.empresa}</td>
@@ -3349,14 +3501,17 @@
           <td>${c.tipo ? `<span class="badge badge-blue">${c.tipo}</span>` : '—'}</td>
           <td style="font-weight:600">
             ${
+
         fmtBRL(c.valor)}
             ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red)">inclui ${fmtBRL(c.jurosMulta)} juros</div>` : ''}
           </td>
           <td style="font-size:12px;color:var(--text2)">${
+
         fmtData(c.vencimento)}</td>
           <td style="font-size:12px;color:var(--green);font-weight:500">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
           <td>
             <button class="btn-pago" onclick="desfazerPagoFechamento('${
+
         c.id}', this)" style="color:var(--red);border-color:var(--red)">
               ↩ Desfazer
             </button>
@@ -3364,8 +3519,12 @@
         </tr>`
 
 
+
+
+
         ).join('')}</tbody>
       </table>`
+
 
         : '<div class="empty-state"><div class="empty-title" style="padding:2rem">Nenhum pagamento registrado neste mês</div></div>';
     }
@@ -3489,6 +3648,14 @@
 
         if (senha === '1Mem1Ano@') {
             sessionStorage.setItem('gmc-auth', 'ok');
+            sessionStorage.setItem('gmc-role', 'admin');
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+            iniciarApp();
+            erro.style.display = 'none';
+        } else if (senha === 'Acessofinanceiro01@') {
+            sessionStorage.setItem('gmc-auth', 'ok');
+            sessionStorage.setItem('gmc-role', 'funcionario');
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('app').style.display = 'block';
             iniciarApp();
