@@ -1230,44 +1230,261 @@
     }/* RESPONSIVE */
 
     @media (max-width: 768px) {
+        /* ── BOTTOM NAV ── */
         .sidebar {
-            width: 60px;
-            padding: 1rem 8px;
+            width: 100%;
+            height: 64px;
+            top: auto;
+            bottom: 0;
+            left: 0;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0;
+            border-right: none;
+            border-top: 1px solid var(--border);
+            z-index: 200;
         }
 
-        .sidebar-logo-name, .nav-item span, .nav-section-title, .notion-status span {
+        .sidebar-logo {
+            display: none;
+        }
+
+        .nav-section-title {
+            display: none;
+        }
+
+        .sidebar-bottom {
             display: none;
         }
 
         .nav-item {
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            padding: 10px;
+            gap: 3px;
+            padding: 8px 6px;
+            flex: 1;
+            border-radius: 0;
+            min-height: 64px;
+            font-size: 10px;
+            margin-bottom: 0;
         }
 
-        .main {
-            margin-left: 60px;
-            padding: 1.5rem 1rem;
-            max-width: calc(100% - 60px);
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
         }
+
+        .nav-item span {
+            display: block !important;
+            font-size: 10px;
+            line-height: 1;
+        }
+
+        .nav-badge {
+            position: absolute;
+            top: 6px;
+            right: calc(50% - 20px);
+            font-size: 9px;
+            padding: 1px 4px;
+        }
+
+        .notion-status span {
+            display: none;
+        }/* ── MAIN CONTENT ── */
+
+        .main {
+            margin-left: 0;
+            margin-bottom: 64px;
+            padding: 1rem;
+            max-width: 100%;
+        }/* ── PAGE HEADER ── */
+
+        .page-header {
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 {
+            font-size: 20px;
+        }/* ── METRICS ── */
 
         .metrics-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
         }
+
+        .metric-card {
+            padding: 1rem;
+        }
+
+        .metric-value {
+            font-size: 20px;
+        }/* ── DASHBOARD TABLE → CARDS MOBILE ── */
+
+        .data-table {
+            display: none;
+        }
+
+        #table-container .mobile-cards {
+            display: block;
+        }/* ── FORMS ── */
 
         .lancamento-layout {
             grid-template-columns: 1fr;
         }
 
+        .fgroup-row {
+            grid-template-columns: 1fr;
+        }/* ── EMPRESAS ── */
+
         .empresas-grid {
             grid-template-columns: 1fr;
-        }
+        }/* ── COMPARAR ── */
 
         .comparar-grid {
             grid-template-columns: 1fr;
-        }
+        }/* ── ALERTAS ── */
 
         .alertas-grid {
             grid-template-columns: 1fr;
+        }/* ── MODAL ── */
+
+        .modal {
+            max-width: 100% !important;
+            width: 100% !important;
+            margin: 0;
+            border-radius: 20px 20px 0 0;
+            position: fixed;
+            bottom: 64px;
+            left: 0;
+            right: 0;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay {
+            align-items: flex-end;
+        }/* ── TOAST ── */
+
+        .toast {
+            bottom: 80px;
+            left: 1rem;
+            right: 1rem;
+            max-width: 100%;
+        }/* ── BOTÕES GRANDES ── */
+
+        .btn-save {
+            padding: 14px;
+            font-size: 15px;
+        }
+
+        .btn-wpp {
+            padding: 12px 20px;
+            font-size: 13px;
+        }
+
+        .btn-outline {
+            padding: 10px 16px;
+        }/* ── SALDO GRID ── */
+
+        #page-saldo [style * ="grid-template-columns:repeat(3"] {
+            grid-template-columns: 1fr !important;
+        }
+
+        #page-saldo [style * ="grid-template-columns:repeat(4"] {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }/* ── FECHAMENTO GRID ── */
+
+        #page-fechamento [style * ="grid-template-columns:1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+        }/* ── HEADER FLEX ── */
+
+        .page-header [style * ="display:flex"] {
+            flex-direction: column !important;
+            gap: 10px !important;
+        }/* ── SELECTS E INPUTS MAIORES ── */
+
+        select, input[type="text"], input[type="number"], input[type="date"], input[type="password"] {
+            font-size: 16px !important;
+            /* evita zoom no iOS */
+            padding: 10px 12px !important;
+        }
+    }/* ── CARDS MOBILE PARA TABELA ── */
+
+    .mobile-card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 14px;
+        margin-bottom: 10px;
+    }
+
+    .mobile-card-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .mobile-card-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text);
+        flex: 1;
+        margin-right: 8px;
+    }
+
+    .mobile-card-empresa {
+        font-size: 11px;
+        color: var(--text3);
+        margin-top: 2px;
+    }
+
+    .mobile-card-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    .mobile-card-valor {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    .mobile-card-data {
+        font-size: 12px;
+        color: var(--text2);
+    }
+
+    .mobile-card-linha {
+        font-size: 10px;
+        color: var(--text3);
+        font-family: var(--mono);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 10px;
+    }
+
+    .mobile-card-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .mobile-card-actions .btn-pago {
+        flex: 1;
+        justify-content: center;
+        padding: 10px;
+        font-size: 13px;
+        border-radius: var(--radius-sm);
+    }
+
+    @media (min-width: 769px) {
+        .mobile-cards {
+            display: none;
         }
     }/* NOTION DB BADGE */
 
@@ -2110,1564 +2327,641 @@
     </div>
 
     <script>
-    // ─── CONFIG ───────────────────────────────────────────────
-    const CONFIG = {
-        token: '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',
-        dbContas: 'c7e0311365f84b81b4f1129e357dd8f7',
-        dbEmpresas: 'b9137defc34b4bcca8f9b8f2ebc126fd',
-        anthropicKey: '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'
-    };
+        // ─── CONFIG ───────────────────────────────────────────────
+        const CONFIG = {
+            token: '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',
+            dbContas: 'c7e0311365f84b81b4f1129e357dd8f7',
+            dbEmpresas: 'b9137defc34b4bcca8f9b8f2ebc126fd',
+            anthropicKey: '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'
+        };
 
-    let DADOS = {
-        contas: [],
-        empresas: []
-    };
-    let aiDados = {};
+        let DADOS = {
+            contas: [],
+            empresas: []
+        };
+        let aiDados = {};
 
-    function salvarConfig() {}
-    function resetConfig() {}
+        function salvarConfig() {}
+        function resetConfig() {}
 
-    // ─── INIT ──────────────────────────────────────────────────
-    // inicialização controlada pelo login
+        // ─── INIT ──────────────────────────────────────────────────
+        // inicialização controlada pelo login
 
-    function iniciarApp() {
-        document.getElementById('app').style.display = 'block';
-        setNotionStatus(true);
+        function iniciarApp() {
+            document.getElementById('app').style.display = 'block';
+            setNotionStatus(true);
 
-        // Aplicar restrições de acesso por papel
-        const role = sessionStorage.getItem('gmc-role');
-        if (role === 'funcionario') {
-            // Esconder abas restritas
-            const abasRestritas = ['comparar', 'empresas', 'fechamento', 'saldo'];
-            abasRestritas.forEach(aba => {
-                const btn = document.querySelector(`[onclick="navTo('${aba}', this)"]`);
-                if (btn)
-                    btn.style.display = 'none';
-            });
-        }
-
-        carregarDados();
-        carregarEmpresas();
-    }
-
-    function setNotionStatus(ok) {
-        const dot = document.getElementById('notion-dot');
-        const txt = document.getElementById('notion-status-text');
-        dot.className = 'notion-dot connected';
-        txt.textContent = 'Notion conectado';
-    }
-
-    // ─── NAVEGAÇÃO ────────────────────────────────────────────
-    function navTo(page, btn) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-        document.getElementById('page-' + page).classList.add('active');
-        btn.classList.add('active');
-
-        if (page === 'empresas')
-            renderEmpresas();
-        if (page === 'comparar')
-            renderComparar();
-        if (page === 'saldo')
-            iniciarSaldo();
-        if (page === 'alertas')
-            renderAlertas();
-        if (page === 'fechamento')
-            iniciarFechamento();
-    }
-
-    // ─── NOTION API ───────────────────────────────────────────
-    async function notionQuery(dbId, filter=null) {
-        let results = [];
-        let cursor = undefined;
-
-        try {
-            do {
-                const body = {
-                    page_size: 100
-                };
-                if (filter)
-                    body.filter = filter;
-                if (cursor)
-                    body.start_cursor = cursor;
-
-                const r = await fetch(`/api/notion?path=databases/${dbId}/query`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(body)
+            // Aplicar restrições de acesso por papel
+            const role = sessionStorage.getItem('gmc-role');
+            if (role === 'funcionario') {
+                // Esconder abas restritas
+                const abasRestritas = ['comparar', 'empresas', 'fechamento', 'saldo'];
+                abasRestritas.forEach(aba => {
+                    const btn = document.querySelector(`[onclick="navTo('${aba}', this)"]`);
+                    if (btn) btn.style.display = 'none';
                 });
-
-                if (!r.ok)
-                    throw new Error('Notion error ' + r.status);
-                const data = await r.json();
-                results = results.concat(data.results || []);
-                cursor = data.has_more ? data.next_cursor : undefined;
-            } while (cursor);
-
-            return results;
-        } catch (e) {
-            console.error('Notion query error:', e);
-            setNotionStatus(false);
-            return [];
-        }
-    }
-
-    async function notionCreate(dbId, properties) {
-        const r = await fetch('/api/notion?path=pages', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                parent: {
-                    database_id: dbId
-                },
-                properties
-            })
-        });
-
-        if (!r.ok) {
-            const err = await r.json();
-            throw new Error(err.message || 'Erro ao salvar');
-        }
-        return r.json();
-    }
-
-    async function notionUpdate(pageId, properties) {
-        const r = await fetch(`/api/notion?path=pages/${pageId}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                properties
-            })
-        });
-        return r.json();
-    }
-
-    // ─── PARSEAR PÁGINAS NOTION ───────────────────────────────
-    function parseConta(page) {
-        const p = page.properties;
-        return {
-            id: page.id,
-            descricao: p['Descrição']?.title?.[0]?.plain_text || '',
-            empresa: p['Empresa']?.rich_text?.[0]?.plain_text || '',
-            valor: p['Valor']?.number || 0,
-            vencimento: p['Vencimento']?.date?.start || '',
-            dataPagamento: p['Data de Pagamento']?.date?.start || '',
-            categoria: p['Categoria']?.select?.name || '',
-            status: p['Status']?.select?.name || 'Pendente',
-            tipo: p['Tipo']?.select?.name || '',
-            cedente: p['Cedente']?.rich_text?.[0]?.plain_text || '',
-            jurosMulta: p['Juros/Multa']?.number || 0,
-            contaPagamento: p['Conta Pagamento']?.select?.name || '',
-        };
-    }
-
-    function parseEmpresa(page) {
-        const p = page.properties;
-        return {
-            id: page.id,
-            nome: p['Nome da Empresa']?.title?.[0]?.plain_text || '',
-            cnpj: p['CNPJ']?.rich_text?.[0]?.plain_text || '',
-            segmento: p['Segmento']?.select?.name || '',
-            status: p['Status']?.select?.name || 'Ativa',
-        };
-    }
-
-    // ─── CARREGAR DADOS ───────────────────────────────────────
-    async function carregarDados() {
-        const pages = await notionQuery(CONFIG.dbContas);
-        DADOS.contas = pages.map(parseConta);
-        renderDashboard();
-        renderAlertas();
-        atualizarBadgeAlertas();
-    }
-
-    async function carregarEmpresas() {
-        const pages = await notionQuery(CONFIG.dbEmpresas);
-        DADOS.empresas = pages.map(parseEmpresa);
-        popularSelectEmpresas();
-        renderEmpresas();
-    }
-
-    function popularSelectEmpresas() {
-        const sel = document.getElementById('f-empresa');
-        sel.innerHTML = '<option value="">Selecione a empresa...</option>';
-        DADOS.empresas.forEach(e => {
-            sel.innerHTML += `<option value="${e.nome}">${e.nome}</option>`;
-        });
-
-        // Popular select do dashboard
-        const dashSel = document.getElementById('dash-empresa-sel');
-        if (dashSel) {
-            dashSel.innerHTML = '<option value="todas">Todas as empresas</option>';
-            DADOS.empresas.forEach(e => {
-                dashSel.innerHTML += `<option value="${e.nome}">${e.nome}</option>`;
-            });
-        }
-    }
-
-    function filtrarTabela(filtro) {
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
-        const semana = new Date(hoje);
-        semana.setDate(semana.getDate() + 7);
-
-        const empSel = document.getElementById('dash-empresa-sel');
-        const empFiltro = empSel ? empSel.value : 'todas';
-
-        let pendentes = DADOS.contas.filter(c => c.status !== 'Pago' && c.status !== 'Cancelado');
-        if (empFiltro !== 'todas') {
-            pendentes = pendentes.filter(c => c.empresa === empFiltro);
-        }
-
-        const labels = {
-            'todos': 'Todos os pendentes',
-            'hoje': 'Vence hoje',
-            'semana': 'Esta semana',
-            'atrasados': 'Atrasados'
-        };
-
-        document.getElementById('filtro-label').textContent = labels[filtro];
-
-        // Destacar card ativo
-        document.querySelectorAll('.metric-card').forEach(c => c.style.boxShadow = '');
-        const idx = {
-            todos: 0,
-            hoje: 1,
-            semana: 2,
-            atrasados: 3
-        }[filtro];
-        document.querySelectorAll('.metric-card')[idx].style.boxShadow = '0 0 0 2px var(--accent)';
-
-        let filtrados;
-        switch (filtro) {
-        case 'hoje':
-            filtrados = pendentes.filter(c => {
-                const v = new Date(c.vencimento + 'T00:00:00');
-                return v.toDateString() === hoje.toDateString();
-            });
-            break;
-        case 'semana':
-            filtrados = pendentes.filter(c => {
-                const v = new Date(c.vencimento + 'T00:00:00');
-                return v >= hoje && v <= semana;
-            });
-            break;
-        case 'atrasados':
-            filtrados = pendentes.filter(c => {
-                const v = new Date(c.vencimento + 'T00:00:00');
-                return v < hoje;
-            });
-            break;
-        default:
-            filtrados = pendentes;
-        }
-
-        renderTabela(filtrados, hoje, semana);
-    }
-
-    // ─── DASHBOARD ────────────────────────────────────────────
-    function renderDashboard() {
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
-        const semana = new Date(hoje);
-        semana.setDate(semana.getDate() + 7);
-
-        const empSel = document.getElementById('dash-empresa-sel');
-        const empFiltro = empSel ? empSel.value : 'todas';
-
-        let pendentes = DADOS.contas.filter(c => c.status !== 'Pago' && c.status !== 'Cancelado');
-        if (empFiltro !== 'todas') {
-            pendentes = pendentes.filter(c => c.empresa === empFiltro);
-        }
-
-        let totalPendente = 0,
-            totalHoje = 0,
-            totalSemana = 0,
-            atrasados = 0;
-        let countHoje = 0,
-            countSemana = 0;
-
-        pendentes.forEach(c => {
-            const v = new Date(c.vencimento + 'T00:00:00');
-            totalPendente += c.valor;
-            if (v < hoje) {
-                atrasados++;
             }
-            if (v.toDateString() === hoje.toDateString()) {
-                totalHoje += c.valor;
-                countHoje++;
-            }
-            if (v >= hoje && v <= semana) {
-                totalSemana += c.valor;
-                countSemana++;
-            }
-        });
 
-        document.getElementById('m-total').textContent = fmtBRL(totalPendente);
-        document.getElementById('m-hoje').textContent = fmtBRL(totalHoje);
-        document.getElementById('m-hoje-count').textContent = `${countHoje} lançamento${countHoje !== 1 ? 's' : ''}`;
-        document.getElementById('m-semana').textContent = fmtBRL(totalSemana);
-        document.getElementById('m-semana-count').textContent = `${countSemana} lançamento${countSemana !== 1 ? 's' : ''}`;
-        document.getElementById('m-atrasados').textContent = atrasados;
-        document.getElementById('dash-subtitle').textContent = `Atualizado agora · ${pendentes.length} pendentes${empFiltro !== 'todas' ? ' · ' + empFiltro : ''}`;
-
-        renderTabela(pendentes, hoje, semana);
-    }
-
-    function renderTabela(pendentes, hoje, semana) {
-        if (!pendentes.length) {
-            document.getElementById('table-container').innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="empty-title">Tudo em dia!</div>
-        <div class="empty-text">Nenhum pagamento pendente</div>
-      </div>`
-
-
-
-
-
-
-
-
-
-            ;
-            return;
+            carregarDados();
+            carregarEmpresas();
         }
 
-        const sorted = [...pendentes].sort((a, b) => new Date(a.vencimento) - new Date(b.vencimento));
-
-        let rows = sorted.map(c => {
-            const v = new Date(c.vencimento + 'T00:00:00');
-            const isAtrasado = v < hoje;
-            const isHoje = v.toDateString() === hoje.toDateString();
-            const isSemana = v > hoje && v <= semana;
-
-            const statusBadge = isAtrasado ? '<span class="badge badge-red"><span class="badge-dot"></span>Atrasado</span>'
-            : isHoje ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Hoje</span>'
-            : isSemana ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Esta semana</span>'
-            : '<span class="badge badge-gray">Futuro</span>';
-
-            const tipoBadge = c.tipo ? `<span class="badge badge-blue">${c.tipo}</span>` : '';
-            const linha = c.cedente && c.cedente.length > 10 ? c.cedente : '';
-            const linhaId = 'linha_' + Math.random().toString(36).substr(2, 6);
-            const linhaHtml = linha ? `<div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span id="${linhaId}" style="font-size:10px;color:var(--text3);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px" title="${linha}">${linha}</span><button onclick="copiarLinha('${linhaId}','${linha.replace(/\\/g, '').replace(/'/g, '').replace(/"/g, '')}',this)" style="flex-shrink:0;padding:1px 6px;background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;font-size:10px;color:var(--text2);cursor:pointer;font-family:var(--font)">copiar</button></div>` : '';
-
-            return `<tr>
-      <td>
-        <div style="font-weight:500;font-size:13px">${
-
-            c.descricao || '—'}</div>
-        <div class="td-empresa">${c.empresa}</div>
-        ${linhaHtml}
-      </td>
-      <td>${
-
-            c.categoria || '—'}</td>
-      <td>${statusBadge}</td>
-      <td>${tipoBadge}</td>
-      <td style="font-weight:600;color:var(--text)">
-        ${
-
-            fmtBRL(c.valor)}
-        ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red);font-weight:400">inclui ${fmtBRL(c.jurosMulta)} juros/multa</div>` : ''}
-      </td>
-      <td style="color:var(--text2);font-size:12px">${
-
-            fmtData(c.vencimento)}</td>
-      <td style="color:var(--green);font-size:12px">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
-      <td style="display:flex;gap:6px;align-items:center">
-        <button class="btn-pago" onclick="marcarPago('${
-
-            c.id}', this)">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Pago
-        </button>
-        ${
-
-
-
-
-
-            c.status === 'Pago' ? `<button class="btn-pago" onclick="desfazerPago('${c.id}', this)" style="color:var(--red);border-color:var(--red)">↩ Desfazer</button>` : ''}
-      </td>
-    </tr>`
-
-
-
-            ;
-        }).join('');
-
-        document.getElementById('table-container').innerHTML = `
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Descrição</th>
-          <th>Categoria</th>
-          <th>Status</th>
-          <th>Tipo</th>
-          <th>Valor</th>
-          <th>Vencimento</th>
-          <th>Pago em</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>${
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        rows}</tbody>
-    </table>`
-
-        ;
-    }
-
-    function copiarLinha(id, texto, btn) {
-        navigator.clipboard.writeText(texto).then(() => {
-            btn.textContent = '✓ copiado';
-            btn.style.color = 'var(--green)';
-            setTimeout(() => {
-                btn.textContent = 'copiar';
-                btn.style.color = 'var(--text2)';
-            }, 2000);
-        });
-    }
-
-    async function marcarPago(pageId, btn) {
-        const hoje = new Date().toISOString().split('T')[0];
-        const dataPagto = prompt('Data do pagamento (AAAA-MM-DD):', hoje);
-        if (dataPagto === null)
-            return;
-
-        const conta = DADOS.contas.find(c => c.id === pageId);
-        let jurosMulta = 0;
-
-        if (conta && conta.vencimento && dataPagto > conta.vencimento) {
-            const jurosStr = prompt(
-            `⚠️ Pagamento após vencimento!\n\nVencimento: ${fmtData(conta.vencimento)}\nPagamento: ${fmtData(dataPagto)}\nValor nominal: ${fmtBRL(conta.valor)}\n\nInforme o valor de juros/multa pago (ou 0 se não houve):`,
-            '0'
-            );
-            if (jurosStr === null)
-                return;
-            jurosMulta = parseFloat(jurosStr.replace(',', '.')) || 0;
+        function setNotionStatus(ok) {
+            const dot = document.getElementById('notion-dot');
+            const txt = document.getElementById('notion-status-text');
+            dot.className = 'notion-dot connected';
+            txt.textContent = 'Notion conectado';
         }
 
-        // Escolher conta de pagamento
-        const CONTAS_PAGTO = ['C6 Mundo das Compras', 'Itaú Mundo das Compras', 'Sicoob Mundo das Compras', 'C6 Leão Home', 'Itaú Leão Home', 'Nubank Apollo Home'];
-        const sugestao = CONTAS_PAGTO.findIndex(c => conta?.empresa && c.toLowerCase().includes(conta.empresa.toLowerCase().split(' ')[0]));
-        const optsStr = CONTAS_PAGTO.map((c, i) => `${i + 1}. ${c}`).join('\n');
-        const contaStr = prompt(`De qual conta saiu o pagamento?\n\n${optsStr}\n\nDigite o número:`, sugestao >= 0 ? String(sugestao + 1) : '1');
-        if (contaStr === null)
-            return;
-        const contaPagamento = CONTAS_PAGTO[parseInt(contaStr) - 1] || CONTAS_PAGTO[0];
+        // ─── NAVEGAÇÃO ────────────────────────────────────────────
+        function navTo(page, btn) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            document.getElementById('page-' + page).classList.add('active');
+            btn.classList.add('active');
 
-        btn.disabled = true;
-        btn.textContent = '...';
+            if (page === 'empresas')
+                renderEmpresas();
+            if (page === 'comparar')
+                renderComparar();
+            if (page === 'saldo') iniciarSaldo();
+            if (page === 'alertas')
+                renderAlertas();
+            if (page === 'fechamento')
+                iniciarFechamento();
+        }
 
-        try {
-            const valorTotal = conta ? conta.valor + jurosMulta : null;
-            const props = {
-                'Status': {
-                    select: {
-                        name: 'Pago'
-                    }
-                },
-                'Data de Pagamento': {
-                    date: {
-                        start: dataPagto || hoje
-                    }
-                },
-                'Conta Pagamento': {
-                    select: {
-                        name: contaPagamento
-                    }
-                }
-            };
-            if (jurosMulta > 0) {
-                props['Juros/Multa'] = {
-                    number: jurosMulta
-                };
-                if (valorTotal)
-                    props['Valor'] = {
-                        number: valorTotal
+        // ─── NOTION API ───────────────────────────────────────────
+        async function notionQuery(dbId, filter=null) {
+            let results = [];
+            let cursor = undefined;
+
+            try {
+                do {
+                    const body = {
+                        page_size: 100
                     };
+                    if (filter)
+                        body.filter = filter;
+                    if (cursor)
+                        body.start_cursor = cursor;
+
+                    const r = await fetch(`/api/notion?path=databases/${dbId}/query`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    });
+
+                    if (!r.ok)
+                        throw new Error('Notion error ' + r.status);
+                    const data = await r.json();
+                    results = results.concat(data.results || []);
+                    cursor = data.has_more ? data.next_cursor : undefined;
+                } while (cursor);
+
+                return results;
+            } catch (e) {
+                console.error('Notion query error:', e);
+                setNotionStatus(false);
+                return [];
             }
-            await notionUpdate(pageId, props);
-            await carregarDados();
-            const msg = jurosMulta > 0
-            ? `Total: ${fmtBRL(valorTotal)} via ${contaPagamento}`
-            : `Pago via ${contaPagamento}`;
-            showToast('Marcado como pago!', msg, 'success');
-        } catch (e) {
-            showToast('Erro ao atualizar', e.message, 'error');
-            btn.disabled = false;
-            btn.textContent = 'Pago';
         }
-    }
 
-    async function desfazerPago(pageId, btn) {
-        if (!confirm('Desfazer pagamento? O status voltará para Pendente.'))
-            return;
-        btn.disabled = true;
-        btn.textContent = '...';
-        try {
-            await notionUpdate(pageId, {
-                'Status': {
-                    select: {
-                        name: 'Pendente'
-                    }
+        async function notionCreate(dbId, properties) {
+            const r = await fetch('/api/notion?path=pages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                'Data de Pagamento': {
-                    date: null
-                }
+                body: JSON.stringify({
+                    parent: {
+                        database_id: dbId
+                    },
+                    properties
+                })
             });
-            await carregarDados();
-            showToast('Pagamento desfeito!', 'Status voltou para Pendente', 'success');
-        } catch (e) {
-            showToast('Erro ao desfazer', e.message, 'error');
-            btn.disabled = false;
-            btn.textContent = 'Desfazer';
-        }
-    }
 
-    // ─── EMPRESAS ─────────────────────────────────────────────
-    function renderEmpresas() {
-        const grid = document.getElementById('empresas-grid');
-        if (!DADOS.empresas.length) {
-            grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
-      <div class="empty-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
-      <div class="empty-title">Nenhuma empresa cadastrada</div>
-      <div class="empty-text">Clique em "Nova empresa" para adicionar</div>
-    </div>`
-
-
-
-
-
-
-
-            ;
-            return;
+            if (!r.ok) {
+                const err = await r.json();
+                throw new Error(err.message || 'Erro ao salvar');
+            }
+            return r.json();
         }
 
-        grid.innerHTML = DADOS.empresas.map(emp => {
-            const contas = DADOS.contas.filter(c => c.empresa === emp.nome);
-            const pendentes = contas.filter(c => c.status === 'Pendente' || c.status === 'Atrasado');
-            const pagos = contas.filter(c => c.status === 'Pago');
-            const totalPendente = pendentes.reduce((s, c) => s + c.valor, 0);
-            const totalPago = pagos.reduce((s, c) => s + c.valor, 0);
-            const atrasados = contas.filter(c => {
-                const hoje = new Date();
-                hoje.setHours(0, 0, 0, 0);
-                return c.status !== 'Pago' && c.status !== 'Cancelado' && new Date(c.vencimento + 'T00:00:00') < hoje;
-            }).length;
-
-            return `<div class="empresa-card" onclick="abrirBoletos('${emp.nome.replace(/'/g, "\\'")}')">
-      <div class="empresa-card-header">
-        <div>
-          <div class="empresa-name">${
-
-
-
-            emp.nome}</div>
-          <div class="empresa-seg">${emp.segmento}</div>
-        </div>
-        <span class="badge ${
-
-            emp.status === 'Ativa' ? 'badge-green' : 'badge-gray'}">${emp.status}</span>
-      </div>
-      <div class="empresa-metrics">
-        <div class="emp-metric">
-          <div class="emp-metric-val">${
-
-
-
-
-
-            fmtBRL(totalPendente)}</div>
-          <div class="emp-metric-label">A vencer</div>
-        </div>
-        <div class="emp-metric">
-          <div class="emp-metric-val">${
-
-
-
-
-
-            fmtBRL(totalPago)}</div>
-          <div class="emp-metric-label">Pagos</div>
-        </div>
-        <div class="emp-metric">
-          <div class="emp-metric-val ${
-
-
-
-
-
-            atrasados > 0 ? 'danger' : ''}">${atrasados}</div>
-          <div class="emp-metric-label">Atrasados</div>
-        </div>
-      </div>
-      <div style="margin-top:10px;font-size:11px;color:var(--text3);text-align:right">Ver boletos →</div>
-    </div>`
-
-
-
-
-
-
-
-
-
-            ;
-        }).join('');
-    }
-
-    function abrirBoletos(nomeEmpresa) {
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
-        const semana = new Date(hoje);
-        semana.setDate(semana.getDate() + 7);
-
-        const pendentes = DADOS.contas
-        .filter(c => c.empresa === nomeEmpresa && c.status !== 'Pago' && c.status !== 'Cancelado')
-        .sort((a, b) => new Date(a.vencimento) - new Date(b.vencimento));
-
-        const total = pendentes.reduce((s, c) => s + c.valor, 0);
-
-        const rows = pendentes.map(c => {
-            const v = new Date(c.vencimento + 'T00:00:00');
-            const isAtrasado = v < hoje;
-            const isHoje = v.toDateString() === hoje.toDateString();
-            const isSemana = v > hoje && v <= semana;
-
-            const statusBadge = isAtrasado
-            ? '<span class="badge badge-red"><span class="badge-dot"></span>Atrasado</span>'
-            : isHoje ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Hoje</span>'
-            : isSemana ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Esta semana</span>'
-            : '<span class="badge badge-gray">Futuro</span>';
-
-            const linha = c.cedente && c.cedente.length > 10 ? c.cedente : '';
-            const linhaId = 'bl_' + Math.random().toString(36).substr(2, 6);
-            const linhaHtml = linha
-            ? `<div style="display:flex;align-items:center;gap:6px;margin-top:3px">
-          <span style="font-size:10px;color:var(--text3);font-family:var(--mono);max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${linha}</span>
-          <button onclick="event.stopPropagation();navigator.clipboard.writeText('${linha.replace(/'/g, '')}').then(()=>{this.textContent='✓';setTimeout(()=>this.textContent='copiar',2000)})" style="flex-shrink:0;padding:1px 6px;background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;font-size:10px;color:var(--text2);cursor:pointer;font-family:var(--font)">copiar</button>
-        </div>`
-
-            : '';
-
-            return `<tr>
-      <td>
-        <div style="font-weight:500;font-size:13px">${
-
-            c.descricao || '—'}</div>
-        <div class="td-empresa">${c.categoria || ''}</div>
-        ${linhaHtml}
-      </td>
-      <td>${
-
-            statusBadge}</td>
-      <td style="font-size:12px;color:var(--text2)">${fmtData(c.vencimento)}</td>
-      <td style="font-weight:600">${fmtBRL(c.valor)}</td>
-      <td>
-        <button class="btn-pago" onclick="event.stopPropagation();marcarPagoModal('${
-
-            c.id}', this)">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Pago
-        </button>
-      </td>
-    </tr>`
-
-
-
-
-
-
-
-
-
-            ;
-        }).join('');
-
-        const modal = document.getElementById('modal-boletos');
-        document.getElementById('modal-boletos-title').textContent = nomeEmpresa;
-        document.getElementById('modal-boletos-total').textContent = `${pendentes.length} pendentes · ${fmtBRL(total)}`;
-        document.getElementById('modal-boletos-body').innerHTML = pendentes.length
-        ? `<table class="data-table" style="width:100%">
-        <thead><tr>
-          <th>Descrição</th><th>Status</th><th>Vencimento</th><th>Valor</th><th></th>
-        </tr></thead>
-        <tbody>${
-
-
-
-
-
-        rows}</tbody>
-      </table>`
-
-
-        : `<div class="empty-state"><div class="empty-title">Nenhum boleto pendente</div></div>`;
-
-        modal.classList.add('open');
-    }
-
-    async function marcarPagoModal(pageId, btn) {
-        const hoje = new Date().toISOString().split('T')[0];
-        const dataPagto = prompt('Data do pagamento (AAAA-MM-DD):', hoje);
-        if (dataPagto === null)
-            return;
-
-        btn.disabled = true;
-        btn.textContent = '...';
-        try {
-            await notionUpdate(pageId, {
-                'Status': {
-                    select: {
-                        name: 'Pago'
-                    }
+        async function notionUpdate(pageId, properties) {
+            const r = await fetch(`/api/notion?path=pages/${pageId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                'Data de Pagamento': {
-                    date: {
-                        start: dataPagto || hoje
-                    }
-                }
+                body: JSON.stringify({
+                    properties
+                })
             });
-            await carregarDados();
+            return r.json();
+        }
+
+        // ─── PARSEAR PÁGINAS NOTION ───────────────────────────────
+        function parseConta(page) {
+            const p = page.properties;
+            return {
+                id: page.id,
+                descricao: p['Descrição']?.title?.[0]?.plain_text || '',
+                empresa: p['Empresa']?.rich_text?.[0]?.plain_text || '',
+                valor: p['Valor']?.number || 0,
+                vencimento: p['Vencimento']?.date?.start || '',
+                dataPagamento: p['Data de Pagamento']?.date?.start || '',
+                categoria: p['Categoria']?.select?.name || '',
+                status: p['Status']?.select?.name || 'Pendente',
+                tipo: p['Tipo']?.select?.name || '',
+                cedente: p['Cedente']?.rich_text?.[0]?.plain_text || '',
+                jurosMulta: p['Juros/Multa']?.number || 0,
+                contaPagamento: p['Conta Pagamento']?.select?.name || '',
+            };
+        }
+
+        function parseEmpresa(page) {
+            const p = page.properties;
+            return {
+                id: page.id,
+                nome: p['Nome da Empresa']?.title?.[0]?.plain_text || '',
+                cnpj: p['CNPJ']?.rich_text?.[0]?.plain_text || '',
+                segmento: p['Segmento']?.select?.name || '',
+                status: p['Status']?.select?.name || 'Ativa',
+            };
+        }
+
+        // ─── CARREGAR DADOS ───────────────────────────────────────
+        async function carregarDados() {
+            const pages = await notionQuery(CONFIG.dbContas);
+            DADOS.contas = pages.map(parseConta);
+            renderDashboard();
+            renderAlertas();
+            atualizarBadgeAlertas();
+        }
+
+        async function carregarEmpresas() {
+            const pages = await notionQuery(CONFIG.dbEmpresas);
+            DADOS.empresas = pages.map(parseEmpresa);
+            popularSelectEmpresas();
             renderEmpresas();
-            fecharModalBoletos();
-            showToast('Marcado como pago!', 'Atualizado no Notion', 'success');
-        } catch (e) {
-            showToast('Erro ao atualizar', e.message, 'error');
-            btn.disabled = false;
-            btn.textContent = 'Pago';
         }
-    }
 
-    function fecharModalBoletos() {
-        document.getElementById('modal-boletos').classList.remove('open');
-    }
-
-    // ─── COMPARAR ────────────────────────────────────────────
-    function renderComparar() {
-        // Popular select de meses se ainda não foi
-        const sel = document.getElementById('comparar-mes-sel');
-        if (sel && sel.options.length === 0) {
-            const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-            const hoje = new Date();
-            // Detectar meses disponíveis nos dados
-            const mesesDisp = new Set();
-            DADOS.contas.forEach(c => {
-                if (c.vencimento) {
-                    const d = new Date(c.vencimento + 'T00:00:00');
-                    mesesDisp.add(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
-                }
+        function popularSelectEmpresas() {
+            const sel = document.getElementById('f-empresa');
+            sel.innerHTML = '<option value="">Selecione a empresa...</option>';
+            DADOS.empresas.forEach(e => {
+                sel.innerHTML += `<option value="${e.nome}">${e.nome}</option>`;
             });
-            const sorted = Array.from(mesesDisp).sort();
-            sorted.forEach(m => {
-                const [ano, mes] = m.split('-');
-                const opt = document.createElement('option');
-                opt.value = m;
-                opt.textContent = `${meses[parseInt(mes) - 1]} ${ano}`;
-                if (parseInt(ano) === hoje.getFullYear() && parseInt(mes) === hoje.getMonth() + 1)
-                    opt.selected = true;
-                sel.appendChild(opt);
-            });
-        }
 
-        const mesSel = sel ? sel.value : null;
-        let mes,
-            ano;
-        if (mesSel) {
-            [ano, mes] = mesSel.split('-').map(Number);
-        } else {
-            const hoje = new Date();
-            mes = hoje.getMonth() + 1;
-            ano = hoje.getFullYear();
-        }
-
-        const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-        if (document.getElementById('comparar-subtitle')) {
-            document.getElementById('comparar-subtitle').textContent = `Vencimentos de ${meses[mes - 1]} ${ano}`;
-        }
-
-        const contasMes = DADOS.contas.filter(c => {
-            if (!c.vencimento)
-                return false;
-            const d = new Date(c.vencimento + 'T00:00:00');
-            return d.getMonth() + 1 === mes && d.getFullYear() === ano;
-        });
-
-        const totalGeral = contasMes.reduce((s, c) => s + c.valor, 0);
-        if (document.getElementById('comparar-total')) {
-            document.getElementById('comparar-total').textContent = `Total: ${fmtBRL(totalGeral)}`;
-        }
-
-        // Por empresa
-        const porEmpresa = {};
-        DADOS.empresas.forEach(e => {
-            porEmpresa[e.nome] = 0;
-        });
-        contasMes.forEach(c => {
-            if (!porEmpresa[c.empresa])
-                porEmpresa[c.empresa] = 0;
-            porEmpresa[c.empresa] += c.valor;
-        });
-
-        const empresasSorted = Object.entries(porEmpresa).sort((a, b) => b[1] - a[1]).filter(([, v]) => v > 0);
-        const maxEmp = Math.max(...empresasSorted.map(e => e[1]), 1);
-
-        document.getElementById('comparar-empresas').innerHTML = empresasSorted.length
-        ? empresasSorted.map(([nome, val]) => `
-      <div class="bar-item">
-        <div class="bar-top">
-          <span class="bar-name">${
-
-
-
-        nome}</span>
-          <span class="bar-val">${fmtBRL(val)}</span>
-        </div>
-        <div class="bar-track">
-          <div class="bar-fill" style="width:${
-
-
-
-        Math.round(val / maxEmp * 100)}%"></div>
-        </div>
-      </div>`
-
-
-
-        ).join('')
-        : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Sem dados neste mês</div>';
-
-        // Por categoria
-        const porCat = {};
-        contasMes.forEach(c => {
-            if (!c.categoria)
-                return;
-            if (!porCat[c.categoria])
-                porCat[c.categoria] = 0;
-            porCat[c.categoria] += c.valor;
-        });
-
-        const catSorted = Object.entries(porCat).sort((a, b) => b[1] - a[1]);
-        const maxCat = Math.max(...catSorted.map(c => c[1]), 1);
-
-        document.getElementById('comparar-categorias').innerHTML = catSorted.length
-        ? catSorted.map(([cat, val]) => `
-      <div class="bar-item">
-        <div class="bar-top">
-          <span class="bar-name">${
-
-
-
-        cat}</span>
-          <span class="bar-val">${fmtBRL(val)}</span>
-        </div>
-        <div class="bar-track">
-          <div class="bar-fill" style="width:${
-
-
-
-        Math.round(val / maxCat * 100)}%"></div>
-        </div>
-      </div>`
-
-
-
-        ).join('')
-        : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Sem dados</div>';
-    }
-
-    // ─── ALERTAS ─────────────────────────────────────────────
-    function renderAlertas() {
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
-        const semana = new Date(hoje);
-        semana.setDate(semana.getDate() + 7);
-
-        const atrasados = DADOS.contas.filter(c => {
-            if (c.status === 'Pago' || c.status === 'Cancelado')
-                return false;
-            const v = new Date(c.vencimento + 'T00:00:00');
-            return v < hoje;
-        });
-
-        const venHoje = DADOS.contas.filter(c => {
-            if (c.status === 'Pago')
-                return false;
-            const v = new Date(c.vencimento + 'T00:00:00');
-            return v.toDateString() === hoje.toDateString();
-        });
-
-        const venSemana = DADOS.contas.filter(c => {
-            if (c.status === 'Pago')
-                return false;
-            const v = new Date(c.vencimento + 'T00:00:00');
-            return v > hoje && v <= semana;
-        });
-
-        atualizarBadgeAlertas(atrasados.length + venHoje.length);
-
-        const grid = document.getElementById('alertas-grid');
-        if (!grid)
-            return;
-
-        grid.innerHTML = `
-    <div class="alerta-card">
-      <div class="alerta-title" style="color:var(--red)">🔴 Atrasados (${
-
-        atrasados.length})</div>
-      ${atrasados.slice(0, 5).map(c => `
-        <div class="alerta-item">
-          <span class="alerta-item-name">${
-
-        c.descricao} <span style="color:var(--text3)">${c.empresa}</span></span>
-          <span class="alerta-item-val danger">${fmtBRL(c.valor)}</span>
-        </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum atrasado 👍</div>'}
-    </div>
-    <div class="alerta-card">
-      <div class="alerta-title" style="color:var(--yellow)">🟡 Vence hoje (${
-
-
-
-        venHoje.length})</div>
-      ${venHoje.map(c => `
-        <div class="alerta-item">
-          <span class="alerta-item-name">${
-
-        c.descricao}</span>
-          <span class="alerta-item-val warning">${fmtBRL(c.valor)}</span>
-        </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum vence hoje</div>'}
-    </div>
-    <div class="alerta-card" style="grid-column:1/-1">
-      <div class="alerta-title" style="color:var(--text2)">📅 Esta semana (${
-
-
-
-        venSemana.length})</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
-      ${
-
-        venSemana.map(c => `
-        <div class="alerta-item">
-          <span class="alerta-item-name">${
-
-        c.descricao} <span style="color:var(--text3)">· ${fmtData(c.vencimento)}</span></span>
-          <span class="alerta-item-val">${fmtBRL(c.valor)}</span>
-        </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum esta semana</div>'}
-      </div>
-    </div>`
-
-
-
-        ;
-    }
-
-    function atualizarBadgeAlertas(count) {
-        const badge = document.getElementById('badge-alertas');
-        if (!count) {
-            count = 0;
-        }
-        if (!DADOS.contas)
-            return;
-
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
-        const urgentes = DADOS.contas.filter(c => {
-            if (c.status === 'Pago' || c.status === 'Cancelado')
-                return false;
-            const v = new Date(c.vencimento + 'T00:00:00');
-            return v <= hoje;
-        }).length;
-
-        if (urgentes > 0) {
-            badge.textContent = urgentes;
-            badge.style.display = 'block';
-        } else {
-            badge.style.display = 'none';
-        }
-    }
-
-    function gerarMsgHoje() {
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
-        const atrasados = DADOS.contas.filter(c => {
-            if (c.status === 'Pago' || c.status === 'Cancelado')
-                return false;
-            return new Date(c.vencimento + 'T00:00:00') < hoje;
-        });
-        const venHoje = DADOS.contas.filter(c => {
-            if (c.status === 'Pago')
-                return false;
-            return new Date(c.vencimento + 'T00:00:00').toDateString() === hoje.toDateString();
-        });
-
-        const dataStr = hoje.toLocaleDateString('pt-BR', {
-            day: '2-digit',
-            month: 'short'
-        });
-        let msg = `📋 *Controle Financeiro — ${dataStr}*\n\n`;
-
-        if (atrasados.length) {
-            msg += `🔴 *ATRASADOS (${atrasados.length})*\n`;
-            atrasados.forEach(c => {
-                msg += `• ${c.descricao} — ${fmtBRL(c.valor)}\n`;
-            });
-            msg += '\n';
-        }
-
-        if (venHoje.length) {
-            msg += `🟡 *VENCE HOJE*\n`;
-            venHoje.forEach(c => {
-                msg += `• ${c.descricao} (${c.empresa}) — ${fmtBRL(c.valor)}\n`;
-            });
-            msg += '\n';
-        }
-
-        const totalUrgente = [...atrasados, ...venHoje].reduce((s, c) => s + c.valor, 0);
-        msg += `💰 *Total urgente: ${fmtBRL(totalUrgente)}*`;
-        return msg;
-    }
-
-    function enviarAlertaHoje() {
-        const msg = gerarMsgHoje();
-        abrirWhatsappMsg(msg);
-    }
-
-    function enviarResumoSemanal() {
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
-        const semana = new Date(hoje);
-        semana.setDate(semana.getDate() + 7);
-        const pendentes = DADOS.contas.filter(c => {
-            if (c.status === 'Pago' || c.status === 'Cancelado')
-                return false;
-            const v = new Date(c.vencimento + 'T00:00:00');
-            return v >= hoje && v <= semana;
-        });
-
-        let msg = `📅 *Resumo semanal — ${hoje.toLocaleDateString('pt-BR', {day: '2-digit',month: 'short'})}*\n\n`;
-        pendentes.forEach(c => {
-            msg += `• ${c.descricao} (${c.empresa}) · ${fmtData(c.vencimento)} — ${fmtBRL(c.valor)}\n`;
-        });
-        const total = pendentes.reduce((s, c) => s + c.valor, 0);
-        msg += `\n💰 Total da semana: ${fmtBRL(total)}`;
-        abrirWhatsappMsg(msg);
-    }
-
-    function enviarResumoMensal() {
-        const mes = new Date().getMonth();
-        const ano = new Date().getFullYear();
-        const contasMes = DADOS.contas.filter(c => {
-            if (!c.vencimento)
-                return false;
-            const d = new Date(c.vencimento + 'T00:00:00');
-            return d.getMonth() === mes && d.getFullYear() === ano;
-        });
-
-        const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-        let msg = `📊 *Relatório ${meses[mes]}/${ano}*\n\n`;
-
-        DADOS.empresas.forEach(emp => {
-            const contas = contasMes.filter(c => c.empresa === emp.nome);
-            if (!contas.length)
-                return;
-            const total = contas.reduce((s, c) => s + c.valor, 0);
-            msg += `🏢 ${emp.nome}: ${fmtBRL(total)}\n`;
-        });
-
-        const total = contasMes.reduce((s, c) => s + c.valor, 0);
-        msg += `\n💰 *Total do mês: ${fmtBRL(total)}*`;
-        abrirWhatsappMsg(msg);
-    }
-
-    function abrirWhatsappMsg(msg) {
-        window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
-    }
-
-    // ─── LANÇAR BOLETO ────────────────────────────────────────
-    function dragOver(e) {
-        e.preventDefault();
-        document.getElementById('upload-zone').classList.add('dragover');
-    }
-    function dragLeave() {
-        document.getElementById('upload-zone').classList.remove('dragover');
-    }
-    function dropFile(e) {
-        e.preventDefault();
-        dragLeave();
-        const f = e.dataTransfer.files[0];
-        if (f)
-            processarArquivo(f);
-    }
-    function processFile(e) {
-        const f = e.target.files[0];
-        if (f)
-            processarArquivo(f);
-    }
-
-    async function processarArquivo(file) {
-        document.getElementById('upload-zone').style.display = 'none';
-        document.getElementById('ai-reading').style.display = 'block';
-        document.getElementById('ai-result-area').style.display = 'none';
-
-        try {
-            const base64 = await fileToBase64(file);
-            const isPdf = file.type === 'application/pdf';
-            const extracted = await extrairDadosIA(base64, file.type, isPdf);
-
-            document.getElementById('ai-reading').style.display = 'none';
-            document.getElementById('ai-result-area').style.display = 'block';
-
-            aiDados = extracted;
-
-            document.getElementById('ai-cedente').textContent = extracted.cedente || '—';
-            document.getElementById('ai-valor').textContent = extracted.valor ? `R$ ${Number(extracted.valor).toLocaleString('pt-BR', {minimumFractionDigits: 2})}` : '—';
-            document.getElementById('ai-vencimento').textContent = extracted.vencimento ? fmtData(extracted.vencimento) : '—';
-            document.getElementById('ai-linha').textContent = extracted.linha || '—';
-
-            // Preencher formulário
-            if (extracted.cedente)
-                document.getElementById('f-cedente').value = extracted.cedente;
-            if (extracted.cedente)
-                document.getElementById('f-descricao').value = extracted.cedente;
-            if (extracted.valor)
-                document.getElementById('f-valor').value = extracted.valor;
-            if (extracted.vencimento)
-                document.getElementById('f-vencimento').value = extracted.vencimento;
-
-        } catch (e) {
-            console.error(e);
-            document.getElementById('ai-reading').style.display = 'none';
-            document.getElementById('upload-zone').style.display = 'block';
-            showToast('Erro na leitura', 'Preencha os dados manualmente', 'error');
-        }
-    }
-
-    function fileToBase64(file) {
-        return new Promise((res, rej) => {
-            const r = new FileReader();
-            r.onload = () => res(r.result.split(',')[1]);
-            r.onerror = rej;
-            r.readAsDataURL(file);
-        });
-    }
-
-    async function extrairDadosIA(base64, mediaType, isPdf) {
-        const content = isPdf
-        ? [{
-            type: 'document',
-            source: {
-                type: 'base64',
-                media_type: 'application/pdf',
-                data: base64
+            // Popular select do dashboard
+            const dashSel = document.getElementById('dash-empresa-sel');
+            if (dashSel) {
+                dashSel.innerHTML = '<option value="todas">Todas as empresas</option>';
+                DADOS.empresas.forEach(e => {
+                    dashSel.innerHTML += `<option value="${e.nome}">${e.nome}</option>`;
+                });
             }
-        },
-        {
-            type: 'text',
-            text: 'Extraia do boleto: cedente (quem emitiu), valor total, data de vencimento (formato YYYY-MM-DD) e linha digitável. Responda SOMENTE em JSON: {"cedente":"","valor":"","vencimento":"","linha":""}'
-        }]
-        : [{
-            type: 'image',
-            source: {
-                type: 'base64',
-                media_type: mediaType,
-                data: base64
-            }
-        },
-        {
-            type: 'text',
-            text: 'Extraia do boleto: cedente (quem emitiu), valor total, data de vencimento (formato YYYY-MM-DD) e linha digitável. Responda SOMENTE em JSON: {"cedente":"","valor":"","vencimento":"","linha":""}'
-        }];
-
-        const r = await fetch('/api/anthropic', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                model: 'claude-sonnet-4-20250514',
-                max_tokens: 500,
-                messages: [{
-                    role: 'user',
-                    content
-                }]
-            })
-        });
-
-        if (!r.ok)
-            throw new Error('Erro API: ' + r.status);
-
-        const data = await r.json();
-        if (data.error)
-            throw new Error(data.error);
-        const text = data.content?.[0]?.text || '{}';
-        const clean = text.replace(/```json|```/g, '').trim();
-        return JSON.parse(clean);
-    }
-
-    async function salvarLancamento() {
-        const descricao = document.getElementById('f-descricao').value.trim();
-        const empresa = document.getElementById('f-empresa').value;
-        const valor = parseFloat(document.getElementById('f-valor').value);
-        const vencimento = document.getElementById('f-vencimento').value;
-        const categoria = document.getElementById('f-categoria').value;
-        const tipo = document.getElementById('f-tipo').value;
-        const cedente = document.getElementById('f-cedente').value.trim();
-        const obs = document.getElementById('f-obs').value.trim();
-
-        if (!descricao || !empresa || !valor || !vencimento) {
-            showToast('Preencha os campos obrigatórios', 'Descrição, empresa, valor e vencimento', 'error');
-            return;
         }
 
-        const btn = document.getElementById('btn-salvar');
-        btn.disabled = true;
-        btn.innerHTML = '<div class="ai-spinner" style="width:18px;height:18px;border-width:2px;margin:0"></div> Salvando...';
+        function filtrarTabela(filtro) {
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+            const semana = new Date(hoje);
+            semana.setDate(semana.getDate() + 7);
 
-        try {
-            const properties = {
-                'Descrição': {
-                    title: [{
-                        text: {
-                            content: descricao
-                        }
-                    }]
-                },
-                'Empresa': {
-                    rich_text: [{
-                        text: {
-                            content: empresa
-                        }
-                    }]
-                },
-                'Valor': {
-                    number: valor
-                },
-                'Vencimento': {
-                    date: {
-                        start: vencimento
-                    }
-                },
-                'Status': {
-                    select: {
-                        name: 'Pendente'
-                    }
-                },
+            const empSel = document.getElementById('dash-empresa-sel');
+            const empFiltro = empSel ? empSel.value : 'todas';
+
+            let pendentes = DADOS.contas.filter(c => c.status !== 'Pago' && c.status !== 'Cancelado');
+            if (empFiltro !== 'todas') {
+                pendentes = pendentes.filter(c => c.empresa === empFiltro);
+            }
+
+            const labels = {
+                'todos': 'Todos os pendentes',
+                'hoje': 'Vence hoje',
+                'semana': 'Esta semana',
+                'atrasados': 'Atrasados'
             };
 
-            if (categoria)
-                properties['Categoria'] = {
-                    select: {
-                        name: categoria
-                    }
-                };
-            if (tipo)
-                properties['Tipo'] = {
-                    select: {
-                        name: tipo
-                    }
-                };
-            if (cedente)
-                properties['Cedente'] = {
-                    rich_text: [{
-                        text: {
-                            content: cedente
-                        }
-                    }]
-                };
-            if (obs)
-                properties['Observações'] = {
-                    rich_text: [{
-                        text: {
-                            content: obs
-                        }
-                    }]
-                };
+            document.getElementById('filtro-label').textContent = labels[filtro];
 
-            await notionCreate(CONFIG.dbContas, properties);
+            // Destacar card ativo
+            document.querySelectorAll('.metric-card').forEach(c => c.style.boxShadow = '');
+            const idx = {
+                todos: 0,
+                hoje: 1,
+                semana: 2,
+                atrasados: 3
+            }[filtro];
+            document.querySelectorAll('.metric-card')[idx].style.boxShadow = '0 0 0 2px var(--accent)';
 
-            showToast('Salvo no Notion!', `${descricao} — ${fmtBRL(valor)}`, 'success');
+            let filtrados;
+            switch (filtro) {
+            case 'hoje':
+                filtrados = pendentes.filter(c => {
+                    const v = new Date(c.vencimento + 'T00:00:00');
+                    return v.toDateString() === hoje.toDateString();
+                });
+                break;
+            case 'semana':
+                filtrados = pendentes.filter(c => {
+                    const v = new Date(c.vencimento + 'T00:00:00');
+                    return v >= hoje && v <= semana;
+                });
+                break;
+            case 'atrasados':
+                filtrados = pendentes.filter(c => {
+                    const v = new Date(c.vencimento + 'T00:00:00');
+                    return v < hoje;
+                });
+                break;
+            default:
+                filtrados = pendentes;
+            }
 
-            // Gerar preview WhatsApp
-            const diasAte = Math.ceil((new Date(vencimento + 'T00:00:00') - new Date()) / 864e5);
-            const urgencia = diasAte < 0 ? '🔴 ATRASADO' : diasAte === 0 ? '🔴 Vence HOJE' : diasAte <= 3 ? `🟡 Vence em ${diasAte} dias` : `🟢 Vence em ${diasAte} dias`;
-            const wppMsg = `📋 *Novo lançamento registrado*\n🏢 Empresa: ${empresa}\n📄 ${descricao}\n💰 Valor: ${fmtBRL(valor)}\n📅 Vencimento: ${fmtData(vencimento)}\n${urgencia}`;
-
-            document.getElementById('wpp-text').textContent = wppMsg;
-            document.getElementById('wpp-result').style.display = 'block';
-            document.getElementById('wpp-result').scrollIntoView({
-                behavior: 'smooth'
-            });
-
-            window._lastWppMsg = wppMsg;
-
-            btn.innerHTML = '✓ Salvo no Notion';
-            btn.style.opacity = '0.6';
-
-            await carregarDados();
-
-        } catch (e) {
-            showToast('Erro ao salvar', e.message, 'error');
-            btn.disabled = false;
-            btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Salvar no Notion';
-            btn.style.opacity = '1';
-        }
-    }
-
-    function abrirWhatsapp() {
-        const msg = window._lastWppMsg || '';
-        abrirWhatsappMsg(msg);
-    }
-
-    // ─── EMPRESAS MODAL ───────────────────────────────────────
-    function abrirModalEmpresa() {
-        document.getElementById('modal-empresa').classList.add('open');
-    }
-    function fecharModal() {
-        document.getElementById('modal-empresa').classList.remove('open');
-    }
-
-    async function salvarEmpresa() {
-        const nome = document.getElementById('ne-nome').value.trim();
-        const cnpj = document.getElementById('ne-cnpj').value.trim();
-        const segmento = document.getElementById('ne-segmento').value;
-
-        if (!nome) {
-            showToast('Informe o nome da empresa', '', 'error');
-            return;
+            renderTabela(filtrados, hoje, semana);
         }
 
-        try {
-            await notionCreate(CONFIG.dbEmpresas, {
-                'Nome da Empresa': {
-                    title: [{
-                        text: {
-                            content: nome
-                        }
-                    }]
-                },
-                'CNPJ': {
-                    rich_text: [{
-                        text: {
-                            content: cnpj
-                        }
-                    }]
-                },
-                'Segmento': {
-                    select: {
-                        name: segmento
-                    }
-                },
-                'Status': {
-                    select: {
-                        name: 'Ativa'
-                    }
+        // ─── DASHBOARD ────────────────────────────────────────────
+        function renderDashboard() {
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+            const semana = new Date(hoje);
+            semana.setDate(semana.getDate() + 7);
+
+            const empSel = document.getElementById('dash-empresa-sel');
+            const empFiltro = empSel ? empSel.value : 'todas';
+
+            let pendentes = DADOS.contas.filter(c => c.status !== 'Pago' && c.status !== 'Cancelado');
+            if (empFiltro !== 'todas') {
+                pendentes = pendentes.filter(c => c.empresa === empFiltro);
+            }
+
+            let totalPendente = 0,
+                totalHoje = 0,
+                totalSemana = 0,
+                atrasados = 0;
+            let countHoje = 0,
+                countSemana = 0;
+
+            pendentes.forEach(c => {
+                const v = new Date(c.vencimento + 'T00:00:00');
+                totalPendente += c.valor;
+                if (v < hoje) {
+                    atrasados++;
+                }
+                if (v.toDateString() === hoje.toDateString()) {
+                    totalHoje += c.valor;
+                    countHoje++;
+                }
+                if (v >= hoje && v <= semana) {
+                    totalSemana += c.valor;
+                    countSemana++;
                 }
             });
-            fecharModal();
-            showToast('Empresa criada!', nome, 'success');
-            await carregarEmpresas();
-            renderEmpresas();
-        } catch (e) {
-            showToast('Erro ao criar empresa', e.message, 'error');
-        }
-    }
 
-    // ─── FECHAMENTO ──────────────────────────────────────────
-    function iniciarFechamento() {
-        const sel = document.getElementById('f-mes-sel');
-        if (sel.options.length === 0) {
-            const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-            const hoje = new Date();
-            for (let i = 0; i < 12; i++) {
-                const d = new Date(hoje.getFullYear(), hoje.getMonth() - i, 1);
-                const opt = document.createElement('option');
-                opt.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
-                opt.textContent = `${meses[d.getMonth()]} ${d.getFullYear()}`;
-                if (i === 0)
-                    opt.selected = true;
-                sel.appendChild(opt);
+            document.getElementById('m-total').textContent = fmtBRL(totalPendente);
+            document.getElementById('m-hoje').textContent = fmtBRL(totalHoje);
+            document.getElementById('m-hoje-count').textContent = `${countHoje} lançamento${countHoje !== 1 ? 's' : ''}`;
+            document.getElementById('m-semana').textContent = fmtBRL(totalSemana);
+            document.getElementById('m-semana-count').textContent = `${countSemana} lançamento${countSemana !== 1 ? 's' : ''}`;
+            document.getElementById('m-atrasados').textContent = atrasados;
+            document.getElementById('dash-subtitle').textContent = `Atualizado agora · ${pendentes.length} pendentes${empFiltro !== 'todas' ? ' · ' + empFiltro : ''}`;
+
+            renderTabela(pendentes, hoje, semana);
+        }
+
+        function renderTabela(pendentes, hoje, semana) {
+            if (!pendentes.length) {
+                document.getElementById('table-container').innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="empty-title">Tudo em dia!</div>
+            <div class="empty-text">Nenhum pagamento pendente</div>
+          </div>`
+
+
+
+
+                ;
+                return;
             }
-        }
 
-        // Popular empresas no select
-        const empSel = document.getElementById('f-emp-sel');
-        if (empSel.options.length === 1) {
-            DADOS.empresas.forEach(e => {
-                const opt = document.createElement('option');
-                opt.value = e.nome;
-                opt.textContent = e.nome;
-                empSel.appendChild(opt);
-            });
-        }
+            const sorted = [...pendentes].sort((a, b) => new Date(a.vencimento) - new Date(b.vencimento));
 
-        renderFechamento();
-    }
+            let rows = sorted.map(c => {
+                const v = new Date(c.vencimento + 'T00:00:00');
+                const isAtrasado = v < hoje;
+                const isHoje = v.toDateString() === hoje.toDateString();
+                const isSemana = v > hoje && v <= semana;
 
-    function renderFechamento() {
-        const mesSel = document.getElementById('f-mes-sel').value;
-        const empSel = document.getElementById('f-emp-sel').value;
-        if (!mesSel)
-            return;
+                const statusBadge = isAtrasado ? '<span class="badge badge-red"><span class="badge-dot"></span>Atrasado</span>'
+                : isHoje ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Hoje</span>'
+                : isSemana ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Esta semana</span>'
+                : '<span class="badge badge-gray">Futuro</span>';
 
-        const [ano, mes] = mesSel.split('-').map(Number);
+                const tipoBadge = c.tipo ? `<span class="badge badge-blue">${c.tipo}</span>` : '';
+                const linha = c.cedente && c.cedente.length > 10 ? c.cedente : '';
+                const linhaId = 'linha_' + Math.random().toString(36).substr(2, 6);
+                const linhaHtml = linha ? `<div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span id="${linhaId}" style="font-size:10px;color:var(--text3);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px" title="${linha}">${linha}</span><button onclick="copiarLinha('${linhaId}','${linha.replace(/\\/g, '').replace(/'/g, '').replace(/"/g, '')}',this)" style="flex-shrink:0;padding:1px 6px;background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;font-size:10px;color:var(--text2);cursor:pointer;font-family:var(--font)">copiar</button></div>` : '';
 
-        let pagos = DADOS.contas.filter(c => {
-            if (c.status !== 'Pago')
-                return false;
-            if (!c.vencimento)
-                return false;
-            const d = new Date(c.vencimento + 'T00:00:00');
-            return d.getFullYear() === ano && d.getMonth() + 1 === mes;
-        });
-
-        if (empSel !== 'todas') {
-            pagos = pagos.filter(c => c.empresa === empSel);
-        }
-
-        // Métricas
-        const total = pagos.reduce((s, c) => s + c.valor, 0);
-        document.getElementById('fech-total').textContent = fmtBRL(total);
-        document.getElementById('fech-count').textContent = pagos.length;
-
-        // Maior categoria
-        const porCat = {};
-        pagos.forEach(c => {
-            const cat = c.categoria || 'Outros';
-            if (!porCat[cat])
-                porCat[cat] = 0;
-            porCat[cat] += c.valor;
-        });
-        const catSorted = Object.entries(porCat).sort((a, b) => b[1] - a[1]);
-        if (catSorted.length) {
-            document.getElementById('fech-maior-val').textContent = fmtBRL(catSorted[0][1]);
-            document.getElementById('fech-maior-cat').textContent = catSorted[0][0];
-        } else {
-            document.getElementById('fech-maior-val').textContent = '—';
-            document.getElementById('fech-maior-cat').textContent = '—';
-        }
-
-        // Empresas com saídas
-        const empresasComSaidas = new Set(pagos.map(c => c.empresa)).size;
-        document.getElementById('fech-empresas-count').textContent = empresasComSaidas;
-
-        // Por categoria
-        const maxCat = Math.max(...catSorted.map(c => c[1]), 1);
-        document.getElementById('fech-categorias').innerHTML = catSorted.length
-        ? catSorted.map(([cat, val]) => `
-      <div class="bar-item">
-        <div class="bar-top">
-          <span class="bar-name">${
-
-
-
-        cat}</span>
-          <span class="bar-val">${fmtBRL(val)}</span>
-        </div>
-        <div class="bar-track"><div class="bar-fill" style="width:${
-
-        Math.round(val / maxCat * 100)}%"></div></div>
-      </div>`
-
-        ).join('')
-        : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum pagamento neste mês</div>';
-
-        // Por empresa
-        const porEmp = {};
-        pagos.forEach(c => {
-            if (!porEmp[c.empresa])
-                porEmp[c.empresa] = 0;
-            porEmp[c.empresa] += c.valor;
-        });
-        const empSorted = Object.entries(porEmp).sort((a, b) => b[1] - a[1]);
-        const maxEmp = Math.max(...empSorted.map(e => e[1]), 1);
-        document.getElementById('fech-empresas').innerHTML = empSorted.length
-        ? empSorted.map(([emp, val]) => `
-      <div class="bar-item">
-        <div class="bar-top">
-          <span class="bar-name">${
-
-
-
-        emp}</span>
-          <span class="bar-val">${fmtBRL(val)}</span>
-        </div>
-        <div class="bar-track"><div class="bar-fill" style="width:${
-
-        Math.round(val / maxEmp * 100)}%"></div></div>
-      </div>`
-
-        ).join('')
-        : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum dado</div>';
-
-        // Tabela detalhada
-        document.getElementById('fech-table-count').textContent = `${pagos.length} lançamentos`;
-        const sorted = [...pagos].sort((a, b) => new Date(a.vencimento) - new Date(b.vencimento));
-        document.getElementById('fech-tabela').innerHTML = sorted.length
-        ? `<table class="data-table">
-        <thead><tr>
-          <th>Descrição</th><th>Empresa</th><th>Categoria</th><th>Tipo</th><th>Valor</th><th>Vencimento</th><th>Pago em</th><th></th>
-        </tr></thead>
-        <tbody>${
-
-
-
-
-
-        sorted.map(c => `<tr>
-          <td style="font-weight:500;font-size:13px">${c.descricao || '—'}</td>
-          <td style="font-size:12px;color:var(--text2)">${c.empresa}</td>
-          <td>${c.categoria ? `<span class="badge badge-gray">${c.categoria}</span>` : '—'}</td>
-          <td>${c.tipo ? `<span class="badge badge-blue">${c.tipo}</span>` : '—'}</td>
-          <td style="font-weight:600">
+                return `<tr>
+          <td>
+            <div style="font-weight:500;font-size:13px">${
+                c.descricao || '—'}</div>
+            <div class="td-empresa">${c.empresa}</div>
+            ${linhaHtml}
+          </td>
+          <td>${
+                c.categoria || '—'}</td>
+          <td>${statusBadge}</td>
+          <td>${tipoBadge}</td>
+          <td style="font-weight:600;color:var(--text)">
+            ${
+                fmtBRL(c.valor)}
+            ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red);font-weight:400">inclui ${fmtBRL(c.jurosMulta)} juros/multa</div>` : ''}
+          </td>
+          <td style="color:var(--text2);font-size:12px">${
+                fmtData(c.vencimento)}</td>
+          <td style="color:var(--green);font-size:12px">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
+          <td style="display:flex;gap:6px;align-items:center">
+            <button class="btn-pago" onclick="marcarPago('${
+                c.id}', this)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Pago
+            </button>
             ${
 
-        fmtBRL(c.valor)}
-            ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red)">inclui ${fmtBRL(c.jurosMulta)} juros</div>` : ''}
+
+                c.status === 'Pago' ? `<button class="btn-pago" onclick="desfazerPago('${c.id}', this)" style="color:var(--red);border-color:var(--red)">↩ Desfazer</button>` : ''}
           </td>
-          <td style="font-size:12px;color:var(--text2)">${
+        </tr>`
 
-        fmtData(c.vencimento)}</td>
-          <td style="font-size:12px;color:var(--green);font-weight:500">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
+                ;
+            }).join('');
+
+            document.getElementById('table-container').innerHTML = `
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Categoria</th>
+              <th>Status</th>
+              <th>Tipo</th>
+              <th>Valor</th>
+              <th>Vencimento</th>
+              <th>Pago em</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+        <div class="mobile-cards">
+          ${sorted.map(c => {
+            const v = new Date(c.vencimento + 'T00:00:00');
+            const isAtrasado = v < hoje;
+            const isHoje = v.toDateString() === hoje.toDateString();
+            const isSemana = v > hoje && v <= semana;
+            const statusBadge = isAtrasado
+              ? '<span class="badge badge-red"><span class="badge-dot"></span>Atrasado</span>'
+              : isHoje ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Hoje</span>'
+              : isSemana ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Esta semana</span>'
+              : '<span class="badge badge-gray">Futuro</span>';
+            const linha = c.cedente && c.cedente.length > 10 ? c.cedente : '';
+            return '<div class="mobile-card">'
+              + '<div class="mobile-card-header">'
+              + '<div><div class="mobile-card-title">' + (c.descricao || '—') + '</div>'
+              + '<div class="mobile-card-empresa">' + c.empresa + (c.categoria ? ' · ' + c.categoria : '') + '</div></div>'
+              + statusBadge + '</div>'
+              + '<div class="mobile-card-row">'
+              + '<span class="mobile-card-valor">' + fmtBRL(c.valor) + '</span>'
+              + '<span class="mobile-card-data">📅 ' + fmtData(c.vencimento) + '</span>'
+              + '</div>'
+              + (linha ? '<div class="mobile-card-linha">' + linha
+                + ' <button onclick="navigator.clipboard.writeText(\'' + linha.replace(/'/g,'') + '\').then(()=>{this.textContent=\'✓\';setTimeout(()=>this.textContent=\'copiar\',2000)})" style="background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;font-size:10px;color:var(--text2);cursor:pointer;padding:1px 6px;font-family:var(--font)">copiar</button></div>' : '')
+              + '<div class="mobile-card-actions">'
+              + '<button class="btn-pago" onclick="marcarPago(\'' + c.id + '\', this)">'
+              + '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+              + ' Marcar como Pago</button>'
+              + '</div></div>';
+          }).join('')}
+        </div>\`
+            ;
+        }
+
+        function copiarLinha(id, texto, btn) {
+            navigator.clipboard.writeText(texto).then(() => {
+                btn.textContent = '✓ copiado';
+                btn.style.color = 'var(--green)';
+                setTimeout(() => {
+                    btn.textContent = 'copiar';
+                    btn.style.color = 'var(--text2)';
+                }, 2000);
+            });
+        }
+
+        async function marcarPago(pageId, btn) {
+            const hoje = new Date().toISOString().split('T')[0];
+            const dataPagto = prompt('Data do pagamento (AAAA-MM-DD):', hoje);
+            if (dataPagto === null) return;
+
+            const conta = DADOS.contas.find(c => c.id === pageId);
+            let jurosMulta = 0;
+
+            if (conta && conta.vencimento && dataPagto > conta.vencimento) {
+                const jurosStr = prompt(
+                    `⚠️ Pagamento após vencimento!\n\nVencimento: ${fmtData(conta.vencimento)}\nPagamento: ${fmtData(dataPagto)}\nValor nominal: ${fmtBRL(conta.valor)}\n\nInforme o valor de juros/multa pago (ou 0 se não houve):`,
+                    '0'
+                );
+                if (jurosStr === null) return;
+                jurosMulta = parseFloat(jurosStr.replace(',', '.')) || 0;
+            }
+
+            // Escolher conta de pagamento
+            const CONTAS_PAGTO = ['C6 Mundo das Compras','Itaú Mundo das Compras','Sicoob Mundo das Compras','C6 Leão Home','Itaú Leão Home','Nubank Apollo Home'];
+            const sugestao = CONTAS_PAGTO.findIndex(c => conta?.empresa && c.toLowerCase().includes(conta.empresa.toLowerCase().split(' ')[0]));
+            const optsStr = CONTAS_PAGTO.map((c,i) => `${i+1}. ${c}`).join('\n');
+            const contaStr = prompt(`De qual conta saiu o pagamento?\n\n${optsStr}\n\nDigite o número:`, sugestao >= 0 ? String(sugestao+1) : '1');
+            if (contaStr === null) return;
+            const contaPagamento = CONTAS_PAGTO[parseInt(contaStr)-1] || CONTAS_PAGTO[0];
+
+            btn.disabled = true;
+            btn.textContent = '...';
+
+            try {
+                const valorTotal = conta ? conta.valor + jurosMulta : null;
+                const props = {
+                    'Status': { select: { name: 'Pago' } },
+                    'Data de Pagamento': { date: { start: dataPagto || hoje } },
+                    'Conta Pagamento': { select: { name: contaPagamento } }
+                };
+                if (jurosMulta > 0) {
+                    props['Juros/Multa'] = { number: jurosMulta };
+                    if (valorTotal) props['Valor'] = { number: valorTotal };
+                }
+                await notionUpdate(pageId, props);
+                await carregarDados();
+                const msg = jurosMulta > 0
+                    ? `Total: ${fmtBRL(valorTotal)} via ${contaPagamento}`
+                    : `Pago via ${contaPagamento}`;
+                showToast('Marcado como pago!', msg, 'success');
+            } catch(e) {
+                showToast('Erro ao atualizar', e.message, 'error');
+                btn.disabled = false;
+                btn.textContent = 'Pago';
+            }
+        }
+
+        async function desfazerPago(pageId, btn) {
+            if (!confirm('Desfazer pagamento? O status voltará para Pendente.'))
+                return;
+            btn.disabled = true;
+            btn.textContent = '...';
+            try {
+                await notionUpdate(pageId, {
+                    'Status': {
+                        select: {
+                            name: 'Pendente'
+                        }
+                    },
+                    'Data de Pagamento': {
+                        date: null
+                    }
+                });
+                await carregarDados();
+                showToast('Pagamento desfeito!', 'Status voltou para Pendente', 'success');
+            } catch (e) {
+                showToast('Erro ao desfazer', e.message, 'error');
+                btn.disabled = false;
+                btn.textContent = 'Desfazer';
+            }
+        }
+
+        // ─── EMPRESAS ─────────────────────────────────────────────
+        function renderEmpresas() {
+            const grid = document.getElementById('empresas-grid');
+            if (!DADOS.empresas.length) {
+                grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+          <div class="empty-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+          <div class="empty-title">Nenhuma empresa cadastrada</div>
+          <div class="empty-text">Clique em "Nova empresa" para adicionar</div>
+        </div>`
+
+
+
+                ;
+                return;
+            }
+
+            grid.innerHTML = DADOS.empresas.map(emp => {
+                const contas = DADOS.contas.filter(c => c.empresa === emp.nome);
+                const pendentes = contas.filter(c => c.status === 'Pendente' || c.status === 'Atrasado');
+                const pagos = contas.filter(c => c.status === 'Pago');
+                const totalPendente = pendentes.reduce((s, c) => s + c.valor, 0);
+                const totalPago = pagos.reduce((s, c) => s + c.valor, 0);
+                const atrasados = contas.filter(c => {
+                    const hoje = new Date();
+                    hoje.setHours(0, 0, 0, 0);
+                    return c.status !== 'Pago' && c.status !== 'Cancelado' && new Date(c.vencimento + 'T00:00:00') < hoje;
+                }).length;
+
+                return `<div class="empresa-card" onclick="abrirBoletos('${emp.nome.replace(/'/g, "\\'")}')">
+          <div class="empresa-card-header">
+            <div>
+              <div class="empresa-name">${
+
+                emp.nome}</div>
+              <div class="empresa-seg">${emp.segmento}</div>
+            </div>
+            <span class="badge ${
+                emp.status === 'Ativa' ? 'badge-green' : 'badge-gray'}">${emp.status}</span>
+          </div>
+          <div class="empresa-metrics">
+            <div class="emp-metric">
+              <div class="emp-metric-val">${
+
+
+                fmtBRL(totalPendente)}</div>
+              <div class="emp-metric-label">A vencer</div>
+            </div>
+            <div class="emp-metric">
+              <div class="emp-metric-val">${
+
+
+                fmtBRL(totalPago)}</div>
+              <div class="emp-metric-label">Pagos</div>
+            </div>
+            <div class="emp-metric">
+              <div class="emp-metric-val ${
+
+
+                atrasados > 0 ? 'danger' : ''}">${atrasados}</div>
+              <div class="emp-metric-label">Atrasados</div>
+            </div>
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:var(--text3);text-align:right">Ver boletos →</div>
+        </div>`
+
+
+
+
+                ;
+            }).join('');
+        }
+
+        function abrirBoletos(nomeEmpresa) {
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+            const semana = new Date(hoje);
+            semana.setDate(semana.getDate() + 7);
+
+            const pendentes = DADOS.contas
+            .filter(c => c.empresa === nomeEmpresa && c.status !== 'Pago' && c.status !== 'Cancelado')
+            .sort((a, b) => new Date(a.vencimento) - new Date(b.vencimento));
+
+            const total = pendentes.reduce((s, c) => s + c.valor, 0);
+
+            const rows = pendentes.map(c => {
+                const v = new Date(c.vencimento + 'T00:00:00');
+                const isAtrasado = v < hoje;
+                const isHoje = v.toDateString() === hoje.toDateString();
+                const isSemana = v > hoje && v <= semana;
+
+                const statusBadge = isAtrasado
+                ? '<span class="badge badge-red"><span class="badge-dot"></span>Atrasado</span>'
+                : isHoje ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Hoje</span>'
+                : isSemana ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Esta semana</span>'
+                : '<span class="badge badge-gray">Futuro</span>';
+
+                const linha = c.cedente && c.cedente.length > 10 ? c.cedente : '';
+                const linhaId = 'bl_' + Math.random().toString(36).substr(2, 6);
+                const linhaHtml = linha
+                ? `<div style="display:flex;align-items:center;gap:6px;margin-top:3px">
+              <span style="font-size:10px;color:var(--text3);font-family:var(--mono);max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${linha}</span>
+              <button onclick="event.stopPropagation();navigator.clipboard.writeText('${linha.replace(/'/g, '')}').then(()=>{this.textContent='✓';setTimeout(()=>this.textContent='copiar',2000)})" style="flex-shrink:0;padding:1px 6px;background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;font-size:10px;color:var(--text2);cursor:pointer;font-family:var(--font)">copiar</button>
+            </div>`
+                : '';
+
+                return `<tr>
           <td>
-            <button class="btn-pago" onclick="desfazerPagoFechamento('${
-
-        c.id}', this)" style="color:var(--red);border-color:var(--red)">
-              ↩ Desfazer
+            <div style="font-weight:500;font-size:13px">${
+                c.descricao || '—'}</div>
+            <div class="td-empresa">${c.categoria || ''}</div>
+            ${linhaHtml}
+          </td>
+          <td>${
+                statusBadge}</td>
+          <td style="font-size:12px;color:var(--text2)">${fmtData(c.vencimento)}</td>
+          <td style="font-weight:600">${fmtBRL(c.valor)}</td>
+          <td>
+            <button class="btn-pago" onclick="event.stopPropagation();marcarPagoModal('${
+                c.id}', this)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Pago
             </button>
           </td>
         </tr>`
@@ -3675,280 +2969,1060 @@
 
 
 
+                ;
+            }).join('');
 
-        ).join('')}</tbody>
-      </table>`
+            const modal = document.getElementById('modal-boletos');
+            document.getElementById('modal-boletos-title').textContent = nomeEmpresa;
+            document.getElementById('modal-boletos-total').textContent = `${pendentes.length} pendentes · ${fmtBRL(total)}`;
+            document.getElementById('modal-boletos-body').innerHTML = pendentes.length
+            ? `<table class="data-table" style="width:100%">
+            <thead><tr>
+              <th>Descrição</th><th>Status</th><th>Vencimento</th><th>Valor</th><th></th>
+            </tr></thead>
+            <tbody>${
 
 
-        : '<div class="empty-state"><div class="empty-title" style="padding:2rem">Nenhum pagamento registrado neste mês</div></div>';
-    }
+            rows}</tbody>
+          </table>`
 
-    async function desfazerPagoFechamento(pageId, btn) {
-        if (!confirm('Desfazer pagamento? O status voltará para Pendente.'))
-            return;
-        btn.disabled = true;
-        btn.textContent = '...';
-        try {
-            await notionUpdate(pageId, {
-                'Status': {
-                    select: {
-                        name: 'Pendente'
-                    }
-                },
-                'Data de Pagamento': {
-                    date: null
-                }
-            });
-            await carregarDados();
-            renderFechamento();
-            showToast('Pagamento desfeito!', 'Status voltou para Pendente', 'success');
-        } catch (e) {
-            showToast('Erro ao desfazer', e.message, 'error');
-            btn.disabled = false;
-            btn.textContent = '↩ Desfazer';
+            : `<div class="empty-state"><div class="empty-title">Nenhum boleto pendente</div></div>`;
+
+            modal.classList.add('open');
         }
-    }
 
-    function exportarFechamentoWpp() {
-        const mesSel = document.getElementById('f-mes-sel');
-        const empSel = document.getElementById('f-emp-sel').value;
-        const mesLabel = mesSel.options[mesSel.selectedIndex]?.text || '';
-        const mesSplit = mesSel.value.split('-').map(Number);
-        const [ano, mes] = mesSplit;
+        async function marcarPagoModal(pageId, btn) {
+            const hoje = new Date().toISOString().split('T')[0];
+            const dataPagto = prompt('Data do pagamento (AAAA-MM-DD):', hoje);
+            if (dataPagto === null)
+                return;
 
-        let pagos = DADOS.contas.filter(c => {
-            if (c.status !== 'Pago' || !c.vencimento)
-                return false;
-            const d = new Date(c.vencimento + 'T00:00:00');
-            return d.getFullYear() === ano && d.getMonth() + 1 === mes;
-        });
-        if (empSel !== 'todas')
-            pagos = pagos.filter(c => c.empresa === empSel);
-
-        const total = pagos.reduce((s, c) => s + c.valor, 0);
-        const porCat = {};
-        pagos.forEach(c => {
-            const cat = c.categoria || 'Outros';
-            if (!porCat[cat])
-                porCat[cat] = 0;
-            porCat[cat] += c.valor;
-        });
-
-        let msg = `📊 *Fechamento ${mesLabel}*\n`;
-        if (empSel !== 'todas')
-            msg += `🏢 ${empSel}\n`;
-        msg += '\n';
-        Object.entries(porCat).sort((a, b) => b[1] - a[1]).forEach(([cat, val]) => {
-            msg += `• ${cat}: ${fmtBRL(val)}\n`;
-        });
-        msg += `\n💰 *Total: ${fmtBRL(total)}*\n`;
-        msg += `📋 ${pagos.length} lançamentos`;
-
-        abrirWhatsappMsg(msg);
-    }
-
-    // ─── SALDO ────────────────────────────────────────────────
-    const CONTAS_SALDO = [
-    {
-        id: 'c6-mc',
-        nome: 'C6 Mundo das Compras'
-    },
-    {
-        id: 'itau-mc',
-        nome: 'Itaú Mundo das Compras'
-    },
-    {
-        id: 'sicoob-mc',
-        nome: 'Sicoob Mundo das Compras'
-    },
-    {
-        id: 'c6-leao',
-        nome: 'C6 Leão Home'
-    },
-    {
-        id: 'itau-leao',
-        nome: 'Itaú Leão Home'
-    },
-    {
-        id: 'nubank-apollo',
-        nome: 'Nubank Apollo Home'
-    },
-    ];
-
-    async function iniciarSaldo() {
-        // Carregar saldos salvos
-        try {
-            const saved = await window.storage.get('gmc-saldos');
-            if (saved) {
-                const saldos = JSON.parse(saved.value);
-                CONTAS_SALDO.forEach(c => {
-                    const val = saldos[c.id];
-                    if (val !== undefined) {
-                        document.getElementById(`saldo-${c.id}`).value = val.valor || '';
-                        document.getElementById(`disp-${c.id}`).textContent = fmtBRL(val.valor || 0);
-                        if (val.upd)
-                            document.getElementById(`upd-${c.id}`).textContent = `Atualizado: ${val.upd}`;
+            btn.disabled = true;
+            btn.textContent = '...';
+            try {
+                await notionUpdate(pageId, {
+                    'Status': {
+                        select: {
+                            name: 'Pago'
+                        }
+                    },
+                    'Data de Pagamento': {
+                        date: {
+                            start: dataPagto || hoje
+                        }
                     }
                 });
-                atualizarTotaisSaldo();
+                await carregarDados();
+                renderEmpresas();
+                fecharModalBoletos();
+                showToast('Marcado como pago!', 'Atualizado no Notion', 'success');
+            } catch (e) {
+                showToast('Erro ao atualizar', e.message, 'error');
+                btn.disabled = false;
+                btn.textContent = 'Pago';
             }
-        } catch (e) {}
+        }
 
-        // Popular select de meses
-        const sel = document.getElementById('saldo-mes-sel');
-        if (sel && sel.options.length === 0) {
+        function fecharModalBoletos() {
+            document.getElementById('modal-boletos').classList.remove('open');
+        }
+
+        // ─── COMPARAR ────────────────────────────────────────────
+        function renderComparar() {
+            // Popular select de meses se ainda não foi
+            const sel = document.getElementById('comparar-mes-sel');
+            if (sel && sel.options.length === 0) {
+                const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+                const hoje = new Date();
+                // Detectar meses disponíveis nos dados
+                const mesesDisp = new Set();
+                DADOS.contas.forEach(c => {
+                    if (c.vencimento) {
+                        const d = new Date(c.vencimento + 'T00:00:00');
+                        mesesDisp.add(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
+                    }
+                });
+                const sorted = Array.from(mesesDisp).sort();
+                sorted.forEach(m => {
+                    const [ano, mes] = m.split('-');
+                    const opt = document.createElement('option');
+                    opt.value = m;
+                    opt.textContent = `${meses[parseInt(mes) - 1]} ${ano}`;
+                    if (parseInt(ano) === hoje.getFullYear() && parseInt(mes) === hoje.getMonth() + 1)
+                        opt.selected = true;
+                    sel.appendChild(opt);
+                });
+            }
+
+            const mesSel = sel ? sel.value : null;
+            let mes,
+                ano;
+            if (mesSel) {
+                [ano, mes] = mesSel.split('-').map(Number);
+            } else {
+                const hoje = new Date();
+                mes = hoje.getMonth() + 1;
+                ano = hoje.getFullYear();
+            }
+
             const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+            if (document.getElementById('comparar-subtitle')) {
+                document.getElementById('comparar-subtitle').textContent = `Vencimentos de ${meses[mes - 1]} ${ano}`;
+            }
+
+            const contasMes = DADOS.contas.filter(c => {
+                if (!c.vencimento)
+                    return false;
+                const d = new Date(c.vencimento + 'T00:00:00');
+                return d.getMonth() + 1 === mes && d.getFullYear() === ano;
+            });
+
+            const totalGeral = contasMes.reduce((s, c) => s + c.valor, 0);
+            if (document.getElementById('comparar-total')) {
+                document.getElementById('comparar-total').textContent = `Total: ${fmtBRL(totalGeral)}`;
+            }
+
+            // Por empresa
+            const porEmpresa = {};
+            DADOS.empresas.forEach(e => {
+                porEmpresa[e.nome] = 0;
+            });
+            contasMes.forEach(c => {
+                if (!porEmpresa[c.empresa])
+                    porEmpresa[c.empresa] = 0;
+                porEmpresa[c.empresa] += c.valor;
+            });
+
+            const empresasSorted = Object.entries(porEmpresa).sort((a, b) => b[1] - a[1]).filter(([, v]) => v > 0);
+            const maxEmp = Math.max(...empresasSorted.map(e => e[1]), 1);
+
+            document.getElementById('comparar-empresas').innerHTML = empresasSorted.length
+            ? empresasSorted.map(([nome, val]) => `
+          <div class="bar-item">
+            <div class="bar-top">
+              <span class="bar-name">${
+
+            nome}</span>
+              <span class="bar-val">${fmtBRL(val)}</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:${
+
+            Math.round(val / maxEmp * 100)}%"></div>
+            </div>
+          </div>`
+
+            ).join('')
+            : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Sem dados neste mês</div>';
+
+            // Por categoria
+            const porCat = {};
+            contasMes.forEach(c => {
+                if (!c.categoria)
+                    return;
+                if (!porCat[c.categoria])
+                    porCat[c.categoria] = 0;
+                porCat[c.categoria] += c.valor;
+            });
+
+            const catSorted = Object.entries(porCat).sort((a, b) => b[1] - a[1]);
+            const maxCat = Math.max(...catSorted.map(c => c[1]), 1);
+
+            document.getElementById('comparar-categorias').innerHTML = catSorted.length
+            ? catSorted.map(([cat, val]) => `
+          <div class="bar-item">
+            <div class="bar-top">
+              <span class="bar-name">${
+
+            cat}</span>
+              <span class="bar-val">${fmtBRL(val)}</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:${
+
+            Math.round(val / maxCat * 100)}%"></div>
+            </div>
+          </div>`
+
+            ).join('')
+            : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Sem dados</div>';
+        }
+
+        // ─── ALERTAS ─────────────────────────────────────────────
+        function renderAlertas() {
             const hoje = new Date();
-            const mesesDisp = new Set();
-            DADOS.contas.forEach(c => {
-                if (c.vencimento) {
-                    const d = new Date(c.vencimento + 'T00:00:00');
-                    mesesDisp.add(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
+            hoje.setHours(0, 0, 0, 0);
+            const semana = new Date(hoje);
+            semana.setDate(semana.getDate() + 7);
+
+            const atrasados = DADOS.contas.filter(c => {
+                if (c.status === 'Pago' || c.status === 'Cancelado')
+                    return false;
+                const v = new Date(c.vencimento + 'T00:00:00');
+                return v < hoje;
+            });
+
+            const venHoje = DADOS.contas.filter(c => {
+                if (c.status === 'Pago')
+                    return false;
+                const v = new Date(c.vencimento + 'T00:00:00');
+                return v.toDateString() === hoje.toDateString();
+            });
+
+            const venSemana = DADOS.contas.filter(c => {
+                if (c.status === 'Pago')
+                    return false;
+                const v = new Date(c.vencimento + 'T00:00:00');
+                return v > hoje && v <= semana;
+            });
+
+            atualizarBadgeAlertas(atrasados.length + venHoje.length);
+
+            const grid = document.getElementById('alertas-grid');
+            if (!grid)
+                return;
+
+            grid.innerHTML = `
+        <div class="alerta-card">
+          <div class="alerta-title" style="color:var(--red)">🔴 Atrasados (${
+            atrasados.length})</div>
+          ${atrasados.slice(0, 5).map(c => `
+            <div class="alerta-item">
+              <span class="alerta-item-name">${
+            c.descricao} <span style="color:var(--text3)">${c.empresa}</span></span>
+              <span class="alerta-item-val danger">${fmtBRL(c.valor)}</span>
+            </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum atrasado 👍</div>'}
+        </div>
+        <div class="alerta-card">
+          <div class="alerta-title" style="color:var(--yellow)">🟡 Vence hoje (${
+
+            venHoje.length})</div>
+          ${venHoje.map(c => `
+            <div class="alerta-item">
+              <span class="alerta-item-name">${
+            c.descricao}</span>
+              <span class="alerta-item-val warning">${fmtBRL(c.valor)}</span>
+            </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum vence hoje</div>'}
+        </div>
+        <div class="alerta-card" style="grid-column:1/-1">
+          <div class="alerta-title" style="color:var(--text2)">📅 Esta semana (${
+
+            venSemana.length})</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+          ${
+            venSemana.map(c => `
+            <div class="alerta-item">
+              <span class="alerta-item-name">${
+            c.descricao} <span style="color:var(--text3)">· ${fmtData(c.vencimento)}</span></span>
+              <span class="alerta-item-val">${fmtBRL(c.valor)}</span>
+            </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum esta semana</div>'}
+          </div>
+        </div>`
+
+            ;
+        }
+
+        function atualizarBadgeAlertas(count) {
+            const badge = document.getElementById('badge-alertas');
+            if (!count) {
+                count = 0;
+            }
+            if (!DADOS.contas)
+                return;
+
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+            const urgentes = DADOS.contas.filter(c => {
+                if (c.status === 'Pago' || c.status === 'Cancelado')
+                    return false;
+                const v = new Date(c.vencimento + 'T00:00:00');
+                return v <= hoje;
+            }).length;
+
+            if (urgentes > 0) {
+                badge.textContent = urgentes;
+                badge.style.display = 'block';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function gerarMsgHoje() {
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+            const atrasados = DADOS.contas.filter(c => {
+                if (c.status === 'Pago' || c.status === 'Cancelado')
+                    return false;
+                return new Date(c.vencimento + 'T00:00:00') < hoje;
+            });
+            const venHoje = DADOS.contas.filter(c => {
+                if (c.status === 'Pago')
+                    return false;
+                return new Date(c.vencimento + 'T00:00:00').toDateString() === hoje.toDateString();
+            });
+
+            const dataStr = hoje.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'short'
+            });
+            let msg = `📋 *Controle Financeiro — ${dataStr}*\n\n`;
+
+            if (atrasados.length) {
+                msg += `🔴 *ATRASADOS (${atrasados.length})*\n`;
+                atrasados.forEach(c => {
+                    msg += `• ${c.descricao} — ${fmtBRL(c.valor)}\n`;
+                });
+                msg += '\n';
+            }
+
+            if (venHoje.length) {
+                msg += `🟡 *VENCE HOJE*\n`;
+                venHoje.forEach(c => {
+                    msg += `• ${c.descricao} (${c.empresa}) — ${fmtBRL(c.valor)}\n`;
+                });
+                msg += '\n';
+            }
+
+            const totalUrgente = [...atrasados, ...venHoje].reduce((s, c) => s + c.valor, 0);
+            msg += `💰 *Total urgente: ${fmtBRL(totalUrgente)}*`;
+            return msg;
+        }
+
+        function enviarAlertaHoje() {
+            const msg = gerarMsgHoje();
+            abrirWhatsappMsg(msg);
+        }
+
+        function enviarResumoSemanal() {
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+            const semana = new Date(hoje);
+            semana.setDate(semana.getDate() + 7);
+            const pendentes = DADOS.contas.filter(c => {
+                if (c.status === 'Pago' || c.status === 'Cancelado')
+                    return false;
+                const v = new Date(c.vencimento + 'T00:00:00');
+                return v >= hoje && v <= semana;
+            });
+
+            let msg = `📅 *Resumo semanal — ${hoje.toLocaleDateString('pt-BR', {day: '2-digit',month: 'short'})}*\n\n`;
+            pendentes.forEach(c => {
+                msg += `• ${c.descricao} (${c.empresa}) · ${fmtData(c.vencimento)} — ${fmtBRL(c.valor)}\n`;
+            });
+            const total = pendentes.reduce((s, c) => s + c.valor, 0);
+            msg += `\n💰 Total da semana: ${fmtBRL(total)}`;
+            abrirWhatsappMsg(msg);
+        }
+
+        function enviarResumoMensal() {
+            const mes = new Date().getMonth();
+            const ano = new Date().getFullYear();
+            const contasMes = DADOS.contas.filter(c => {
+                if (!c.vencimento)
+                    return false;
+                const d = new Date(c.vencimento + 'T00:00:00');
+                return d.getMonth() === mes && d.getFullYear() === ano;
+            });
+
+            const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+            let msg = `📊 *Relatório ${meses[mes]}/${ano}*\n\n`;
+
+            DADOS.empresas.forEach(emp => {
+                const contas = contasMes.filter(c => c.empresa === emp.nome);
+                if (!contas.length)
+                    return;
+                const total = contas.reduce((s, c) => s + c.valor, 0);
+                msg += `🏢 ${emp.nome}: ${fmtBRL(total)}\n`;
+            });
+
+            const total = contasMes.reduce((s, c) => s + c.valor, 0);
+            msg += `\n💰 *Total do mês: ${fmtBRL(total)}*`;
+            abrirWhatsappMsg(msg);
+        }
+
+        function abrirWhatsappMsg(msg) {
+            window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+        }
+
+        // ─── LANÇAR BOLETO ────────────────────────────────────────
+        function dragOver(e) {
+            e.preventDefault();
+            document.getElementById('upload-zone').classList.add('dragover');
+        }
+        function dragLeave() {
+            document.getElementById('upload-zone').classList.remove('dragover');
+        }
+        function dropFile(e) {
+            e.preventDefault();
+            dragLeave();
+            const f = e.dataTransfer.files[0];
+            if (f)
+                processarArquivo(f);
+        }
+        function processFile(e) {
+            const f = e.target.files[0];
+            if (f)
+                processarArquivo(f);
+        }
+
+        async function processarArquivo(file) {
+            document.getElementById('upload-zone').style.display = 'none';
+            document.getElementById('ai-reading').style.display = 'block';
+            document.getElementById('ai-result-area').style.display = 'none';
+
+            try {
+                const base64 = await fileToBase64(file);
+                const isPdf = file.type === 'application/pdf';
+                const extracted = await extrairDadosIA(base64, file.type, isPdf);
+
+                document.getElementById('ai-reading').style.display = 'none';
+                document.getElementById('ai-result-area').style.display = 'block';
+
+                aiDados = extracted;
+
+                document.getElementById('ai-cedente').textContent = extracted.cedente || '—';
+                document.getElementById('ai-valor').textContent = extracted.valor ? `R$ ${Number(extracted.valor).toLocaleString('pt-BR', {minimumFractionDigits: 2})}` : '—';
+                document.getElementById('ai-vencimento').textContent = extracted.vencimento ? fmtData(extracted.vencimento) : '—';
+                document.getElementById('ai-linha').textContent = extracted.linha || '—';
+
+                // Preencher formulário
+                if (extracted.cedente)
+                    document.getElementById('f-cedente').value = extracted.cedente;
+                if (extracted.cedente)
+                    document.getElementById('f-descricao').value = extracted.cedente;
+                if (extracted.valor)
+                    document.getElementById('f-valor').value = extracted.valor;
+                if (extracted.vencimento)
+                    document.getElementById('f-vencimento').value = extracted.vencimento;
+
+            } catch (e) {
+                console.error(e);
+                document.getElementById('ai-reading').style.display = 'none';
+                document.getElementById('upload-zone').style.display = 'block';
+                showToast('Erro na leitura', 'Preencha os dados manualmente', 'error');
+            }
+        }
+
+        function fileToBase64(file) {
+            return new Promise((res, rej) => {
+                const r = new FileReader();
+                r.onload = () => res(r.result.split(',')[1]);
+                r.onerror = rej;
+                r.readAsDataURL(file);
+            });
+        }
+
+        async function extrairDadosIA(base64, mediaType, isPdf) {
+            const content = isPdf
+            ? [{
+                type: 'document',
+                source: {
+                    type: 'base64',
+                    media_type: 'application/pdf',
+                    data: base64
+                }
+            },
+            {
+                type: 'text',
+                text: 'Extraia do boleto: cedente (quem emitiu), valor total, data de vencimento (formato YYYY-MM-DD) e linha digitável. Responda SOMENTE em JSON: {"cedente":"","valor":"","vencimento":"","linha":""}'
+            }]
+            : [{
+                type: 'image',
+                source: {
+                    type: 'base64',
+                    media_type: mediaType,
+                    data: base64
+                }
+            },
+            {
+                type: 'text',
+                text: 'Extraia do boleto: cedente (quem emitiu), valor total, data de vencimento (formato YYYY-MM-DD) e linha digitável. Responda SOMENTE em JSON: {"cedente":"","valor":"","vencimento":"","linha":""}'
+            }];
+
+            const r = await fetch('/api/anthropic', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: 'claude-sonnet-4-20250514',
+                    max_tokens: 500,
+                    messages: [{
+                        role: 'user',
+                        content
+                    }]
+                })
+            });
+
+            if (!r.ok)
+                throw new Error('Erro API: ' + r.status);
+
+            const data = await r.json();
+            if (data.error)
+                throw new Error(data.error);
+            const text = data.content?.[0]?.text || '{}';
+            const clean = text.replace(/```json|```/g, '').trim();
+            return JSON.parse(clean);
+        }
+
+        async function salvarLancamento() {
+            const descricao = document.getElementById('f-descricao').value.trim();
+            const empresa = document.getElementById('f-empresa').value;
+            const valor = parseFloat(document.getElementById('f-valor').value);
+            const vencimento = document.getElementById('f-vencimento').value;
+            const categoria = document.getElementById('f-categoria').value;
+            const tipo = document.getElementById('f-tipo').value;
+            const cedente = document.getElementById('f-cedente').value.trim();
+            const obs = document.getElementById('f-obs').value.trim();
+
+            if (!descricao || !empresa || !valor || !vencimento) {
+                showToast('Preencha os campos obrigatórios', 'Descrição, empresa, valor e vencimento', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btn-salvar');
+            btn.disabled = true;
+            btn.innerHTML = '<div class="ai-spinner" style="width:18px;height:18px;border-width:2px;margin:0"></div> Salvando...';
+
+            try {
+                const properties = {
+                    'Descrição': {
+                        title: [{
+                            text: {
+                                content: descricao
+                            }
+                        }]
+                    },
+                    'Empresa': {
+                        rich_text: [{
+                            text: {
+                                content: empresa
+                            }
+                        }]
+                    },
+                    'Valor': {
+                        number: valor
+                    },
+                    'Vencimento': {
+                        date: {
+                            start: vencimento
+                        }
+                    },
+                    'Status': {
+                        select: {
+                            name: 'Pendente'
+                        }
+                    },
+                };
+
+                if (categoria)
+                    properties['Categoria'] = {
+                        select: {
+                            name: categoria
+                        }
+                    };
+                if (tipo)
+                    properties['Tipo'] = {
+                        select: {
+                            name: tipo
+                        }
+                    };
+                if (cedente)
+                    properties['Cedente'] = {
+                        rich_text: [{
+                            text: {
+                                content: cedente
+                            }
+                        }]
+                    };
+                if (obs)
+                    properties['Observações'] = {
+                        rich_text: [{
+                            text: {
+                                content: obs
+                            }
+                        }]
+                    };
+
+                await notionCreate(CONFIG.dbContas, properties);
+
+                showToast('Salvo no Notion!', `${descricao} — ${fmtBRL(valor)}`, 'success');
+
+                // Gerar preview WhatsApp
+                const diasAte = Math.ceil((new Date(vencimento + 'T00:00:00') - new Date()) / 864e5);
+                const urgencia = diasAte < 0 ? '🔴 ATRASADO' : diasAte === 0 ? '🔴 Vence HOJE' : diasAte <= 3 ? `🟡 Vence em ${diasAte} dias` : `🟢 Vence em ${diasAte} dias`;
+                const wppMsg = `📋 *Novo lançamento registrado*\n🏢 Empresa: ${empresa}\n📄 ${descricao}\n💰 Valor: ${fmtBRL(valor)}\n📅 Vencimento: ${fmtData(vencimento)}\n${urgencia}`;
+
+                document.getElementById('wpp-text').textContent = wppMsg;
+                document.getElementById('wpp-result').style.display = 'block';
+                document.getElementById('wpp-result').scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                window._lastWppMsg = wppMsg;
+
+                btn.innerHTML = '✓ Salvo no Notion';
+                btn.style.opacity = '0.6';
+
+                await carregarDados();
+
+            } catch (e) {
+                showToast('Erro ao salvar', e.message, 'error');
+                btn.disabled = false;
+                btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Salvar no Notion';
+                btn.style.opacity = '1';
+            }
+        }
+
+        function abrirWhatsapp() {
+            const msg = window._lastWppMsg || '';
+            abrirWhatsappMsg(msg);
+        }
+
+        // ─── EMPRESAS MODAL ───────────────────────────────────────
+        function abrirModalEmpresa() {
+            document.getElementById('modal-empresa').classList.add('open');
+        }
+        function fecharModal() {
+            document.getElementById('modal-empresa').classList.remove('open');
+        }
+
+        async function salvarEmpresa() {
+            const nome = document.getElementById('ne-nome').value.trim();
+            const cnpj = document.getElementById('ne-cnpj').value.trim();
+            const segmento = document.getElementById('ne-segmento').value;
+
+            if (!nome) {
+                showToast('Informe o nome da empresa', '', 'error');
+                return;
+            }
+
+            try {
+                await notionCreate(CONFIG.dbEmpresas, {
+                    'Nome da Empresa': {
+                        title: [{
+                            text: {
+                                content: nome
+                            }
+                        }]
+                    },
+                    'CNPJ': {
+                        rich_text: [{
+                            text: {
+                                content: cnpj
+                            }
+                        }]
+                    },
+                    'Segmento': {
+                        select: {
+                            name: segmento
+                        }
+                    },
+                    'Status': {
+                        select: {
+                            name: 'Ativa'
+                        }
+                    }
+                });
+                fecharModal();
+                showToast('Empresa criada!', nome, 'success');
+                await carregarEmpresas();
+                renderEmpresas();
+            } catch (e) {
+                showToast('Erro ao criar empresa', e.message, 'error');
+            }
+        }
+
+        // ─── FECHAMENTO ──────────────────────────────────────────
+        function iniciarFechamento() {
+            const sel = document.getElementById('f-mes-sel');
+            if (sel.options.length === 0) {
+                const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+                const hoje = new Date();
+                for (let i = 0; i < 12; i++) {
+                    const d = new Date(hoje.getFullYear(), hoje.getMonth() - i, 1);
+                    const opt = document.createElement('option');
+                    opt.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+                    opt.textContent = `${meses[d.getMonth()]} ${d.getFullYear()}`;
+                    if (i === 0)
+                        opt.selected = true;
+                    sel.appendChild(opt);
+                }
+            }
+
+            // Popular empresas no select
+            const empSel = document.getElementById('f-emp-sel');
+            if (empSel.options.length === 1) {
+                DADOS.empresas.forEach(e => {
+                    const opt = document.createElement('option');
+                    opt.value = e.nome;
+                    opt.textContent = e.nome;
+                    empSel.appendChild(opt);
+                });
+            }
+
+            renderFechamento();
+        }
+
+        function renderFechamento() {
+            const mesSel = document.getElementById('f-mes-sel').value;
+            const empSel = document.getElementById('f-emp-sel').value;
+            if (!mesSel)
+                return;
+
+            const [ano, mes] = mesSel.split('-').map(Number);
+
+            let pagos = DADOS.contas.filter(c => {
+                if (c.status !== 'Pago')
+                    return false;
+                if (!c.vencimento)
+                    return false;
+                const d = new Date(c.vencimento + 'T00:00:00');
+                return d.getFullYear() === ano && d.getMonth() + 1 === mes;
+            });
+
+            if (empSel !== 'todas') {
+                pagos = pagos.filter(c => c.empresa === empSel);
+            }
+
+            // Métricas
+            const total = pagos.reduce((s, c) => s + c.valor, 0);
+            document.getElementById('fech-total').textContent = fmtBRL(total);
+            document.getElementById('fech-count').textContent = pagos.length;
+
+            // Maior categoria
+            const porCat = {};
+            pagos.forEach(c => {
+                const cat = c.categoria || 'Outros';
+                if (!porCat[cat])
+                    porCat[cat] = 0;
+                porCat[cat] += c.valor;
+            });
+            const catSorted = Object.entries(porCat).sort((a, b) => b[1] - a[1]);
+            if (catSorted.length) {
+                document.getElementById('fech-maior-val').textContent = fmtBRL(catSorted[0][1]);
+                document.getElementById('fech-maior-cat').textContent = catSorted[0][0];
+            } else {
+                document.getElementById('fech-maior-val').textContent = '—';
+                document.getElementById('fech-maior-cat').textContent = '—';
+            }
+
+            // Empresas com saídas
+            const empresasComSaidas = new Set(pagos.map(c => c.empresa)).size;
+            document.getElementById('fech-empresas-count').textContent = empresasComSaidas;
+
+            // Por categoria
+            const maxCat = Math.max(...catSorted.map(c => c[1]), 1);
+            document.getElementById('fech-categorias').innerHTML = catSorted.length
+            ? catSorted.map(([cat, val]) => `
+          <div class="bar-item">
+            <div class="bar-top">
+              <span class="bar-name">${
+
+            cat}</span>
+              <span class="bar-val">${fmtBRL(val)}</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:${
+            Math.round(val / maxCat * 100)}%"></div></div>
+          </div>`
+            ).join('')
+            : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum pagamento neste mês</div>';
+
+            // Por empresa
+            const porEmp = {};
+            pagos.forEach(c => {
+                if (!porEmp[c.empresa])
+                    porEmp[c.empresa] = 0;
+                porEmp[c.empresa] += c.valor;
+            });
+            const empSorted = Object.entries(porEmp).sort((a, b) => b[1] - a[1]);
+            const maxEmp = Math.max(...empSorted.map(e => e[1]), 1);
+            document.getElementById('fech-empresas').innerHTML = empSorted.length
+            ? empSorted.map(([emp, val]) => `
+          <div class="bar-item">
+            <div class="bar-top">
+              <span class="bar-name">${
+
+            emp}</span>
+              <span class="bar-val">${fmtBRL(val)}</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:${
+            Math.round(val / maxEmp * 100)}%"></div></div>
+          </div>`
+            ).join('')
+            : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum dado</div>';
+
+            // Tabela detalhada
+            document.getElementById('fech-table-count').textContent = `${pagos.length} lançamentos`;
+            const sorted = [...pagos].sort((a, b) => new Date(a.vencimento) - new Date(b.vencimento));
+            document.getElementById('fech-tabela').innerHTML = sorted.length
+            ? `<table class="data-table">
+            <thead><tr>
+              <th>Descrição</th><th>Empresa</th><th>Categoria</th><th>Tipo</th><th>Valor</th><th>Vencimento</th><th>Pago em</th><th></th>
+            </tr></thead>
+            <tbody>${
+
+
+            sorted.map(c => `<tr>
+              <td style="font-weight:500;font-size:13px">${c.descricao || '—'}</td>
+              <td style="font-size:12px;color:var(--text2)">${c.empresa}</td>
+              <td>${c.categoria ? `<span class="badge badge-gray">${c.categoria}</span>` : '—'}</td>
+              <td>${c.tipo ? `<span class="badge badge-blue">${c.tipo}</span>` : '—'}</td>
+              <td style="font-weight:600">
+                ${
+            fmtBRL(c.valor)}
+                ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red)">inclui ${fmtBRL(c.jurosMulta)} juros</div>` : ''}
+              </td>
+              <td style="font-size:12px;color:var(--text2)">${
+            fmtData(c.vencimento)}</td>
+              <td style="font-size:12px;color:var(--green);font-weight:500">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
+              <td>
+                <button class="btn-pago" onclick="desfazerPagoFechamento('${
+            c.id}', this)" style="color:var(--red);border-color:var(--red)">
+                  ↩ Desfazer
+                </button>
+              </td>
+            </tr>`
+
+
+            ).join('')}</tbody>
+          </table>`
+
+            : '<div class="empty-state"><div class="empty-title" style="padding:2rem">Nenhum pagamento registrado neste mês</div></div>';
+        }
+
+        async function desfazerPagoFechamento(pageId, btn) {
+            if (!confirm('Desfazer pagamento? O status voltará para Pendente.'))
+                return;
+            btn.disabled = true;
+            btn.textContent = '...';
+            try {
+                await notionUpdate(pageId, {
+                    'Status': {
+                        select: {
+                            name: 'Pendente'
+                        }
+                    },
+                    'Data de Pagamento': {
+                        date: null
+                    }
+                });
+                await carregarDados();
+                renderFechamento();
+                showToast('Pagamento desfeito!', 'Status voltou para Pendente', 'success');
+            } catch (e) {
+                showToast('Erro ao desfazer', e.message, 'error');
+                btn.disabled = false;
+                btn.textContent = '↩ Desfazer';
+            }
+        }
+
+        function exportarFechamentoWpp() {
+            const mesSel = document.getElementById('f-mes-sel');
+            const empSel = document.getElementById('f-emp-sel').value;
+            const mesLabel = mesSel.options[mesSel.selectedIndex]?.text || '';
+            const mesSplit = mesSel.value.split('-').map(Number);
+            const [ano, mes] = mesSplit;
+
+            let pagos = DADOS.contas.filter(c => {
+                if (c.status !== 'Pago' || !c.vencimento)
+                    return false;
+                const d = new Date(c.vencimento + 'T00:00:00');
+                return d.getFullYear() === ano && d.getMonth() + 1 === mes;
+            });
+            if (empSel !== 'todas')
+                pagos = pagos.filter(c => c.empresa === empSel);
+
+            const total = pagos.reduce((s, c) => s + c.valor, 0);
+            const porCat = {};
+            pagos.forEach(c => {
+                const cat = c.categoria || 'Outros';
+                if (!porCat[cat])
+                    porCat[cat] = 0;
+                porCat[cat] += c.valor;
+            });
+
+            let msg = `📊 *Fechamento ${mesLabel}*\n`;
+            if (empSel !== 'todas')
+                msg += `🏢 ${empSel}\n`;
+            msg += '\n';
+            Object.entries(porCat).sort((a, b) => b[1] - a[1]).forEach(([cat, val]) => {
+                msg += `• ${cat}: ${fmtBRL(val)}\n`;
+            });
+            msg += `\n💰 *Total: ${fmtBRL(total)}*\n`;
+            msg += `📋 ${pagos.length} lançamentos`;
+
+            abrirWhatsappMsg(msg);
+        }
+
+        // ─── SALDO ────────────────────────────────────────────────
+        const CONTAS_SALDO = [
+            { id: 'c6-mc',       nome: 'C6 Mundo das Compras' },
+            { id: 'itau-mc',     nome: 'Itaú Mundo das Compras' },
+            { id: 'sicoob-mc',   nome: 'Sicoob Mundo das Compras' },
+            { id: 'c6-leao',     nome: 'C6 Leão Home' },
+            { id: 'itau-leao',   nome: 'Itaú Leão Home' },
+            { id: 'nubank-apollo', nome: 'Nubank Apollo Home' },
+        ];
+
+        async function iniciarSaldo() {
+            // Carregar saldos salvos
+            try {
+                const saved = await window.storage.get('gmc-saldos');
+                if (saved) {
+                    const saldos = JSON.parse(saved.value);
+                    CONTAS_SALDO.forEach(c => {
+                        const val = saldos[c.id];
+                        if (val !== undefined) {
+                            document.getElementById(`saldo-${c.id}`).value = val.valor || '';
+                            document.getElementById(`disp-${c.id}`).textContent = fmtBRL(val.valor || 0);
+                            if (val.upd) document.getElementById(`upd-${c.id}`).textContent = `Atualizado: ${val.upd}`;
+                        }
+                    });
+                    atualizarTotaisSaldo();
+                }
+            } catch(e) {}
+
+            // Popular select de meses
+            const sel = document.getElementById('saldo-mes-sel');
+            if (sel && sel.options.length === 0) {
+                const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+                const hoje = new Date();
+                const mesesDisp = new Set();
+                DADOS.contas.forEach(c => {
+                    if (c.vencimento) {
+                        const d = new Date(c.vencimento + 'T00:00:00');
+                        mesesDisp.add(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`);
+                    }
+                });
+                Array.from(mesesDisp).sort().forEach(m => {
+                    const [ano, mes] = m.split('-');
+                    const opt = document.createElement('option');
+                    opt.value = m;
+                    opt.textContent = `${meses[parseInt(mes)-1]} ${ano}`;
+                    if (parseInt(ano) === hoje.getFullYear() && parseInt(mes) === hoje.getMonth()+1) opt.selected = true;
+                    sel.appendChild(opt);
+                });
+            }
+            renderSaidosPorConta();
+        }
+
+        function previewSaldo(id, val) {
+            document.getElementById(`disp-${id}`).textContent = fmtBRL(parseFloat(val) || 0);
+            atualizarTotaisSaldo();
+        }
+
+        function atualizarTotaisSaldo() {
+            const vals = CONTAS_SALDO.map(c => parseFloat(document.getElementById(`saldo-${c.id}`)?.value) || 0);
+            // vals[0]=C6 MC, vals[1]=Itaú MC, vals[2]=Sicoob MC, vals[3]=C6 Leão, vals[4]=Itaú Leão, vals[5]=Nubank Apollo
+            const total = vals.reduce((a,b) => a+b, 0);
+            const mc    = vals[0] + vals[1] + vals[2];
+            const leao  = vals[3] + vals[4];
+            const apollo = vals[5];
+            document.getElementById('saldo-total-geral').textContent  = fmtBRL(total);
+            document.getElementById('saldo-total-mc').textContent     = fmtBRL(mc);
+            document.getElementById('saldo-total-leao').textContent   = fmtBRL(leao);
+            document.getElementById('saldo-total-apollo').textContent = fmtBRL(apollo);
+        }
+
+        async function salvarSaldos() {
+            const agora = new Date().toLocaleString('pt-BR');
+            const saldos = {};
+            CONTAS_SALDO.forEach(c => {
+                const val = parseFloat(document.getElementById(`saldo-${c.id}`)?.value) || 0;
+                saldos[c.id] = { valor: val, upd: agora };
+                document.getElementById(`upd-${c.id}`).textContent = `Atualizado: ${agora}`;
+            });
+            try {
+                await window.storage.set('gmc-saldos', JSON.stringify(saldos));
+                atualizarTotaisSaldo();
+                showToast('Saldos salvos!', 'Atualizado com sucesso', 'success');
+            } catch(e) {
+                showToast('Erro ao salvar', e.message, 'error');
+            }
+        }
+
+        function renderSaidosPorConta() {
+            const sel = document.getElementById('saldo-mes-sel');
+            const mesSel = sel?.value;
+            if (!mesSel) return;
+            const [ano, mes] = mesSel.split('-').map(Number);
+
+            const pagos = DADOS.contas.filter(c => {
+                if (c.status !== 'Pago' || !c.vencimento) return false;
+                const d = new Date(c.vencimento + 'T00:00:00');
+                return d.getFullYear() === ano && d.getMonth()+1 === mes;
+            });
+
+            const porConta = {};
+            CONTAS_SALDO.forEach(c => { porConta[c.nome] = { total: 0, count: 0 }; });
+            pagos.forEach(c => {
+                if (c.contaPagamento && porConta[c.contaPagamento]) {
+                    porConta[c.contaPagamento].total += c.valor;
+                    porConta[c.contaPagamento].count++;
                 }
             });
-            Array.from(mesesDisp).sort().forEach(m => {
-                const [ano, mes] = m.split('-');
-                const opt = document.createElement('option');
-                opt.value = m;
-                opt.textContent = `${meses[parseInt(mes) - 1]} ${ano}`;
-                if (parseInt(ano) === hoje.getFullYear() && parseInt(mes) === hoje.getMonth() + 1)
-                    opt.selected = true;
-                sel.appendChild(opt);
+
+            const sorted = Object.entries(porConta).filter(([,v]) => v.total > 0).sort((a,b) => b[1].total - a[1].total);
+            const max = Math.max(...sorted.map(([,v]) => v.total), 1);
+
+            document.getElementById('saidos-por-conta').innerHTML = sorted.length
+                ? sorted.map(([nome, v]) => `
+                    <div class="bar-item">
+                        <div class="bar-top">
+                            <span class="bar-name">${nome}</span>
+                            <span style="font-size:12px;color:var(--text3)">${v.count} pagamentos</span>
+                            <span class="bar-val">${fmtBRL(v.total)}</span>
+                        </div>
+                        <div class="bar-track"><div class="bar-fill" style="width:${Math.round(v.total/max*100)}%"></div></div>
+                    </div>`).join('')
+                : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum pagamento com conta registrada neste mês</div>';
+        }
+
+        // ─── UTILS ────────────────────────────────────────────────
+        function fmtBRL(val) {
+            if (!val && val !== 0)
+                return 'R$ —';
+            return `R$ ${Number(val).toLocaleString('pt-BR', {minimumFractionDigits: 2,maximumFractionDigits: 2})}`;
+        }
+
+        function fmtData(str) {
+            if (!str)
+                return '—';
+            const d = new Date(str + 'T00:00:00');
+            return d.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
             });
         }
-        renderSaidosPorConta();
-    }
 
-    function previewSaldo(id, val) {
-        document.getElementById(`disp-${id}`).textContent = fmtBRL(parseFloat(val) || 0);
-        atualizarTotaisSaldo();
-    }
+        function showToast(text, sub, type) {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            document.getElementById('toast-text').textContent = text;
+            document.getElementById('toast-sub').textContent = sub || '';
 
-    function atualizarTotaisSaldo() {
-        const vals = CONTAS_SALDO.map(c => parseFloat(document.getElementById(`saldo-${c.id}`)?.value) || 0);
-        // vals[0]=C6 MC, vals[1]=Itaú MC, vals[2]=Sicoob MC, vals[3]=C6 Leão, vals[4]=Itaú Leão, vals[5]=Nubank Apollo
-        const total = vals.reduce((a, b) => a + b, 0);
-        const mc = vals[0] + vals[1] + vals[2];
-        const leao = vals[3] + vals[4];
-        const apollo = vals[5];
-        document.getElementById('saldo-total-geral').textContent = fmtBRL(total);
-        document.getElementById('saldo-total-mc').textContent = fmtBRL(mc);
-        document.getElementById('saldo-total-leao').textContent = fmtBRL(leao);
-        document.getElementById('saldo-total-apollo').textContent = fmtBRL(apollo);
-    }
+            icon.className = 'toast-icon ' + (type || 'success');
+            icon.innerHTML = type === 'error'
+            ? '<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+            : '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
 
-    async function salvarSaldos() {
-        const agora = new Date().toLocaleString('pt-BR');
-        const saldos = {};
-        CONTAS_SALDO.forEach(c => {
-            const val = parseFloat(document.getElementById(`saldo-${c.id}`)?.value) || 0;
-            saldos[c.id] = {
-                valor: val,
-                upd: agora
-            };
-            document.getElementById(`upd-${c.id}`).textContent = `Atualizado: ${agora}`;
-        });
-        try {
-            await window.storage.set('gmc-saldos', JSON.stringify(saldos));
-            atualizarTotaisSaldo();
-            showToast('Saldos salvos!', 'Atualizado com sucesso', 'success');
-        } catch (e) {
-            showToast('Erro ao salvar', e.message, 'error');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
         }
-    }
 
-    function renderSaidosPorConta() {
-        const sel = document.getElementById('saldo-mes-sel');
-        const mesSel=sel?.value;
-        if (!mesSel)
-            return;
-        const [ano, mes] = mesSel.split('-').map(Number);
-
-        const pagos = DADOS.contas.filter(c => {
-            if (c.status !== 'Pago' || !c.vencimento)
-                return false;
-            const d = new Date(c.vencimento + 'T00:00:00');
-            return d.getFullYear() === ano && d.getMonth() + 1 === mes;
+        document.getElementById('modal-boletos').addEventListener('click', function(e) {
+            if (e.target === this)
+                fecharModalBoletos();
         });
 
-        const porConta = {};
-        CONTAS_SALDO.forEach(c => {
-            porConta[c.nome] = {
-                total: 0,
-                count: 0
-            };
+        // Fechar modal clicando fora
+        document.getElementById('modal-empresa').addEventListener('click', function(e) {
+            if (e.target === this)
+                fecharModal();
         });
-        pagos.forEach(c => {
-            if (c.contaPagamento && porConta[c.contaPagamento]) {
-                porConta[c.contaPagamento].total += c.valor;
-                porConta[c.contaPagamento].count++;
-            }
-        });
-
-        const sorted = Object.entries(porConta).filter(([, v]) => v.total > 0).sort((a, b) => b[1].total - a[1].total);
-        const max = Math.max(...sorted.map(([, v]) => v.total), 1);
-
-        document.getElementById('saidos-por-conta').innerHTML = sorted.length
-        ? sorted.map(([nome, v]) => `
-                <div class="bar-item">
-                    <div class="bar-top">
-                        <span class="bar-name">${
-
-        nome}</span>
-                        <span style="font-size:12px;color:var(--text3)">${v.count} pagamentos</span>
-                        <span class="bar-val">${fmtBRL(v.total)}</span>
-                    </div>
-                    <div class="bar-track"><div class="bar-fill" style="width:${
-        Math.round(v.total / max * 100)}%"></div></div>
-                </div>`
-        ).join('')
-        : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum pagamento com conta registrada neste mês</div>';
-    }
-
-    // ─── UTILS ────────────────────────────────────────────────
-    function fmtBRL(val) {
-        if (!val && val !== 0)
-            return 'R$ —';
-        return `R$ ${Number(val).toLocaleString('pt-BR', {minimumFractionDigits: 2,maximumFractionDigits: 2})}`;
-    }
-
-    function fmtData(str) {
-        if (!str)
-            return '—';
-        const d = new Date(str + 'T00:00:00');
-        return d.toLocaleDateString('pt-BR', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-        });
-    }
-
-    function showToast(text, sub, type) {
-        const toast = document.getElementById('toast');
-        const icon = document.getElementById('toast-icon');
-        document.getElementById('toast-text').textContent = text;
-        document.getElementById('toast-sub').textContent = sub || '';
-
-        icon.className = 'toast-icon ' + (type || 'success');
-        icon.innerHTML = type === 'error'
-        ? '<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
-        : '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
-
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 4000);
-    }
-
-    document.getElementById('modal-boletos').addEventListener('click', function(e) {
-        if (e.target === this)
-            fecharModalBoletos();
-    });
-
-    // Fechar modal clicando fora
-    document.getElementById('modal-empresa').addEventListener('click', function(e) {
-        if (e.target === this)
-            fecharModal();
-    });
-    </script>
+        </script>
 
     <script>
     // ─── LOGIN ────────────────────────────────────────────────
