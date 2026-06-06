@@ -2037,21 +2037,37 @@
                         <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem">
                             <div>
                                 <h1>Saldo de Contas</h1>
-                                <p>Visão geral do dinheiro disponível por conta</p>
+                                <p id="saldo-subtitle">Saldo calculado automaticamente</p>
                             </div>
-                            <button class="btn-outline" onclick="salvarSaldos()">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-                                    <polyline points="17 21 17 13 7 13 7 21"/>
-                                </svg>
+                            <div style="display:flex;gap:8px;flex-wrap:wrap">
+                                <button class="btn-outline" onclick="abrirModalMovimentacao('entrada')">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="12" y1="5" x2="12" y2="19"/>
+                                        <line x1="5" y1="12" x2="19" y2="12"/>
+                                    </svg>
 
-                                                                Salvar saldos
-                                                            
-                            </button>
+                                                                        Nova entrada
+                                                                    
+                                </button>
+                                <button class="btn-outline" onclick="abrirModalMovimentacao('transferencia')">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="17 1 21 5 17 9"/>
+                                        <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                                        <polyline points="7 23 3 19 7 15"/>
+                                        <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+                                    </svg>
+
+                                                                        Transferência
+                                                                    
+                                </button>
+                                <button class="btn-outline" onclick="abrirModalMovimentacao('inicial')">
+                                                                    💰 Saldo inicial
+                                                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- TOTAL GERAL -->
+                    <!-- TOTAIS -->
                     <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:1.5rem">
                         <div class="metric-card info">
                             <div class="metric-label">Total disponível</div>
@@ -2075,84 +2091,18 @@
                         </div>
                     </div>
 
-                    <!-- CARDS DE CONTAS -->
-                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem">
-                        <!-- MC -->
-                        <div class="card">
-                            <div class="card-header">
-                                <span class="card-title">🏦 C6 Mundo das Compras</span>
-                            </div>
-                            <div style="padding:1.25rem">
-                                <div style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:12px" id="disp-c6-mc">R$ 0,00</div>
-                                <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px">Atualizar saldo</label>
-                                <input type="number" id="saldo-c6-mc" placeholder="0,00" step="0.01" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;color:var(--text);font-family:var(--font);font-size:13px;outline:none" oninput="previewSaldo('c6-mc',this.value)">
-                                <div style="font-size:10px;color:var(--text3);margin-top:6px" id="upd-c6-mc"></div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <span class="card-title">🏦 Itaú Mundo das Compras</span>
-                            </div>
-                            <div style="padding:1.25rem">
-                                <div style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:12px" id="disp-itau-mc">R$ 0,00</div>
-                                <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px">Atualizar saldo</label>
-                                <input type="number" id="saldo-itau-mc" placeholder="0,00" step="0.01" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;color:var(--text);font-family:var(--font);font-size:13px;outline:none" oninput="previewSaldo('itau-mc',this.value)">
-                                <div style="font-size:10px;color:var(--text3);margin-top:6px" id="upd-itau-mc"></div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <span class="card-title">🏦 Sicoob Mundo das Compras</span>
-                            </div>
-                            <div style="padding:1.25rem">
-                                <div style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:12px" id="disp-sicoob-mc">R$ 0,00</div>
-                                <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px">Atualizar saldo</label>
-                                <input type="number" id="saldo-sicoob-mc" placeholder="0,00" step="0.01" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;color:var(--text);font-family:var(--font);font-size:13px;outline:none" oninput="previewSaldo('sicoob-mc',this.value)">
-                                <div style="font-size:10px;color:var(--text3);margin-top:6px" id="upd-sicoob-mc"></div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <span class="card-title">🏦 C6 Leão Home</span>
-                            </div>
-                            <div style="padding:1.25rem">
-                                <div style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:12px" id="disp-c6-leao">R$ 0,00</div>
-                                <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px">Atualizar saldo</label>
-                                <input type="number" id="saldo-c6-leao" placeholder="0,00" step="0.01" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;color:var(--text);font-family:var(--font);font-size:13px;outline:none" oninput="previewSaldo('c6-leao',this.value)">
-                                <div style="font-size:10px;color:var(--text3);margin-top:6px" id="upd-c6-leao"></div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <span class="card-title">🏦 Itaú Leão Home</span>
-                            </div>
-                            <div style="padding:1.25rem">
-                                <div style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:12px" id="disp-itau-leao">R$ 0,00</div>
-                                <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px">Atualizar saldo</label>
-                                <input type="number" id="saldo-itau-leao" placeholder="0,00" step="0.01" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;color:var(--text);font-family:var(--font);font-size:13px;outline:none" oninput="previewSaldo('itau-leao',this.value)">
-                                <div style="font-size:10px;color:var(--text3);margin-top:6px" id="upd-itau-leao"></div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <span class="card-title">🏦 Nubank Apollo Home</span>
-                            </div>
-                            <div style="padding:1.25rem">
-                                <div style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:12px" id="disp-nubank-apollo">R$ 0,00</div>
-                                <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px">Atualizar saldo</label>
-                                <input type="number" id="saldo-nubank-apollo" placeholder="0,00" step="0.01" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;color:var(--text);font-family:var(--font);font-size:13px;outline:none" oninput="previewSaldo('nubank-apollo',this.value)">
-                                <div style="font-size:10px;color:var(--text3);margin-top:6px" id="upd-nubank-apollo"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- CARDS POR CONTA -->
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem" id="saldo-contas-grid"></div>
 
-                    <!-- SAÍDAS POR CONTA -->
+                    <!-- HISTÓRICO -->
                     <div class="card">
                         <div class="card-header">
-                            <span class="card-title">Saídas por conta</span>
-                            <select id="saldo-mes-sel" onchange="renderSaidosPorConta()" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:6px 10px;color:var(--text);font-family:var(--font);font-size:12px;outline:none"></select>
+                            <span class="card-title">Histórico de movimentações</span>
+                            <select id="saldo-mes-sel" onchange="renderSaldo()" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:6px 10px;color:var(--text);font-family:var(--font);font-size:12px;outline:none">
+                                <option value="todas">Todas</option>
+                            </select>
                         </div>
-                        <div class="card-body" style="padding:1.25rem" id="saidos-por-conta">
+                        <div class="card-body" id="saldo-historico">
                             <div class="empty-state">
                                 <div class="empty-text">Carregando...</div>
                             </div>
@@ -2266,6 +2216,70 @@
         </div>
     </div>
 
+    <!-- MODAL MOVIMENTAÇÃO -->
+    <div class="modal-overlay" id="modal-mov">
+        <div class="modal" style="max-width:460px;width:95%">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+                <h3 id="modal-mov-title">Nova movimentação</h3>
+                <button onclick="fecharModalMov()" style="background:none;border:none;color:var(--text2);cursor:pointer;font-size:20px;padding:4px">×</button>
+            </div>
+            <div class="fgroup">
+                <label>Descrição</label>
+                <input type="text" id="mov-descricao" placeholder="Ex: Recebimento Mercado Livre">
+            </div>
+            <div class="fgroup-row">
+                <div class="fgroup">
+                    <label>Valor (R$)</label>
+                    <input type="number" id="mov-valor" placeholder="0,00" step="0.01">
+                </div>
+                <div class="fgroup">
+                    <label>Data</label>
+                    <input type="date" id="mov-data">
+                </div>
+            </div>
+            <div class="fgroup" id="mov-conta-group">
+                <label id="mov-conta-label">Conta</label>
+                <select id="mov-conta">
+                    <option value="">Selecione...</option>
+                    <option>C6 Mundo das Compras</option>
+                    <option>Itaú Mundo das Compras</option>
+                    <option>Sicoob Mundo das Compras</option>
+                    <option>C6 Leão Home</option>
+                    <option>Itaú Leão Home</option>
+                    <option>Nubank Apollo Home</option>
+                </select>
+            </div>
+            <div class="fgroup" id="mov-destino-group" style="display:none">
+                <label>Conta destino</label>
+                <select id="mov-destino">
+                    <option value="">Selecione...</option>
+                    <option>C6 Mundo das Compras</option>
+                    <option>Itaú Mundo das Compras</option>
+                    <option>Sicoob Mundo das Compras</option>
+                    <option>C6 Leão Home</option>
+                    <option>Itaú Leão Home</option>
+                    <option>Nubank Apollo Home</option>
+                </select>
+            </div>
+            <div class="fgroup" id="mov-categoria-group">
+                <label>Categoria</label>
+                <select id="mov-categoria">
+                    <option value="">Selecione...</option>
+                    <option>Venda Marketplace</option>
+                    <option>Venda Física</option>
+                    <option>Aporte</option>
+                    <option>Devolução</option>
+                    <option>Outros</option>
+                </select>
+            </div>
+            <div class="fgroup">
+                <label>Observações</label>
+                <input type="text" id="mov-obs" placeholder="Opcional">
+            </div>
+            <button class="btn-save" onclick="salvarMovimentacao()">Salvar movimentação</button>
+        </div>
+    </div>
+
     <!-- MODAL BOLETOS EMPRESA -->
     <div class="modal-overlay" id="modal-boletos">
         <div class="modal" style="max-width:780px;width:95%">
@@ -2332,12 +2346,14 @@
         token: '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',
         dbContas: 'c7e0311365f84b81b4f1129e357dd8f7',
         dbEmpresas: 'b9137defc34b4bcca8f9b8f2ebc126fd',
+        dbMovimentacoes: 'd6dd4fd4-e9d9-45fb-9226-25462939b6ae',
         anthropicKey: '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'
     };
 
     let DADOS = {
         contas: [],
-        empresas: []
+        empresas: [],
+        movimentacoes: []
     };
     let aiDados = {};
 
@@ -2499,9 +2515,27 @@
     async function carregarDados() {
         const pages = await notionQuery(CONFIG.dbContas);
         DADOS.contas = pages.map(parseConta);
+        const movPages = await notionQuery(CONFIG.dbMovimentacoes);
+        DADOS.movimentacoes = movPages.map(parseMovimentacao);
         renderDashboard();
         renderAlertas();
         atualizarBadgeAlertas();
+    }
+
+    function parseMovimentacao(page) {
+        const p = page.properties;
+        return {
+            id: page.id,
+            descricao: p['Descrição']?.title?.[0]?.plain_text || '',
+            tipo: p['Tipo']?.select?.name || '',
+            valor: p['Valor']?.number || 0,
+            data: p['Data']?.date?.start || '',
+            conta: p['Conta']?.select?.name || '',
+            contaDestino: p['Conta Destino']?.select?.name || '',
+            categoria: p['Categoria']?.select?.name || '',
+            empresa: p['Empresa']?.select?.name || '',
+            obs: p['Observações']?.rich_text?.[0]?.plain_text || '',
+        };
     }
 
     async function carregarEmpresas() {
@@ -3960,36 +3994,360 @@
     const CONTAS_SALDO = [
     {
         id: 'c6-mc',
-        nome: 'C6 Mundo das Compras'
+        nome: 'C6 Mundo das Compras',
+        grupo: 'mc'
     },
     {
         id: 'itau-mc',
-        nome: 'Itaú Mundo das Compras'
+        nome: 'Itaú Mundo das Compras',
+        grupo: 'mc'
     },
     {
         id: 'sicoob-mc',
-        nome: 'Sicoob Mundo das Compras'
+        nome: 'Sicoob Mundo das Compras',
+        grupo: 'mc'
     },
     {
         id: 'c6-leao',
-        nome: 'C6 Leão Home'
+        nome: 'C6 Leão Home',
+        grupo: 'leao'
     },
     {
         id: 'itau-leao',
-        nome: 'Itaú Leão Home'
+        nome: 'Itaú Leão Home',
+        grupo: 'leao'
     },
     {
         id: 'nubank-apollo',
-        nome: 'Nubank Apollo Home'
+        nome: 'Nubank Apollo Home',
+        grupo: 'apollo'
     },
     ];
+
+    let _movTipo = 'entrada';
+
+    function calcularSaldoConta(nomeConta) {
+        // Saldo inicial + entradas + transferências recebidas - transferências enviadas - saídas (boletos pagos)
+        let saldo = 0;
+        DADOS.movimentacoes.forEach(m => {
+            if (m.conta === nomeConta) {
+                if (['Saldo Inicial', 'Entrada', 'Transferência Recebida'].includes(m.tipo))
+                    saldo += m.valor;
+                if (m.tipo === 'Transferência Enviada')
+                    saldo -= m.valor;
+            }
+            if (m.contaDestino === nomeConta && m.tipo === 'Transferência Enviada')
+                saldo += m.valor;
+        });
+        DADOS.contas.forEach(c => {
+            if (c.status === 'Pago' && c.contaPagamento === nomeConta)
+                saldo -= c.valor;
+        });
+        return saldo;
+    }
+
+    async function iniciarSaldo() {
+        // Popular select de meses
+        const sel = document.getElementById('saldo-mes-sel');
+        if (sel && sel.options.length === 1) {
+            const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+            const hoje = new Date();
+            const mesesDisp = new Set();
+            DADOS.movimentacoes.forEach(m => {
+                if (m.data) {
+                    const d = new Date(m.data + 'T00:00:00');
+                    mesesDisp.add(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
+                }
+            });
+            DADOS.contas.filter(c => c.status === 'Pago' && c.dataPagamento).forEach(c => {
+                const d = new Date(c.dataPagamento + 'T00:00:00');
+                mesesDisp.add(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
+            });
+            Array.from(mesesDisp).sort().forEach(m => {
+                const [ano, mes] = m.split('-');
+                const opt = document.createElement('option');
+                opt.value = m;
+                opt.textContent = `${meses[parseInt(mes) - 1]} ${ano}`;
+                sel.appendChild(opt);
+            });
+        }
+        renderSaldo();
+    }
+
+    function renderSaldo() {
+        // Calcular saldos
+        const saldos = {};
+        CONTAS_SALDO.forEach(c => {
+            saldos[c.nome] = calcularSaldoConta(c.nome);
+        });
+
+        // Totais por grupo
+        const totalGeral = CONTAS_SALDO.reduce((s, c) => s + saldos[c.nome], 0);
+        const totalMC = CONTAS_SALDO.filter(c => c.grupo === 'mc').reduce((s, c) => s + saldos[c.nome], 0);
+        const totalLeao = CONTAS_SALDO.filter(c => c.grupo === 'leao').reduce((s, c) => s + saldos[c.nome], 0);
+        const totalApollo = CONTAS_SALDO.filter(c => c.grupo === 'apollo').reduce((s, c) => s + saldos[c.nome], 0);
+
+        document.getElementById('saldo-total-geral').textContent = fmtBRL(totalGeral);
+        document.getElementById('saldo-total-mc').textContent = fmtBRL(totalMC);
+        document.getElementById('saldo-total-leao').textContent = fmtBRL(totalLeao);
+        document.getElementById('saldo-total-apollo').textContent = fmtBRL(totalApollo);
+
+        // Cards por conta
+        const grid = document.getElementById('saldo-contas-grid');
+        if (grid) {
+            grid.innerHTML = CONTAS_SALDO.map(c => {
+                const saldo = saldos[c.nome];
+                const cor = saldo >= 0 ? 'var(--green)' : 'var(--red)';
+                return `<div class="card" style="padding:1.25rem">
+                    <div style="font-size:12px;color:var(--text3);margin-bottom:6px">🏦 ${c.nome}</div>
+                    <div style="font-size:22px;font-weight:700;color:${cor}">${fmtBRL(saldo)}</div>
+                </div>`
+                ;
+            }).join('');
+        }
+
+        // Histórico filtrado por mês
+        const mesSel=document.getElementById('saldo-mes-sel')?.value;
+        let movs = [...DADOS.movimentacoes];
+        let saidas = DADOS.contas.filter(c => c.status === 'Pago' && c.contaPagamento);
+
+        if (mesSel && mesSel !== 'todas') {
+            const [ano, mes] = mesSel.split('-').map(Number);
+            movs = movs.filter(m => {
+                if (!m.data)
+                    return false;
+                const d = new Date(m.data + 'T00:00:00');
+                return d.getFullYear() === ano && d.getMonth() + 1 === mes;
+            });
+            saidas = saidas.filter(c => {
+                if (!c.dataPagamento)
+                    return false;
+                const d = new Date(c.dataPagamento + 'T00:00:00');
+                return d.getFullYear() === ano && d.getMonth() + 1 === mes;
+            });
+        }
+
+        // Combinar e ordenar por data
+        const historico = [
+        ...movs.map(m => ({
+            data: m.data,
+            descricao: m.descricao,
+            tipo: m.tipo,
+            conta: m.conta,
+            contaDestino: m.contaDestino,
+            valor: m.valor,
+            entrada: ['Saldo Inicial', 'Entrada', 'Transferência Recebida'].includes(m.tipo),
+            id: m.id,
+            origem: 'mov'
+        })),
+        ...saidas.map(c => ({
+            data: c.dataPagamento,
+            descricao: c.descricao,
+            tipo: 'Saída (Boleto)',
+            conta: c.contaPagamento,
+            valor: c.valor,
+            entrada: false,
+            id: c.id,
+            origem: 'boleto'
+        }))
+        ].sort((a, b) => new Date(b.data) - new Date(a.data));
+
+        const hist = document.getElementById('saldo-historico');
+        hist.innerHTML = historico.length
+        ? `<table class="data-table">
+                <thead><tr>
+                    <th>Data</th><th>Descrição</th><th>Tipo</th><th>Conta</th><th>Valor</th><th></th>
+                </tr></thead>
+                <tbody>${
+
+
+        historico.map(h => `<tr>
+                    <td style="font-size:12px;color:var(--text2)">${fmtData(h.data)}</td>
+                    <td style="font-weight:500;font-size:13px">${h.descricao || '—'}</td>
+                    <td><span class="badge ${h.entrada ? 'badge-green' : 'badge-red'}">${h.tipo}</span></td>
+                    <td style="font-size:12px;color:var(--text2)">${h.conta}${h.contaDestino ? ' → ' + h.contaDestino : ''}</td>
+                    <td style="font-weight:600;color:${h.entrada ? 'var(--green)' : 'var(--red)'}">
+                        ${h.entrada ? '+' : '-'}${fmtBRL(h.valor)}
+                    </td>
+                    <td>${
+        h.origem === 'mov' ? `<button class="btn-pago" style="color:var(--red);border-color:var(--red)" onclick="excluirMovimentacao('${h.id}',this)">✕</button>` : ''}</td>
+                </tr>`).join('')}</tbody>
+              </table>`
+
+        : '<div class="empty-state"><div class="empty-title" style="padding:2rem">Nenhuma movimentação registrada</div></div>';
+    }
+
+    function abrirModalMovimentacao(tipo) {
+        _movTipo = tipo;
+        const hoje = new Date().toISOString().split('T')[0];
+        document.getElementById('mov-data').value = hoje;
+        document.getElementById('mov-descricao').value = '';
+        document.getElementById('mov-valor').value = '';
+        document.getElementById('mov-obs').value = '';
+
+        const titles = {
+            entrada: '+ Nova Entrada',
+            transferencia: '↔ Transferência',
+            inicial: '💰 Saldo Inicial'
+        };
+        document.getElementById('modal-mov-title').textContent = titles[tipo];
+        document.getElementById('mov-destino-group').style.display = tipo === 'transferencia' ? 'block' : 'none';
+        document.getElementById('mov-categoria-group').style.display = tipo !== 'transferencia' ? 'block' : 'none';
+        document.getElementById('mov-conta-label').textContent = tipo === 'transferencia' ? 'Conta origem' : 'Conta';
+        document.getElementById('modal-mov').classList.add('open');
+    }
+
+    function fecharModalMov() {
+        document.getElementById('modal-mov').classList.remove('open');
+    }
+
+    async function salvarMovimentacao() {
+        const descricao = document.getElementById('mov-descricao').value.trim();
+        const valor = parseFloat(document.getElementById('mov-valor').value);
+        const data = document.getElementById('mov-data').value;
+        const conta = document.getElementById('mov-conta').value;
+        const destino = document.getElementById('mov-destino').value;
+        const categoria = document.getElementById('mov-categoria').value;
+        const obs = document.getElementById('mov-obs').value.trim();
+
+        if (!descricao || !valor || !data || !conta) {
+            showToast('Preencha os campos obrigatórios', 'Descrição, valor, data e conta', 'error');
+            return;
+        }
+        if (_movTipo === 'transferencia' && !destino) {
+            showToast('Selecione a conta destino', '', 'error');
+            return;
+        }
+
+        const tipoMap = {
+            entrada: 'Entrada',
+            transferencia: 'Transferência Enviada',
+            inicial: 'Saldo Inicial'
+        };
+        const tipo = tipoMap[_movTipo];
+
+        try {
+            const props = {
+                'Descrição': {
+                    title: [{
+                        text: {
+                            content: descricao
+                        }
+                    }]
+                },
+                'Tipo': {
+                    select: {
+                        name: tipo
+                    }
+                },
+                'Valor': {
+                    number: valor
+                },
+                'Data': {
+                    date: {
+                        start: data
+                    }
+                },
+                'Conta': {
+                    select: {
+                        name: conta
+                    }
+                },
+            };
+            if (destino)
+                props['Conta Destino'] = {
+                    select: {
+                        name: destino
+                    }
+                };
+            if (categoria)
+                props['Categoria'] = {
+                    select: {
+                        name: categoria
+                    }
+                };
+            if (obs)
+                props['Observações'] = {
+                    rich_text: [{
+                        text: {
+                            content: obs
+                        }
+                    }]
+                };
+
+            await notionCreate(CONFIG.dbMovimentacoes, props);
+
+            // Se transferência, criar também o lançamento de recebimento
+            if (_movTipo === 'transferencia') {
+                const propsReceb = {
+                    'Descrição': {
+                        title: [{
+                            text: {
+                                content: `Transferência recebida de ${conta}`
+                            }
+                        }]
+                    },
+                    'Tipo': {
+                        select: {
+                            name: 'Transferência Recebida'
+                        }
+                    },
+                    'Valor': {
+                        number: valor
+                    },
+                    'Data': {
+                        date: {
+                            start: data
+                        }
+                    },
+                    'Conta': {
+                        select: {
+                            name: destino
+                        }
+                    },
+                    'Conta Destino': {
+                        select: {
+                            name: conta
+                        }
+                    },
+                };
+                await notionCreate(CONFIG.dbMovimentacoes, propsReceb);
+            }
+
+            fecharModalMov();
+            await carregarDados();
+            renderSaldo();
+            showToast('Movimentação salva!', `${descricao} — ${fmtBRL(valor)}`, 'success');
+        } catch (e) {
+            showToast('Erro ao salvar', e.message, 'error');
+        }
+    }
+
+    async function excluirMovimentacao(pageId, btn) {
+        if (!confirm('Excluir esta movimentação?'))
+            return;
+        btn.disabled = true;
+        try {
+            await notionUpdate(pageId, {
+                archived: true
+            });
+            await carregarDados();
+            renderSaldo();
+            showToast('Movimentação excluída!', '', 'success');
+        } catch (e) {
+            showToast('Erro ao excluir', e.message, 'error');
+            btn.disabled = false;
+        }
+    }
+
+    // ─── UTILS ────────────────────────────────────────────────
 
     async function iniciarSaldo() {
         // Carregar saldos salvos
         try {
-            const saved = await window.storage.get('gmc-saldos');
-            if (saved) {
-                const saldos = JSON.parse(saved.value);
+            const savedRaw = localStorage.getItem('gmc-saldos');
+            if (savedRaw) {
+                const saldos = JSON.parse(savedRaw);
                 CONTAS_SALDO.forEach(c => {
                     const val = saldos[c.id];
                     if (val !== undefined) {
@@ -4058,7 +4416,7 @@
             document.getElementById(`upd-${c.id}`).textContent = `Atualizado: ${agora}`;
         });
         try {
-            await window.storage.set('gmc-saldos', JSON.stringify(saldos));
+            localStorage.setItem('gmc-saldos', JSON.stringify(saldos));
             atualizarTotaisSaldo();
             showToast('Saldos salvos!', 'Atualizado com sucesso', 'success');
         } catch (e) {
@@ -4146,6 +4504,11 @@
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 4000);
     }
+
+    document.getElementById('modal-mov').addEventListener('click', function(e) {
+        if (e.target === this)
+            fecharModalMov();
+    });
 
     document.getElementById('modal-boletos').addEventListener('click', function(e) {
         if (e.target === this)
