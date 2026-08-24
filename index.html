@@ -1545,26 +1545,36 @@
                 <br>
 
 
-                                      1. 
+
+                                                      1. 
+                                                
                                 
                 <a href="https://www.notion.so/my-integrations" target="_blank">notion.so/my-integrations</a>
 
-                                 → criar integração → copiar token
+
+                                                 → criar integração → copiar token
+                                                
                                 
                 <br>
 
 
-                                      2. 
+
+                                                      2. 
+                                                
                                 
                 <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>
 
-                                 → API Keys → criar chave
+
+                                                 → API Keys → criar chave
+                                                
                                 
                 <br>
 
 
-                                      3. Cole os IDs dos databases criados no seu Notion
-                                    
+
+                                                      3. Cole os IDs dos databases criados no seu Notion
+                                                    
+                                            
                             
             </div>
 
@@ -1591,8 +1601,10 @@
                 </svg>
 
 
-                                      Salvar e entrar
-                                    
+
+                                                      Salvar e entrar
+                                                    
+                                            
                             
             </button>
         </div>
@@ -1727,8 +1739,10 @@
                                     </svg>
 
 
-                                                                                        Ver no Notion
-                                                                                      
+
+                                                                                                                            Ver no Notion
+                                                                                                                          
+                                                                                                        
                                                                     
                                 </a>
                                 <button class="btn-outline" onclick="carregarDados()">
@@ -1739,8 +1753,10 @@
                                     </svg>
 
 
-                                                                                        Atualizar
-                                                                                      
+
+                                                                                                                            Atualizar
+                                                                                                                          
+                                                                                                        
                                                                     
                                 </button>
                             </div>
@@ -1940,8 +1956,10 @@
                                     </svg>
 
 
-                                                                                        Salvar no Notion
-                                                                                      
+
+                                                                                                                            Salvar no Notion
+                                                                                                                          
+                                                                                                        
                                                                     
                                 </button>
                             </div>
@@ -1953,8 +1971,8 @@
                                 </div>
                                 <div class="wpp-msg" id="wpp-text"></div>
                                 <button class="btn-wpp" onclick="abrirWhatsapp()">
-                                                                                Abrir no WhatsApp
-                                                                              </button>
+                                                                                                                Abrir no WhatsApp
+                                                                                                              </button>
                             </div>
                         </div>
                     </div>
@@ -1976,8 +1994,10 @@
                                 </svg>
 
 
-                                                                              Nova empresa
-                                                                            
+
+                                                                                                              Nova empresa
+                                                                                                            
+                                                                                            
                                                             
                             </button>
                         </div>
@@ -2046,7 +2066,9 @@
                                         <line x1="5" y1="12" x2="19" y2="12"/>
                                     </svg>
 
-                                                                        Nova entrada
+
+                                                                                                            Nova entrada
+                                                                                                        
                                                                     
                                 </button>
                                 <button class="btn-outline" onclick="abrirModalMovimentacao('transferencia')">
@@ -2057,12 +2079,14 @@
                                         <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
                                     </svg>
 
-                                                                        Transferência
+
+                                                                                                            Transferência
+                                                                                                        
                                                                     
                                 </button>
                                 <button class="btn-outline" onclick="abrirModalMovimentacao('inicial')">
-                                                                    💰 Saldo inicial
-                                                                </button>
+                                                                                                    💰 Saldo inicial
+                                                                                                </button>
                             </div>
                         </div>
                     </div>
@@ -2089,10 +2113,20 @@
                             <div class="metric-value" id="saldo-total-apollo">—</div>
                             <div class="metric-sub">1 conta</div>
                         </div>
+                        <div class="metric-card info">
+                            <div class="metric-label">Achados do Lar</div>
+                            <div class="metric-value" id="saldo-total-achados">—</div>
+                            <div class="metric-sub">1 conta</div>
+                        </div>
+                        <div class="metric-card info">
+                            <div class="metric-label">Casa 777</div>
+                            <div class="metric-value" id="saldo-total-casa777">—</div>
+                            <div class="metric-sub">1 conta</div>
+                        </div>
                     </div>
 
                     <!-- CARDS POR CONTA -->
-                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem" id="saldo-contas-grid"></div>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))" id="saldo-contas-grid"></div>
 
                     <!-- HISTÓRICO -->
                     <div class="card">
@@ -2241,24 +2275,26 @@
                 <label id="mov-conta-label">Conta</label>
                 <select id="mov-conta">
                     <option value="">Selecione...</option>
-                    <option>C6 Mundo das Compras</option>
-                    <option>Itaú Mundo das Compras</option>
                     <option>Sicoob Mundo das Compras</option>
+                    <option>C6 Mundo das Compras</option>
+                    <option>Sicoob Leão Home</option>
                     <option>C6 Leão Home</option>
-                    <option>Itaú Leão Home</option>
-                    <option>Nubank Apollo Home</option>
+                    <option>Sicoob Apollo Home</option>
+                    <option>Sicoob Achados do Lar</option>
+                    <option>Sicoob Casa 777</option>
                 </select>
             </div>
             <div class="fgroup" id="mov-destino-group" style="display:none">
                 <label>Conta destino</label>
                 <select id="mov-destino">
                     <option value="">Selecione...</option>
-                    <option>C6 Mundo das Compras</option>
-                    <option>Itaú Mundo das Compras</option>
                     <option>Sicoob Mundo das Compras</option>
+                    <option>C6 Mundo das Compras</option>
+                    <option>Sicoob Leão Home</option>
                     <option>C6 Leão Home</option>
-                    <option>Itaú Leão Home</option>
-                    <option>Nubank Apollo Home</option>
+                    <option>Sicoob Apollo Home</option>
+                    <option>Sicoob Achados do Lar</option>
+                    <option>Sicoob Casa 777</option>
                 </select>
             </div>
             <div class="fgroup" id="mov-categoria-group">
@@ -2688,6 +2724,11 @@
 
 
 
+
+
+
+
+
             ;
             return;
         }
@@ -2714,11 +2755,13 @@
       <td>
         <div style="font-weight:500;font-size:13px">${
 
+
             c.descricao || '—'}</div>
         <div class="td-empresa">${c.empresa}</div>
         ${linhaHtml}
       </td>
       <td>${
+
 
             c.categoria || '—'}</td>
       <td>${statusBadge}</td>
@@ -2726,15 +2769,18 @@
       <td style="font-weight:600;color:var(--text)">
         ${
 
+
             fmtBRL(c.valor)}
         ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red);font-weight:400">inclui ${fmtBRL(c.jurosMulta)} juros/multa</div>` : ''}
       </td>
       <td style="color:var(--text2);font-size:12px">${
 
+
             fmtData(c.vencimento)}</td>
       <td style="color:var(--green);font-size:12px">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
       <td style="display:flex;gap:6px;align-items:center">
         <button class="btn-pago" onclick="marcarPago('${
+
 
             c.id}', this)">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -2746,9 +2792,14 @@
 
 
 
+
+
+
             c.status === 'Pago' ? `<button class="btn-pago" onclick="desfazerPago('${c.id}', this)" style="color:var(--red);border-color:var(--red)">↩ Desfazer</button>` : ''}
       </td>
     </tr>`
+
+
 
 
 
@@ -2782,13 +2833,29 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         rows}</tbody>
     </table>
     <div class="mobile-cards">
       ${
 
+
+
         sorted.map(c => {const v = new Date(c.vencimento + 'T00:00:00');const isAtrasado = v < hoje;const isHoje = v.toDateString() === hoje.toDateString();const isSemana = v > hoje && v <= semana;const statusBadge = isAtrasado ? '<span class="badge badge-red"><span class="badge-dot"></span>Atrasado</span>' : isHoje ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Hoje</span>' : isSemana ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Esta semana</span>' : '<span class="badge badge-gray">Futuro</span>';const linha = c.cedente && c.cedente.length > 10 ? c.cedente : '';return '<div class="mobile-card">' + '<div class="mobile-card-header">' + '<div><div class="mobile-card-title">' + (c.descricao || '—') + '</div>' + '<div class="mobile-card-empresa">' + c.empresa + (c.categoria ? ' · ' + c.categoria : '') + '</div></div>' + statusBadge + '</div>' + '<div class="mobile-card-row">' + '<span class="mobile-card-valor">' + fmtBRL(c.valor) + '</span>' + '<span class="mobile-card-data">📅 ' + fmtData(c.vencimento) + '</span>' + '</div>' + (linha ? '<div class="mobile-card-linha">' + linha + ' <button onclick="navigator.clipboard.writeText(\'' + linha.replace(/'/g, '') + '\').then(()=>{this.textContent=\'✓\';setTimeout(()=>this.textContent=\'copiar\',2000)})" style="background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;font-size:10px;color:var(--text2);cursor:pointer;padding:1px 6px;font-family:var(--font)">copiar</button></div>' : '') + '<div class="mobile-card-actions">' + '<button class="btn-pago" onclick="marcarPago(\'' + c.id + '\', this)">' + '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' + ' Marcar como Pago</button>' + '</div></div>';}).join('')}
     </div>`
+
 
         ;
     }
@@ -2824,7 +2891,7 @@
         }
 
         // Escolher conta de pagamento
-        const CONTAS_PAGTO = ['C6 Mundo das Compras', 'Itaú Mundo das Compras', 'Sicoob Mundo das Compras', 'C6 Leão Home', 'Itaú Leão Home', 'Nubank Apollo Home'];
+        const CONTAS_PAGTO = ['Sicoob Mundo das Compras', 'C6 Mundo das Compras', 'Sicoob Leão Home', 'C6 Leão Home', 'Sicoob Apollo Home', 'Sicoob Achados do Lar', 'Sicoob Casa 777'];
         const sugestao = CONTAS_PAGTO.findIndex(c => conta?.empresa && c.toLowerCase().includes(conta.empresa.toLowerCase().split(' ')[0]));
         const optsStr = CONTAS_PAGTO.map((c, i) => `${i + 1}. ${c}`).join('\n');
         const contaStr = prompt(`De qual conta saiu o pagamento?\n\n${optsStr}\n\nDigite o número:`, sugestao >= 0 ? String(sugestao + 1) : '1');
@@ -2917,6 +2984,10 @@
 
 
 
+
+
+
+
             ;
             return;
         }
@@ -2940,16 +3011,22 @@
 
 
 
+
+
             emp.nome}</div>
           <div class="empresa-seg">${emp.segmento}</div>
         </div>
         <span class="badge ${
+
 
             emp.status === 'Ativa' ? 'badge-green' : 'badge-gray'}">${emp.status}</span>
       </div>
       <div class="empresa-metrics">
         <div class="emp-metric">
           <div class="emp-metric-val">${
+
+
+
 
 
 
@@ -2965,11 +3042,17 @@
 
 
 
+
+
+
             fmtBRL(totalPago)}</div>
           <div class="emp-metric-label">Pagos</div>
         </div>
         <div class="emp-metric">
           <div class="emp-metric-val ${
+
+
+
 
 
 
@@ -2981,6 +3064,11 @@
       </div>
       <div style="margin-top:10px;font-size:11px;color:var(--text3);text-align:right">Ver boletos →</div>
     </div>`
+
+
+
+
+
 
 
 
@@ -3026,11 +3114,13 @@
           <button onclick="event.stopPropagation();navigator.clipboard.writeText('${linha.replace(/'/g, '')}').then(()=>{this.textContent='✓';setTimeout(()=>this.textContent='copiar',2000)})" style="flex-shrink:0;padding:1px 6px;background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;font-size:10px;color:var(--text2);cursor:pointer;font-family:var(--font)">copiar</button>
         </div>`
 
+
             : '';
 
             return `<tr>
       <td>
         <div style="font-weight:500;font-size:13px">${
+
 
             c.descricao || '—'}</div>
         <div class="td-empresa">${c.categoria || ''}</div>
@@ -3038,11 +3128,13 @@
       </td>
       <td>${
 
+
             statusBadge}</td>
       <td style="font-size:12px;color:var(--text2)">${fmtData(c.vencimento)}</td>
       <td style="font-weight:600">${fmtBRL(c.valor)}</td>
       <td>
         <button class="btn-pago" onclick="event.stopPropagation();marcarPagoModal('${
+
 
             c.id}', this)">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -3050,6 +3142,11 @@
         </button>
       </td>
     </tr>`
+
+
+
+
+
 
 
 
@@ -3076,8 +3173,12 @@
 
 
 
+
+
+
         rows}</tbody>
       </table>`
+
 
 
         : `<div class="empty-state"><div class="empty-title">Nenhum boleto pendente</div></div>`;
@@ -3198,6 +3299,8 @@
 
 
 
+
+
         nome}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
@@ -3206,9 +3309,13 @@
 
 
 
+
+
         Math.round(val / maxEmp * 100)}%"></div>
         </div>
       </div>`
+
+
 
 
 
@@ -3236,6 +3343,8 @@
 
 
 
+
+
         cat}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
@@ -3244,9 +3353,13 @@
 
 
 
+
+
         Math.round(val / maxCat * 100)}%"></div>
         </div>
       </div>`
+
+
 
 
 
@@ -3292,10 +3405,12 @@
     <div class="alerta-card">
       <div class="alerta-title" style="color:var(--red)">🔴 Atrasados (${
 
+
         atrasados.length})</div>
       ${atrasados.slice(0, 5).map(c => `
         <div class="alerta-item">
           <span class="alerta-item-name">${
+
 
         c.descricao} <span style="color:var(--text3)">${c.empresa}</span></span>
           <span class="alerta-item-val danger">${fmtBRL(c.valor)}</span>
@@ -3306,10 +3421,13 @@
 
 
 
+
+
         venHoje.length})</div>
       ${venHoje.map(c => `
         <div class="alerta-item">
           <span class="alerta-item-name">${
+
 
         c.descricao}</span>
           <span class="alerta-item-val warning">${fmtBRL(c.valor)}</span>
@@ -3320,19 +3438,25 @@
 
 
 
+
+
         venSemana.length})</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
       ${
 
+
         venSemana.map(c => `
         <div class="alerta-item">
           <span class="alerta-item-name">${
+
 
         c.descricao} <span style="color:var(--text3)">· ${fmtData(c.vencimento)}</span></span>
           <span class="alerta-item-val">${fmtBRL(c.valor)}</span>
         </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum esta semana</div>'}
       </div>
     </div>`
+
+
 
 
 
@@ -3838,13 +3962,17 @@
 
 
 
+
+
         cat}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
         <div class="bar-track"><div class="bar-fill" style="width:${
 
+
         Math.round(val / maxCat * 100)}%"></div></div>
       </div>`
+
 
         ).join('')
         : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum pagamento neste mês</div>';
@@ -3866,13 +3994,17 @@
 
 
 
+
+
         emp}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
         <div class="bar-track"><div class="bar-fill" style="width:${
 
+
         Math.round(val / maxEmp * 100)}%"></div></div>
       </div>`
+
 
         ).join('')
         : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum dado</div>';
@@ -3891,6 +4023,9 @@
 
 
 
+
+
+
         sorted.map(c => `<tr>
           <td style="font-weight:500;font-size:13px">${c.descricao || '—'}</td>
           <td style="font-size:12px;color:var(--text2)">${c.empresa}</td>
@@ -3899,15 +4034,18 @@
           <td style="font-weight:600">
             ${
 
+
         fmtBRL(c.valor)}
             ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red)">inclui ${fmtBRL(c.jurosMulta)} juros</div>` : ''}
           </td>
           <td style="font-size:12px;color:var(--text2)">${
 
+
         fmtData(c.vencimento)}</td>
           <td style="font-size:12px;color:var(--green);font-weight:500">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
           <td>
             <button class="btn-pago" onclick="desfazerPagoFechamento('${
+
 
         c.id}', this)" style="color:var(--red);border-color:var(--red)">
               ↩ Desfazer
@@ -3919,8 +4057,12 @@
 
 
 
+
+
+
         ).join('')}</tbody>
       </table>`
+
 
 
         : '<div class="empty-state"><div class="empty-title" style="padding:2rem">Nenhum pagamento registrado neste mês</div></div>';
@@ -3993,19 +4135,19 @@
     // ─── SALDO ────────────────────────────────────────────────
     const CONTAS_SALDO = [
     {
+        id: 'sicoob-mc',
+        nome: 'Sicoob Mundo das Compras',
+        grupo: 'mc'
+    },
+    {
         id: 'c6-mc',
         nome: 'C6 Mundo das Compras',
         grupo: 'mc'
     },
     {
-        id: 'itau-mc',
-        nome: 'Itaú Mundo das Compras',
-        grupo: 'mc'
-    },
-    {
-        id: 'sicoob-mc',
-        nome: 'Sicoob Mundo das Compras',
-        grupo: 'mc'
+        id: 'sicoob-leao',
+        nome: 'Sicoob Leão Home',
+        grupo: 'leao'
     },
     {
         id: 'c6-leao',
@@ -4013,14 +4155,19 @@
         grupo: 'leao'
     },
     {
-        id: 'itau-leao',
-        nome: 'Itaú Leão Home',
-        grupo: 'leao'
+        id: 'sicoob-apollo',
+        nome: 'Sicoob Apollo Home',
+        grupo: 'apollo'
     },
     {
-        id: 'nubank-apollo',
-        nome: 'Nubank Apollo Home',
-        grupo: 'apollo'
+        id: 'sicoob-achados',
+        nome: 'Sicoob Achados do Lar',
+        grupo: 'achados'
+    },
+    {
+        id: 'sicoob-casa777',
+        nome: 'Sicoob Casa 777',
+        grupo: 'casa777'
     },
     ];
 
@@ -4086,11 +4233,18 @@
         const totalMC = CONTAS_SALDO.filter(c => c.grupo === 'mc').reduce((s, c) => s + saldos[c.nome], 0);
         const totalLeao = CONTAS_SALDO.filter(c => c.grupo === 'leao').reduce((s, c) => s + saldos[c.nome], 0);
         const totalApollo = CONTAS_SALDO.filter(c => c.grupo === 'apollo').reduce((s, c) => s + saldos[c.nome], 0);
-
+        const totalAchados = CONTAS_SALDO.filter(c => c.grupo === 'achados').reduce((s, c) => s + saldos[c.nome], 0);
+        const totalCasa777 = CONTAS_SALDO.filter(c => c.grupo === 'casa777').reduce((s, c) => s + saldos[c.nome], 0);
         document.getElementById('saldo-total-geral').textContent = fmtBRL(totalGeral);
         document.getElementById('saldo-total-mc').textContent = fmtBRL(totalMC);
         document.getElementById('saldo-total-leao').textContent = fmtBRL(totalLeao);
         document.getElementById('saldo-total-apollo').textContent = fmtBRL(totalApollo);
+        const elAchados = document.getElementById('saldo-total-achados');
+        if (elAchados)
+            elAchados.textContent = fmtBRL(totalAchados);
+        const elCasa = document.getElementById('saldo-total-casa777');
+        if (elCasa)
+            elCasa.textContent = fmtBRL(totalCasa777);
 
         // Cards por conta
         const grid = document.getElementById('saldo-contas-grid');
@@ -4102,6 +4256,7 @@
                     <div style="font-size:12px;color:var(--text3);margin-bottom:6px">🏦 ${c.nome}</div>
                     <div style="font-size:22px;font-weight:700;color:${cor}">${fmtBRL(saldo)}</div>
                 </div>`
+
                 ;
             }).join('');
         }
@@ -4161,6 +4316,9 @@
                 <tbody>${
 
 
+
+
+
         historico.map(h => `<tr>
                     <td style="font-size:12px;color:var(--text2)">${fmtData(h.data)}</td>
                     <td style="font-weight:500;font-size:13px">${h.descricao || '—'}</td>
@@ -4170,9 +4328,11 @@
                         ${h.entrada ? '+' : '-'}${fmtBRL(h.valor)}
                     </td>
                     <td>${
+
         h.origem === 'mov' ? `<button class="btn-pago" style="color:var(--red);border-color:var(--red)" onclick="excluirMovimentacao('${h.id}',this)">✕</button>` : ''}</td>
                 </tr>`).join('')}</tbody>
               </table>`
+
 
         : '<div class="empty-state"><div class="empty-title" style="padding:2rem">Nenhuma movimentação registrada</div></div>';
     }
@@ -4461,13 +4621,17 @@
                     <div class="bar-top">
                         <span class="bar-name">${
 
+
+
         nome}</span>
                         <span style="font-size:12px;color:var(--text3)">${v.count} pagamentos</span>
                         <span class="bar-val">${fmtBRL(v.total)}</span>
                     </div>
                     <div class="bar-track"><div class="bar-fill" style="width:${
+
         Math.round(v.total / max * 100)}%"></div></div>
                 </div>`
+
         ).join('')
         : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum pagamento com conta registrada neste mês</div>';
     }
