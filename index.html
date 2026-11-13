@@ -6189,6 +6189,7 @@
         });
         let feitos = 0,
             erros = 0;
+        const total = lista.length;
         const props = d => {
             const p = {
                 'Situação': {
@@ -6250,28 +6251,39 @@
         const trabalhar = async () => {
             while (lista.length) {
                 const d = lista.shift();
-                try {
-                    if (d._novo) {
-                        const r = await notionCreate(CONFIG.dbDevolucoes, props(d));
-                        d.pageId = r.id;
+                // O Notion aceita ~3 requisições por segundo: tenta de novo com pausa quando recusa
+                let ok = false;
+                for (let tentativa = 1; tentativa <= 5 && !ok; tentativa++) {
+                    try {
+                        if (d._novo) {
+                            const r = await notionCreate(CONFIG.dbDevolucoes, props(d));
+                            if (!r?.id)
+                                throw new Error('sem id');
+                            d.pageId = r.id;
+                        }
+                        else {
+                            const r = await notionUpdate(d.pageId, props(d));
+                            if (r?.object === 'error')
+                                throw new Error(r.message);
+                        }
+                        delete d._novo;
+                        delete d._mudou;
+                        ok = true;
+                    } catch (e) {
+                        console.warn('Notion retry', tentativa, e.message);
+                        await new Promise(res => setTimeout(res, 1200 * tentativa));
                     }
-                    else
-                        await notionUpdate(d.pageId, props(d));
-                    delete d._novo;
-                    delete d._mudou;
-                } catch (e) {
-                    erros++;
-                    console.error(e);
                 }
+                if (!ok)
+                    erros++;
+                await new Promise(res => setTimeout(res, 350));
                 feitos++;
-                if (feitos % 10 === 0)
-                    statusEl.dataset.prog = `Salvando no Notion... ${feitos}`;
-                statusEl.querySelector('.dev-prog') && (statusEl.querySelector('.dev-prog').textContent = ` · salvando no Notion: ${feitos}`);
+                statusEl.querySelector('.dev-prog') && (statusEl.querySelector('.dev-prog').textContent = ` · salvando no Notion: ${feitos} de ${total} (não feche a página)`);
             }
         };
         statusEl.insertAdjacentHTML('beforeend', '<span class="dev-prog"> · salvando no Notion...</span>');
-        await Promise.all([trabalhar(), trabalhar(), trabalhar()]);
-        statusEl.querySelector('.dev-prog').textContent = erros ? ` · ⚠️ ${erros} não foram salvas no Notion (veja se a integração tem acesso à base ↩️ Devoluções)` : ` · ✓ salvo no Notion (${feitos})`;
+        await Promise.all([trabalhar(), trabalhar()]);
+        statusEl.querySelector('.dev-prog').textContent = erros ? ` · ⚠️ ${erros} não foram salvas no Notion — importe o arquivo de novo para completar` : ` · ✓ salvo no Notion (${feitos})`;
         devRender();
     }
 
