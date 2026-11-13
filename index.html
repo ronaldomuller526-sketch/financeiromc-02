@@ -1945,6 +1945,14 @@
                     <span>Devoluções</span>
                 </button>
 
+                <button class="nav-item" onclick="navTo('conferencia', this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="9 12 11 14 15 10"/>
+                    </svg>
+                    <span>Conferência</span>
+                </button>
+
                 <div class="sidebar-bottom">
                     <button class="nav-item" onclick="resetConfig()" style="margin-bottom:8px">
                         <svg viewBox="0 0 24 24">
@@ -2693,8 +2701,8 @@
                                 <div class="metric-value" id="dev-m-perda">—</div>
                                 <div class="metric-sub" id="dev-m-perda-sub">—</div>
                             </div>
-                            <div class="metric-card info">
-                                <div class="metric-label">A conferir no galpão</div>
+                            <div class="metric-card info" style="cursor:pointer" title="Abrir conferência" onclick="navTo('conferencia', document.querySelector(`[onclick=&quot;navTo('conferencia', this)&quot;]`))">
+                                <div class="metric-label">A conferir no galpão →</div>
                                 <div class="metric-value" id="dev-m-conferir">—</div>
                                 <div class="metric-sub" id="dev-m-conferir-sub">produtos que voltaram</div>
                             </div>
@@ -2739,6 +2747,27 @@
                             <div class="card-body res-scroll" id="dev-skus"></div>
                         </div>
 
+                    </div>
+                </div>
+
+                <!-- CONFERÊNCIA NO GALPÃO -->
+                <div class="page" id="page-conferencia">
+                    <div class="page-header">
+                        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+                            <div>
+                                <h1>Conferência no galpão</h1>
+                                <p>Abriu o pacote? Busque o pedido ou SKU e marque como chegou.</p>
+                            </div>
+                            <select id="conf-mes-sel" onchange="document.getElementById('dev-mes-sel').value=this.value;devCarregarMes()" class="res-select"></select>
+                        </div>
+                    </div>
+                    <div id="conf-vazio" class="card">
+                        <div class="empty-state">
+                            <div class="empty-title">Nenhuma devolução neste mês</div>
+                            <div class="empty-text">Importe o arquivo do UpSeller na aba Devoluções</div>
+                        </div>
+                    </div>
+                    <div id="conf-conteudo" style="display:none">
                         <div class="card" style="margin-bottom:1.5rem">
                             <div class="card-header">
                                 <span class="card-title">📦 Resultado da conferência no galpão</span>
@@ -2784,7 +2813,7 @@
                                     <button class="btn-outline" style="padding:6px 12px;font-size:12px" onclick="devLimparFiltros()">Limpar</button>
                                 </div>
                             </div>
-                            <div class="card-body res-scroll" style="max-height:600px" id="dev-lista"></div>
+                            <div class="card-body res-scroll" style="max-height:none" id="dev-lista"></div>
                         </div>
                     </div>
                 </div>
@@ -3003,7 +3032,7 @@
         if (role === 'devolucoes') {
             // Só a aba Devoluções: esconde todo o resto e não carrega boletos/empresas
             document.querySelectorAll('.sidebar .nav-item').forEach(b => {
-                if (b.getAttribute('onclick') !== "navTo('devolucoes', this)")
+                if (!["navTo('devolucoes', this)", "navTo('conferencia', this)"].includes(b.getAttribute('onclick')))
                     b.style.display = 'none';
             });
             navTo('devolucoes', document.querySelector(`[onclick="navTo('devolucoes', this)"]`));
@@ -3041,6 +3070,8 @@
         if (page === 'resultado')
             iniciarResultado();
         if (page === 'devolucoes')
+            iniciarDevolucoes();
+        if (page === 'conferencia')
             iniciarDevolucoes();
     }
 
@@ -6128,12 +6159,14 @@
                     opt.selected = true;
                 sel.appendChild(opt);
             }
+            document.getElementById('conf-mes-sel').innerHTML = sel.innerHTML;
         }
         devCarregarMes();
     }
 
     async function devCarregarMes() {
         const mes = document.getElementById('dev-mes-sel').value;
+        document.getElementById('conf-mes-sel').value = mes;
         if (!DEV.porMes[mes]) {
             const pages = await notionQuery(CONFIG.dbDevolucoes, {
                 property: 'Mês',
@@ -6502,6 +6535,7 @@
         const lojas = [...new Set(todas.map(d => d.loja))].sort();
         selLoja.innerHTML = '<option value="todas">Todas as lojas</option>' + lojas.map(l => `<option ${l === atual ? 'selected' : ''}>${l}</option>`).join('');
 
+        devRenderConfPage();
         const lista = devFiltradas();
         const validas = lista.filter(d => d.situacao !== 'Cancelada');
         document.getElementById('dev-vazio').style.display = lista.length ? 'none' : 'block';
@@ -6574,12 +6608,25 @@
         const skus = Object.values(porSku).sort((a, b) => b.qtd - a.qtd || b.valor - a.valor).slice(0, 40);
         document.getElementById('dev-skus').innerHTML = `<table class="data-table res-table"><thead><tr><th>SKU</th><th>Produto</th><th>Devoluções</th><th>Principais motivos</th><th>Reembolsado</th><th>Perda</th></tr></thead><tbody>${skus.map(s => {const mot = Object.entries(s.motivos).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([m, n]) => `${m} (${n})`).join(', ');return `<tr><td style="font-family:var(--mono);font-size:12px">${s.sku}</td><td style="max-width:260px;overflow:hidden;text-overflow:ellipsis" title="${s.produto.replace(/"/g, '')}">${s.produto}<div class="td-empresa">${[...s.lojas].join(', ')}</div></td><td style="font-weight:600">${s.qtd}</td><td style="font-size:12px">${mot}</td><td>${fmtBRL(s.valor)}</td><td style="color:var(--red)">${fmtBRL(s.perda)}</td></tr>`;}).join('')}</tbody></table>`;
 
+    }
+
+    // Página de conferência: sempre o mês inteiro, todas as lojas (o filtro de loja fica na própria lista)
+    function devRenderConfPage() {
+        const mes = document.getElementById('dev-mes-sel').value;
+        document.getElementById('conf-mes-sel').value = mes;
+        const lista = DEV.porMes[mes] || [];
+        const validas = lista.filter(d => d.situacao !== 'Cancelada');
+        const aConferir = validas.filter(d => devPerda(d).pendente);
+        document.getElementById('conf-vazio').style.display = lista.length ? 'none' : 'block';
+        document.getElementById('conf-conteudo').style.display = lista.length ? 'block' : 'none';
+        if (!lista.length)
+            return;
         devRenderConferencia(validas);
 
         // Lista
         const filtro = document.getElementById('dev-filtro').value;
         let itens = filtro === 'canceladas' ? lista.filter(d => d.situacao === 'Cancelada')
-        : filtro === 'conferir' ? aConferir.map(([d]) => d)
+        : filtro === 'conferir' ? aConferir
         : filtro === 'conferidas' ? validas.filter(d => d.tipo !== 'Só reembolso' && d.conferencia && d.conferencia !== 'A conferir')
         : filtro.startsWith('conf:') ? validas.filter(d => d.tipo !== 'Só reembolso' && d.conferencia === filtro.slice(5))
         : filtro === 'contestar' ? validas.filter(devContestar) : validas;
