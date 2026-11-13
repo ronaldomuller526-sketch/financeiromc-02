@@ -1526,6 +1526,125 @@
         background: var(--green-bg);
         border-color: var(--green);
         color: var(--green);
+    }/* RESULTADO DO MÊS */
+
+    .res-select {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 7px 12px;
+        color: var(--text);
+        font-family: var(--font);
+        font-size: 13px;
+        outline: none;
+    }
+
+    .res-grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        align-items: start;
+    }
+
+    .res-scroll {
+        max-height: 420px;
+        overflow: auto;
+    }
+
+    .res-table td, .res-table th {
+        white-space: nowrap;
+        padding: 9px 12px;
+    }
+
+    .dre-linha {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 7px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+    }
+
+    .dre-linha span:last-child {
+        font-family: var(--mono);
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    .dre-linha small {
+        display: inline-block;
+        min-width: 54px;
+        margin-left: 10px;
+        color: var(--text3);
+        font-size: 11px;
+    }
+
+    .dre-neg {
+        color: var(--text2);
+    }
+
+    .dre-sub {
+        padding-left: 12px;
+        font-size: 12px;
+    }
+
+    .dre-forte, .dre-total {
+        font-weight: 600;
+    }
+
+    .dre-total {
+        background: var(--bg3);
+        margin: 0 -1.25rem;
+        padding: 8px 1.25rem;
+    }
+
+    .dre-final {
+        font-weight: 700;
+        font-size: 15px;
+        border-bottom: none;
+        padding-top: 12px;
+    }
+
+    .dre-bom span:last-child {
+        color: var(--green);
+    }
+
+    .dre-ruim span:last-child {
+        color: var(--red);
+    }
+
+    .res-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 10px;
+        border-radius: 20px;
+        border: 1px solid var(--border2);
+        font-size: 11px;
+        color: var(--text3);
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .res-chip input {
+        display: none;
+    }
+
+    .res-chip.on {
+        background: var(--blue-bg);
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+        .res-grid-2 {
+            grid-template-columns: 1fr;
+        }
+
+        #page-resultado .data-table {
+            display: table;
+        }
     }
     </style>
 </head>
@@ -1546,34 +1665,44 @@
 
 
 
-                                                      1. 
+
+                                                                      1. 
+                                                                
                                                 
                                 
                 <a href="https://www.notion.so/my-integrations" target="_blank">notion.so/my-integrations</a>
 
 
-                                                 → criar integração → copiar token
+
+                                                                 → criar integração → copiar token
+                                                                
                                                 
                                 
                 <br>
 
 
 
-                                                      2. 
+
+                                                                      2. 
+                                                                
                                                 
                                 
                 <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>
 
 
-                                                 → API Keys → criar chave
+
+                                                                 → API Keys → criar chave
+                                                                
                                                 
                                 
                 <br>
 
 
 
-                                                      3. Cole os IDs dos databases criados no seu Notion
-                                                    
+
+                                                                      3. Cole os IDs dos databases criados no seu Notion
+                                                                    
+                                                            
                                             
                             
             </div>
@@ -1602,8 +1731,10 @@
 
 
 
-                                                      Salvar e entrar
-                                                    
+
+                                                                      Salvar e entrar
+                                                                    
+                                                            
                                             
                             
             </button>
@@ -1701,6 +1832,14 @@
                     <span>Fechamento</span>
                 </button>
 
+                <button class="nav-item" onclick="navTo('resultado', this)">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                    </svg>
+                    <span>Resultado</span>
+                </button>
+
                 <div class="sidebar-bottom">
                     <button class="nav-item" onclick="resetConfig()" style="margin-bottom:8px">
                         <svg viewBox="0 0 24 24">
@@ -1740,8 +1879,10 @@
 
 
 
-                                                                                                                            Ver no Notion
-                                                                                                                          
+
+                                                                                                                                                                Ver no Notion
+                                                                                                                                                              
+                                                                                                                                            
                                                                                                         
                                                                     
                                 </a>
@@ -1754,8 +1895,10 @@
 
 
 
-                                                                                                                            Atualizar
-                                                                                                                          
+
+                                                                                                                                                                Atualizar
+                                                                                                                                                              
+                                                                                                                                            
                                                                                                         
                                                                     
                                 </button>
@@ -1918,6 +2061,8 @@
                                             <option>Assinatura</option>
                                             <option>Imposto/Guia</option>
                                             <option>Folha de Pagamento</option>
+                                            <option>Encargos</option>
+                                            <option>Pró-labore</option>
                                             <option>Frete/Logística</option>
                                             <option>Água/Luz/Internet</option>
                                             <option>Embalagem</option>
@@ -1957,8 +2102,10 @@
 
 
 
-                                                                                                                            Salvar no Notion
-                                                                                                                          
+
+                                                                                                                                                                Salvar no Notion
+                                                                                                                                                              
+                                                                                                                                            
                                                                                                         
                                                                     
                                 </button>
@@ -1971,8 +2118,8 @@
                                 </div>
                                 <div class="wpp-msg" id="wpp-text"></div>
                                 <button class="btn-wpp" onclick="abrirWhatsapp()">
-                                                                                                                Abrir no WhatsApp
-                                                                                                              </button>
+                                                                                                                                                Abrir no WhatsApp
+                                                                                                                                              </button>
                             </div>
                         </div>
                     </div>
@@ -1995,8 +2142,10 @@
 
 
 
-                                                                                                              Nova empresa
-                                                                                                            
+
+                                                                                                                                              Nova empresa
+                                                                                                                                            
+                                                                                                                            
                                                                                             
                                                             
                             </button>
@@ -2067,7 +2216,9 @@
                                     </svg>
 
 
-                                                                                                            Nova entrada
+
+                                                                                                                                                Nova entrada
+                                                                                                                                            
                                                                                                         
                                                                     
                                 </button>
@@ -2080,13 +2231,15 @@
                                     </svg>
 
 
-                                                                                                            Transferência
+
+                                                                                                                                                Transferência
+                                                                                                                                            
                                                                                                         
                                                                     
                                 </button>
                                 <button class="btn-outline" onclick="abrirModalMovimentacao('inicial')">
-                                                                                                    💰 Saldo inicial
-                                                                                                </button>
+                                                                                                                                    💰 Saldo inicial
+                                                                                                                                </button>
                             </div>
                         </div>
                     </div>
@@ -2246,7 +2399,188 @@
                     </div>
                 </div>
 
+                <!-- RESULTADO (FECHAMENTO DE VENDAS) -->
+                <div class="page" id="page-resultado">
+                    <div class="page-header">
+                        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+                            <div>
+                                <h1>Resultado do mês</h1>
+                                <p id="res-subtitle">Vendas do UpSeller × despesas do app = lucro líquido real</p>
+                            </div>
+                            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                                <select id="res-mes-sel" onchange="resTrocarMes()" class="res-select"></select>
+                                <button class="btn-outline" onclick="abrirModalDespesa()">+ Despesa realizada</button>
+                                <button class="btn-outline" onclick="exportarResultadoWpp()">💬 Enviar resumo</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IMPORTAÇÃO -->
+                    <div class="upload-zone" id="res-upload" style="padding:1.5rem;margin-bottom:1.5rem" onclick="document.getElementById('res-file').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="event.preventDefault();this.classList.remove('dragover');resLerArquivo(event.dataTransfer.files[0])">
+                        <input type="file" id="res-file" accept=".csv,.xlsx,.xls" style="display:none" onchange="resLerArquivo(this.files[0]);this.value=''">
+                        <div class="upload-title">Importar vendas do UpSeller</div>
+                        <div class="upload-sub">Relatório "Orders Profits" (lucro dos pedidos) do mês — pode ter Shopee, TikTok e Shein juntos</div>
+                        <div class="upload-types">
+                            <span class="upload-type-badge">CSV</span>
+                            <span class="upload-type-badge">XLSX</span>
+                        </div>
+                        <div id="res-upload-status" style="font-size:12px;color:var(--text2);margin-top:10px"></div>
+                    </div>
+
+                    <div id="res-vazio" class="card">
+                        <div class="empty-state">
+                            <div class="empty-title">Nenhum fechamento para este mês</div>
+                            <div class="empty-text">Importe o arquivo do UpSeller para gerar o resultado</div>
+                        </div>
+                    </div>
+
+                    <div id="res-conteudo" style="display:none">
+                        <!-- MÉTRICAS -->
+                        <div class="metrics-grid" style="margin-bottom:1.5rem">
+                            <div class="metric-card info">
+                                <div class="metric-label">Vendas de produtos</div>
+                                <div class="metric-value" id="res-m-vendas">—</div>
+                                <div class="metric-sub" id="res-m-pedidos">—</div>
+                            </div>
+                            <div class="metric-card warning">
+                                <div class="metric-label">Margem de contribuição</div>
+                                <div class="metric-value" id="res-m-margem">—</div>
+                                <div class="metric-sub" id="res-m-margem-pct">—</div>
+                            </div>
+                            <div class="metric-card danger">
+                                <div class="metric-label">Despesas operacionais</div>
+                                <div class="metric-value" id="res-m-desp">—</div>
+                                <div class="metric-sub" id="res-m-desp-sub">—</div>
+                            </div>
+                            <div class="metric-card success" id="res-m-lucro-card">
+                                <div class="metric-label">Lucro líquido</div>
+                                <div class="metric-value" id="res-m-lucro">—</div>
+                                <div class="metric-sub" id="res-m-lucro-pct">—</div>
+                            </div>
+                        </div>
+
+                        <div class="res-grid-2">
+                            <!-- DRE -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <span class="card-title">Demonstrativo do mês</span>
+                                    <span id="res-fonte" style="font-size:11px;color:var(--text3)"></span>
+                                </div>
+                                <div class="card-body" style="padding:0.5rem 1.25rem 1rem" id="res-dre"></div>
+                            </div>
+                            <!-- AJUSTES -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <span class="card-title">Ajustes do fechamento</span>
+                                </div>
+                                <div class="card-body" style="padding:1.25rem">
+                                    <div class="fgroup">
+                                        <label>Antecipação de recebíveis (Shopee Acelera e similares) — R$</label>
+                                        <input type="number" step="0.01" id="res-antecipacao" placeholder="0,00" oninput="resRender()">
+                                    </div>
+                                    <div class="fgroup">
+                                        <label>Rateio das despesas entre as lojas</label>
+                                        <select id="res-rateio" onchange="resRender()">
+                                            <option value="pedidos">Proporcional ao nº de pedidos</option>
+                                            <option value="vendas">Proporcional às vendas</option>
+                                        </select>
+                                    </div>
+                                    <div class="fgroup">
+                                        <label>Categorias do contas a pagar que entram como despesa</label>
+                                        <div id="res-cats" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px"></div>
+                                        <div style="font-size:11px;color:var(--text3);margin-top:6px">"Fornecedor" vem desmarcado: compra de mercadoria já entra pelo custo do produto (CMV). Marcar duplicaria o custo.</div>
+                                    </div>
+                                    <button class="btn-save" id="res-btn-salvar" onclick="resSalvarNotion()">Salvar fechamento no Notion</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- POR LOJA -->
+                        <div class="card" style="margin-bottom:1.5rem">
+                            <div class="card-header">
+                                <span class="card-title">Resultado por loja e plataforma</span>
+                                <span style="font-size:11px;color:var(--text3)">Margem = recebido − custo do produto</span>
+                            </div>
+                            <div class="card-body res-scroll" id="res-lojas"></div>
+                        </div>
+
+                        <!-- ANÁLISES (só com arquivo importado) -->
+                        <div id="res-analises">
+                            <div class="res-grid-2">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <span class="card-title">⚠️ SKUs sem custo cadastrado</span>
+                                        <span id="res-semcusto-total" style="font-size:11px;color:var(--red)"></span>
+                                    </div>
+                                    <div class="card-body res-scroll" id="res-semcusto"></div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <span class="card-title">↩️ Devoluções / reembolsos por SKU</span>
+                                        <span id="res-devol-total" style="font-size:11px;color:var(--text3)"></span>
+                                    </div>
+                                    <div class="card-body res-scroll" id="res-devol"></div>
+                                </div>
+                            </div>
+                            <div class="card" style="margin-bottom:1.5rem">
+                                <div class="card-header">
+                                    <span class="card-title">🔻 SKUs vendidos no prejuízo</span>
+                                    <span style="font-size:11px;color:var(--text3)">Pedidos sem reembolso com lucro negativo depois das taxas</span>
+                                </div>
+                                <div class="card-body res-scroll" id="res-prejuizo"></div>
+                            </div>
+                        </div>
+                        <div id="res-analises-off" class="card" style="display:none;margin-bottom:1.5rem">
+                            <div class="empty-state" style="padding:1.5rem">
+                                <div class="empty-text">Análise por SKU (sem custo, devoluções, prejuízo) aparece quando o arquivo do mês é importado nesta sessão.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </main>
+        </div>
+    </div>
+
+    <!-- MODAL DESPESA REALIZADA -->
+    <div class="modal-overlay" id="modal-despesa">
+        <div class="modal" style="max-width:460px;width:95%">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem">
+                <h3>Despesa realizada</h3>
+                <button onclick="fecharModalDespesa()" style="background:none;border:none;color:var(--text2);cursor:pointer;font-size:20px;padding:4px">×</button>
+            </div>
+            <p style="margin-bottom:1rem">Para gastos já pagos que não passaram pelo contas a pagar (energia, água, folha, pró-labore, extras). Entra direto como pago.</p>
+            <div class="fgroup">
+                <label>Descrição</label>
+                <input type="text" id="dsp-descricao" placeholder="Ex: Energia galpão">
+            </div>
+            <div class="fgroup-row">
+                <div class="fgroup">
+                    <label>Valor (R$)</label>
+                    <input type="number" id="dsp-valor" step="0.01" placeholder="0,00">
+                </div>
+                <div class="fgroup">
+                    <label>Data do pagamento</label>
+                    <input type="date" id="dsp-data">
+                </div>
+            </div>
+            <div class="fgroup-row">
+                <div class="fgroup">
+                    <label>Categoria</label>
+                    <select id="dsp-categoria"></select>
+                </div>
+                <div class="fgroup">
+                    <label>Empresa</label>
+                    <select id="dsp-empresa"></select>
+                </div>
+            </div>
+            <div class="fgroup">
+                <label>Conta de onde saiu</label>
+                <select id="dsp-conta">
+                    <option value="">Não informar</option>
+                </select>
+            </div>
+            <button class="btn-save" id="dsp-btn" onclick="salvarDespesaRealizada()">Salvar como pago</button>
         </div>
     </div>
 
@@ -2379,11 +2713,10 @@
     <script>
     // ─── CONFIG ───────────────────────────────────────────────
     const CONFIG = {
-        token: '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',
         dbContas: 'c7e0311365f84b81b4f1129e357dd8f7',
         dbEmpresas: 'b9137defc34b4bcca8f9b8f2ebc126fd',
         dbMovimentacoes: 'd6dd4fd4-e9d9-45fb-9226-25462939b6ae',
-        anthropicKey: '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'
+        dbFechVendas: '6fa01a8166d04822bc1c51f5ea2bac30'
     };
 
     let DADOS = {
@@ -2407,7 +2740,7 @@
         const role = sessionStorage.getItem('gmc-role');
         if (role === 'funcionario') {
             // Esconder abas restritas
-            const abasRestritas = ['comparar', 'empresas', 'fechamento', 'saldo'];
+            const abasRestritas = ['comparar', 'empresas', 'fechamento', 'saldo', 'resultado'];
             abasRestritas.forEach(aba => {
                 const btn = document.querySelector(`[onclick="navTo('${aba}', this)"]`);
                 if (btn)
@@ -2443,6 +2776,8 @@
             renderAlertas();
         if (page === 'fechamento')
             iniciarFechamento();
+        if (page === 'resultado')
+            iniciarResultado();
     }
 
     // ─── NOTION API ───────────────────────────────────────────
@@ -2729,6 +3064,11 @@
 
 
 
+
+
+
+
+
             ;
             return;
         }
@@ -2756,11 +3096,13 @@
         <div style="font-weight:500;font-size:13px">${
 
 
+
             c.descricao || '—'}</div>
         <div class="td-empresa">${c.empresa}</div>
         ${linhaHtml}
       </td>
       <td>${
+
 
 
             c.categoria || '—'}</td>
@@ -2770,16 +3112,19 @@
         ${
 
 
+
             fmtBRL(c.valor)}
         ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red);font-weight:400">inclui ${fmtBRL(c.jurosMulta)} juros/multa</div>` : ''}
       </td>
       <td style="color:var(--text2);font-size:12px">${
 
 
+
             fmtData(c.vencimento)}</td>
       <td style="color:var(--green);font-size:12px">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
       <td style="display:flex;gap:6px;align-items:center">
         <button class="btn-pago" onclick="marcarPago('${
+
 
 
             c.id}', this)">
@@ -2795,9 +3140,14 @@
 
 
 
+
+
+
             c.status === 'Pago' ? `<button class="btn-pago" onclick="desfazerPago('${c.id}', this)" style="color:var(--red);border-color:var(--red)">↩ Desfazer</button>` : ''}
       </td>
     </tr>`
+
+
 
 
 
@@ -2846,6 +3196,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         rows}</tbody>
     </table>
     <div class="mobile-cards">
@@ -2853,8 +3216,11 @@
 
 
 
+
+
         sorted.map(c => {const v = new Date(c.vencimento + 'T00:00:00');const isAtrasado = v < hoje;const isHoje = v.toDateString() === hoje.toDateString();const isSemana = v > hoje && v <= semana;const statusBadge = isAtrasado ? '<span class="badge badge-red"><span class="badge-dot"></span>Atrasado</span>' : isHoje ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Hoje</span>' : isSemana ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Esta semana</span>' : '<span class="badge badge-gray">Futuro</span>';const linha = c.cedente && c.cedente.length > 10 ? c.cedente : '';return '<div class="mobile-card">' + '<div class="mobile-card-header">' + '<div><div class="mobile-card-title">' + (c.descricao || '—') + '</div>' + '<div class="mobile-card-empresa">' + c.empresa + (c.categoria ? ' · ' + c.categoria : '') + '</div></div>' + statusBadge + '</div>' + '<div class="mobile-card-row">' + '<span class="mobile-card-valor">' + fmtBRL(c.valor) + '</span>' + '<span class="mobile-card-data">📅 ' + fmtData(c.vencimento) + '</span>' + '</div>' + (linha ? '<div class="mobile-card-linha">' + linha + ' <button onclick="navigator.clipboard.writeText(\'' + linha.replace(/'/g, '') + '\').then(()=>{this.textContent=\'✓\';setTimeout(()=>this.textContent=\'copiar\',2000)})" style="background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;font-size:10px;color:var(--text2);cursor:pointer;padding:1px 6px;font-family:var(--font)">copiar</button></div>' : '') + '<div class="mobile-card-actions">' + '<button class="btn-pago" onclick="marcarPago(\'' + c.id + '\', this)">' + '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' + ' Marcar como Pago</button>' + '</div></div>';}).join('')}
     </div>`
+
 
 
         ;
@@ -2988,6 +3354,10 @@
 
 
 
+
+
+
+
             ;
             return;
         }
@@ -3013,10 +3383,13 @@
 
 
 
+
+
             emp.nome}</div>
           <div class="empresa-seg">${emp.segmento}</div>
         </div>
         <span class="badge ${
+
 
 
             emp.status === 'Ativa' ? 'badge-green' : 'badge-gray'}">${emp.status}</span>
@@ -3024,6 +3397,9 @@
       <div class="empresa-metrics">
         <div class="emp-metric">
           <div class="emp-metric-val">${
+
+
+
 
 
 
@@ -3045,11 +3421,17 @@
 
 
 
+
+
+
             fmtBRL(totalPago)}</div>
           <div class="emp-metric-label">Pagos</div>
         </div>
         <div class="emp-metric">
           <div class="emp-metric-val ${
+
+
+
 
 
 
@@ -3064,6 +3446,11 @@
       </div>
       <div style="margin-top:10px;font-size:11px;color:var(--text3);text-align:right">Ver boletos →</div>
     </div>`
+
+
+
+
+
 
 
 
@@ -3115,11 +3502,13 @@
         </div>`
 
 
+
             : '';
 
             return `<tr>
       <td>
         <div style="font-weight:500;font-size:13px">${
+
 
 
             c.descricao || '—'}</div>
@@ -3129,11 +3518,13 @@
       <td>${
 
 
+
             statusBadge}</td>
       <td style="font-size:12px;color:var(--text2)">${fmtData(c.vencimento)}</td>
       <td style="font-weight:600">${fmtBRL(c.valor)}</td>
       <td>
         <button class="btn-pago" onclick="event.stopPropagation();marcarPagoModal('${
+
 
 
             c.id}', this)">
@@ -3142,6 +3533,11 @@
         </button>
       </td>
     </tr>`
+
+
+
+
+
 
 
 
@@ -3176,8 +3572,12 @@
 
 
 
+
+
+
         rows}</tbody>
       </table>`
+
 
 
 
@@ -3301,6 +3701,8 @@
 
 
 
+
+
         nome}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
@@ -3311,9 +3713,13 @@
 
 
 
+
+
         Math.round(val / maxEmp * 100)}%"></div>
         </div>
       </div>`
+
+
 
 
 
@@ -3345,6 +3751,8 @@
 
 
 
+
+
         cat}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
@@ -3355,9 +3763,13 @@
 
 
 
+
+
         Math.round(val / maxCat * 100)}%"></div>
         </div>
       </div>`
+
+
 
 
 
@@ -3406,10 +3818,12 @@
       <div class="alerta-title" style="color:var(--red)">🔴 Atrasados (${
 
 
+
         atrasados.length})</div>
       ${atrasados.slice(0, 5).map(c => `
         <div class="alerta-item">
           <span class="alerta-item-name">${
+
 
 
         c.descricao} <span style="color:var(--text3)">${c.empresa}</span></span>
@@ -3423,10 +3837,13 @@
 
 
 
+
+
         venHoje.length})</div>
       ${venHoje.map(c => `
         <div class="alerta-item">
           <span class="alerta-item-name">${
+
 
 
         c.descricao}</span>
@@ -3440,9 +3857,12 @@
 
 
 
+
+
         venSemana.length})</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
       ${
+
 
 
         venSemana.map(c => `
@@ -3450,11 +3870,14 @@
           <span class="alerta-item-name">${
 
 
+
         c.descricao} <span style="color:var(--text3)">· ${fmtData(c.vencimento)}</span></span>
           <span class="alerta-item-val">${fmtBRL(c.valor)}</span>
         </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum esta semana</div>'}
       </div>
     </div>`
+
+
 
 
 
@@ -3964,14 +4387,18 @@
 
 
 
+
+
         cat}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
         <div class="bar-track"><div class="bar-fill" style="width:${
 
 
+
         Math.round(val / maxCat * 100)}%"></div></div>
       </div>`
+
 
 
         ).join('')
@@ -3996,14 +4423,18 @@
 
 
 
+
+
         emp}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
         <div class="bar-track"><div class="bar-fill" style="width:${
 
 
+
         Math.round(val / maxEmp * 100)}%"></div></div>
       </div>`
+
 
 
         ).join('')
@@ -4026,6 +4457,9 @@
 
 
 
+
+
+
         sorted.map(c => `<tr>
           <td style="font-weight:500;font-size:13px">${c.descricao || '—'}</td>
           <td style="font-size:12px;color:var(--text2)">${c.empresa}</td>
@@ -4035,16 +4469,19 @@
             ${
 
 
+
         fmtBRL(c.valor)}
             ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red)">inclui ${fmtBRL(c.jurosMulta)} juros</div>` : ''}
           </td>
           <td style="font-size:12px;color:var(--text2)">${
 
 
+
         fmtData(c.vencimento)}</td>
           <td style="font-size:12px;color:var(--green);font-weight:500">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
           <td>
             <button class="btn-pago" onclick="desfazerPagoFechamento('${
+
 
 
         c.id}', this)" style="color:var(--red);border-color:var(--red)">
@@ -4060,8 +4497,12 @@
 
 
 
+
+
+
         ).join('')}</tbody>
       </table>`
+
 
 
 
@@ -4257,6 +4698,7 @@
                     <div style="font-size:22px;font-weight:700;color:${cor}">${fmtBRL(saldo)}</div>
                 </div>`
 
+
                 ;
             }).join('');
         }
@@ -4319,6 +4761,9 @@
 
 
 
+
+
+
         historico.map(h => `<tr>
                     <td style="font-size:12px;color:var(--text2)">${fmtData(h.data)}</td>
                     <td style="font-weight:500;font-size:13px">${h.descricao || '—'}</td>
@@ -4329,9 +4774,11 @@
                     </td>
                     <td>${
 
+
         h.origem === 'mov' ? `<button class="btn-pago" style="color:var(--red);border-color:var(--red)" onclick="excluirMovimentacao('${h.id}',this)">✕</button>` : ''}</td>
                 </tr>`).join('')}</tbody>
               </table>`
+
 
 
         : '<div class="empty-state"><div class="empty-title" style="padding:2rem">Nenhuma movimentação registrada</div></div>';
@@ -4500,141 +4947,830 @@
         }
     }
 
-    // ─── UTILS ────────────────────────────────────────────────
+    // ─── RESULTADO DO MÊS (FECHAMENTO DE VENDAS) ──────────────
+    const CATEGORIAS_DESPESA = ['Aluguel', 'Fornecedor', 'Assinatura', 'Imposto/Guia', 'Folha de Pagamento', 'Encargos', 'Pró-labore', 'Frete/Logística', 'Água/Luz/Internet', 'Embalagem', 'Seguro', 'ADS', 'Honorários', 'Comissões', 'Gasto Extra', 'Outros'];
+    const RES_EXCLUIR_PADRAO = ['Fornecedor'];
+    const MESES_NOME = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
-    async function iniciarSaldo() {
-        // Carregar saldos salvos
-        try {
-            const savedRaw = localStorage.getItem('gmc-saldos');
-            if (savedRaw) {
-                const saldos = JSON.parse(savedRaw);
-                CONTAS_SALDO.forEach(c => {
-                    const val = saldos[c.id];
-                    if (val !== undefined) {
-                        document.getElementById(`saldo-${c.id}`).value = val.valor || '';
-                        document.getElementById(`disp-${c.id}`).textContent = fmtBRL(val.valor || 0);
-                        if (val.upd)
-                            document.getElementById(`upd-${c.id}`).textContent = `Atualizado: ${val.upd}`;
-                    }
-                });
-                atualizarTotaisSaldo();
-            }
-        } catch (e) {}
+    // Estado: por mês, o resumo por loja (do arquivo ou do Notion) e, se veio de arquivo, as análises por SKU
+    const RES = {
+        porMes: {},
+        catsExcluidas: null
+    };
 
-        // Popular select de meses
-        const sel = document.getElementById('saldo-mes-sel');
-        if (sel && sel.options.length === 0) {
-            const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    function iniciarResultado() {
+        const sel = document.getElementById('res-mes-sel');
+        if (sel.options.length === 0) {
             const hoje = new Date();
-            const mesesDisp = new Set();
-            DADOS.contas.forEach(c => {
-                if (c.vencimento) {
-                    const d = new Date(c.vencimento + 'T00:00:00');
-                    mesesDisp.add(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
-                }
-            });
-            Array.from(mesesDisp).sort().forEach(m => {
-                const [ano, mes] = m.split('-');
+            for (let i = 0; i < 13; i++) {
+                const d = new Date(hoje.getFullYear(), hoje.getMonth() - i, 1);
                 const opt = document.createElement('option');
-                opt.value = m;
-                opt.textContent = `${meses[parseInt(mes) - 1]} ${ano}`;
-                if (parseInt(ano) === hoje.getFullYear() && parseInt(mes) === hoje.getMonth() + 1)
-                    opt.selected = true;
+                opt.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+                opt.textContent = `${MESES_NOME[d.getMonth()]} ${d.getFullYear()}`;
+                if (i === 1)
+                    opt.selected = true; // padrão: mês anterior
                 sel.appendChild(opt);
-            });
+            }
         }
-        renderSaidosPorConta();
+        resRenderCats();
+        resTrocarMes();
     }
 
-    function previewSaldo(id, val) {
-        document.getElementById(`disp-${id}`).textContent = fmtBRL(parseFloat(val) || 0);
-        atualizarTotaisSaldo();
-    }
-
-    function atualizarTotaisSaldo() {
-        const vals = CONTAS_SALDO.map(c => parseFloat(document.getElementById(`saldo-${c.id}`)?.value) || 0);
-        // vals[0]=C6 MC, vals[1]=Itaú MC, vals[2]=Sicoob MC, vals[3]=C6 Leão, vals[4]=Itaú Leão, vals[5]=Nubank Apollo
-        const total = vals.reduce((a, b) => a + b, 0);
-        const mc = vals[0] + vals[1] + vals[2];
-        const leao = vals[3] + vals[4];
-        const apollo = vals[5];
-        document.getElementById('saldo-total-geral').textContent = fmtBRL(total);
-        document.getElementById('saldo-total-mc').textContent = fmtBRL(mc);
-        document.getElementById('saldo-total-leao').textContent = fmtBRL(leao);
-        document.getElementById('saldo-total-apollo').textContent = fmtBRL(apollo);
-    }
-
-    async function salvarSaldos() {
-        const agora = new Date().toLocaleString('pt-BR');
-        const saldos = {};
-        CONTAS_SALDO.forEach(c => {
-            const val = parseFloat(document.getElementById(`saldo-${c.id}`)?.value) || 0;
-            saldos[c.id] = {
-                valor: val,
-                upd: agora
-            };
-            document.getElementById(`upd-${c.id}`).textContent = `Atualizado: ${agora}`;
+    function resRenderCats() {
+        if (!RES.catsExcluidas)
+            RES.catsExcluidas = new Set(RES_EXCLUIR_PADRAO);
+        const presentes = new Set(CATEGORIAS_DESPESA);
+        DADOS.contas.forEach(c => {
+            if (c.categoria)
+                presentes.add(c.categoria);
         });
+        document.getElementById('res-cats').innerHTML = [...presentes].map(cat => {
+            const on = !RES.catsExcluidas.has(cat);
+            return `<label class="res-chip ${on ? 'on' : ''}"><input type="checkbox" ${on ? 'checked' : ''} onchange="resToggleCat('${cat.replace(/'/g, "\\'")}', this)"> ${cat}</label>`;
+        }).join('');
+    }
+
+    function resToggleCat(cat, el) {
+        if (el.checked)
+            RES.catsExcluidas.delete(cat);
+        else
+            RES.catsExcluidas.add(cat);
+        el.parentElement.classList.toggle('on', el.checked);
+        resRender();
+    }
+
+    async function resTrocarMes() {
+        const mes = document.getElementById('res-mes-sel').value;
+        if (!RES.porMes[mes])
+            await resCarregarNotion(mes);
+        const dados = RES.porMes[mes];
+        document.getElementById('res-antecipacao').value = dados?.antecipacao || '';
+        if(dados?.rateio)
+            document.getElementById('res-rateio').value = dados.rateio;
+        if(dados?.catsExcluidas) {
+            RES.catsExcluidas = new Set(dados.catsExcluidas);
+            resRenderCats();
+        }
+        resRender();
+    }
+
+    // ── Leitura do arquivo ──
+    async function resLerArquivo(file) {
+        if (!file)
+            return;
+        const status = document.getElementById('res-upload-status');
+        status.textContent = `Lendo ${file.name}...`;
         try {
-            localStorage.setItem('gmc-saldos', JSON.stringify(saldos));
-            atualizarTotaisSaldo();
-            showToast('Saldos salvos!', 'Atualizado com sucesso', 'success');
+            let linhas;
+            if (/\.xlsx?$/i.test(file.name)) {
+                await carregarSheetJS();
+                const wb = XLSX.read(await file.arrayBuffer(), {
+                    type: 'array'
+                });
+                linhas = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], {
+                    header: 1,
+                    raw: true,
+                    defval: ''
+                });
+            } else {
+                linhas = parseCSV(await file.text());
+            }
+            const resultado = processarUpSeller(linhas);
+            RES.porMes[resultado.mes] = Object.assign(RES.porMes[resultado.mes] || {}, resultado, {
+                fonte: 'arquivo'
+            });
+            document.getElementById('res-mes-sel').value = resultado.mes;
+            status.innerHTML = `✓ ${resultado.totalLinhas.toLocaleString('pt-BR')} linhas · ${resultado.totalPedidos.toLocaleString('pt-BR')} pedidos · ${resultado.lojas.length} lojas/plataformas · mês detectado: <b>${resLabelMes(resultado.mes)}</b>${resultado.foraDoMes ? ` · ⚠️ ${resultado.foraDoMes} linhas de outros meses foram ignoradas` : ''}`;
+            await resTrocarMes();
         } catch (e) {
-            showToast('Erro ao salvar', e.message, 'error');
+            console.error(e);
+            status.textContent = '';
+            showToast('Não consegui ler o arquivo', e.message, 'error');
         }
     }
 
-    function renderSaidosPorConta() {
-        const sel = document.getElementById('saldo-mes-sel');
-        const mesSel=sel?.value;
-        if (!mesSel)
-            return;
-        const [ano, mes] = mesSel.split('-').map(Number);
+    function carregarSheetJS() {
+        if (window.XLSX)
+            return Promise.resolve();
+        return new Promise((res, rej) => {
+            const s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+            s.onload = res;
+            s.onerror = () => rej(new Error('Falha ao carregar leitor de Excel'));
+            document.head.appendChild(s);
+        });
+    }
 
-        const pagos = DADOS.contas.filter(c => {
-            if (c.status !== 'Pago' || !c.vencimento)
+    function parseCSV(texto) {
+        texto = texto.replace(/^﻿/, '');
+        const primeira = texto.split('\n')[0];
+        const delim = (primeira.match(/;/g) || []).length > (primeira.match(/,/g) || []).length ? ';' : ',';
+        const linhas = [];
+        let linha = [],
+            campo = '',
+            aspas = false;
+        for (let i = 0; i < texto.length; i++) {
+            const ch = texto[i];
+            if (aspas) {
+                if (ch === '"') {
+                    if (texto[i + 1] === '"') {
+                        campo += '"';
+                        i++;
+                    } else
+                        aspas = false;
+                }
+                else
+                    campo += ch;
+            } else if (ch === '"')
+                aspas = true;
+            else if (ch === delim) {
+                linha.push(campo);
+                campo = '';
+            }
+            else if (ch === '\n' || ch === '\r') {
+                if (ch === '\r' && texto[i + 1] === '\n')
+                    i++;
+                linha.push(campo);
+                campo = '';
+                if (linha.some(v => v !== ''))
+                    linhas.push(linha);
+                linha = [];
+            } else
+                campo += ch;
+        }
+        linha.push(campo);
+        if (linha.some(v => v !== ''))
+            linhas.push(linha);
+        return linhas;
+    }
+
+    function resNum(v) {
+        if (v === null || v === undefined || v === '')
+            return 0;
+        if (typeof v === 'number')
+            return v;
+        let s = String(v).trim().replace(/[R$\s%]/g, '');
+        if (s.includes(',') && s.includes('.'))
+            s = s.replace(/\./g, '').replace(',', '.');
+        else if (s.includes(','))
+            s = s.replace(',', '.');
+        const n = parseFloat(s);
+        return isNaN(n) ? 0 : n;
+    }
+
+    function resData(v) {
+        if (v === null || v === undefined || v === '')
+            return '';
+        if (typeof v === 'number') {
+            // data serial do Excel
+            const d = new Date(Math.round((v - 25569) * 864e5));
+            return d.toISOString().slice(0, 10);
+        }
+        const s = String(v).trim();
+        let m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (m)
+            return `${m[1]}-${m[2]}-${m[3]}`;
+        m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+        if (m)
+            return `${m[3]}-${m[2]}-${m[1]}`;
+        return '';
+    }
+
+    function normCab(s) {
+        return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
+    }
+
+    function processarUpSeller(linhas) {
+        // Encontrar a linha de cabeçalho
+        let iCab = linhas.findIndex(l => l.some(c => normCab(c).startsWith('valor do pedido')) && l.some(c => normCab(c).startsWith('loja')));
+        if (iCab < 0)
+            throw new Error('Não encontrei as colunas do relatório "Orders Profits" do UpSeller');
+        const cab = linhas[iCab].map(normCab);
+        const col = (...nomes) => {
+            for (const n of nomes) {
+                const i = cab.findIndex(c => c.startsWith(n));
+                if (i >= 0)
+                    return i;
+            }
+            return -1;
+        };
+        const C = {
+            data: col('ordenado', 'data do pedido', 'data'),
+            pedido: col('no de pedido de plataforma', 'nº de pedido de plataforma', 'n de pedido de plataforma', 'pedido de plataforma'),
+            plataforma: col('plataforma'),
+            loja: col('loja'),
+            valor: col('valor do pedido'),
+            receb: col('recebimento'),
+            vendas: col('vendas de produtos'),
+            desc: col('descontos'),
+            comissao: col('comissao'),
+            transacao: col('taxa de transacao'),
+            servico: col('taxa de servico'),
+            outra: col('outra taxa'),
+            frete: col('taxa do frete', 'frete'),
+            reemb: col('reembolso'),
+            sku: col('sku'),
+            qtd: col('qty', 'quantidade'),
+            custo: col('custo do produto'),
+            lucro: col('lucro'),
+        };
+        ['data', 'loja', 'valor', 'receb', 'vendas', 'custo', 'sku'].forEach(k => {
+            if (C[k] < 0)
+                throw new Error(`Coluna obrigatória não encontrada: ${k}`);
+        });
+        const g = (l, k) => C[k] >= 0 ? l[C[k]] : '';
+
+        const dados = linhas.slice(iCab + 1).filter(l => resData(g(l, 'data')));
+        // Mês = o que mais aparece
+        const contMes = {};
+        dados.forEach(l => {
+            const m = resData(g(l, 'data')).slice(0, 7);
+            contMes[m] = (contMes[m] || 0) + 1;
+        });
+        const mes=Object.entries(contMes).sort((a, b) => b[1] - a[1])[0]?.[0];
+        if (!mes)
+            throw new Error('Arquivo sem pedidos');
+
+        const lojas = {},
+            semCusto = {},
+            devol = {},
+            prejuizo = {};
+        let foraDoMes = 0,
+            totalPedidos = 0;
+        let pedidoAtual = null; // linhas extras de pedidos com vários SKUs vêm com valores vazios
+
+        dados.forEach(l => {
+            if (resData(g(l, 'data')).slice(0, 7) !== mes) {
+                foraDoMes++;
+                return;
+            }
+            const plataforma = String(g(l, 'plataforma') || 'Outros').trim();
+            const loja = String(g(l, 'loja') || '—').trim();
+            const chave = `${plataforma}|${loja}`;
+            const L = lojas[chave] || (lojas[chave] = {
+                plataforma,
+                loja,
+                pedidos: 0,
+                valor: 0,
+                vendas: 0,
+                desc: 0,
+                comissao: 0,
+                servico: 0,
+                outras: 0,
+                reemb: 0,
+                qtdReemb: 0,
+                receb: 0,
+                custo: 0,
+                vendasSemCusto: 0
+            });
+            const sku = String(g(l, 'sku') || '(sem SKU)').trim();
+            const qtd = resNum(g(l, 'qtd')) || 1;
+            const custo = resNum(g(l, 'custo'));
+            const linhaPrincipal = String(g(l, 'valor')).trim() !== '';
+
+            if (linhaPrincipal) {
+                totalPedidos++;
+                L.pedidos++;
+                const vendas = resNum(g(l, 'vendas'));
+                const reemb = resNum(g(l, 'reemb'));
+                L.valor += resNum(g(l, 'valor'));
+                L.vendas += vendas;
+                L.desc += resNum(g(l, 'desc'));
+                L.comissao += resNum(g(l, 'comissao'));
+                L.servico += resNum(g(l, 'servico'));
+                L.outras += resNum(g(l, 'transacao')) + resNum(g(l, 'outra')) + resNum(g(l, 'frete'));
+                L.reemb += reemb;
+                const receb = resNum(g(l, 'receb'));
+                L.receb += receb;
+                // Devolução: reembolso ao comprador OU pedido que não gerou recebimento (estorno lançado em "outra taxa")
+                const devolvido = reemb !== 0 || (vendas > 0 && receb <= 0);
+                if (devolvido) {
+                    L.qtdReemb++;
+                    const d = devol[sku] || (devol[sku] = {
+                        sku,
+                        lojas: new Set(),
+                        qtd: 0,
+                        valor: 0
+                    });
+                    d.qtd++;
+                    d.valor += reemb !== 0 ? -reemb : vendas;
+                    d.lojas.add(loja);
+                }
+                pedidoAtual = {
+                    reemb,
+                    lucro: resNum(g(l, 'lucro')),
+                    sku,
+                    loja,
+                    vendas,
+                    multi: false
+                };
+                // Prejuízo: atribuído ao SKU da linha principal, só pedidos sem reembolso
+                if (!devolvido && C.lucro >= 0 && pedidoAtual.lucro < 0) {
+                    const p = prejuizo[sku] || (prejuizo[sku] = {
+                        sku,
+                        lojas: new Set(),
+                        pedidos: 0,
+                        vendas: 0,
+                        lucro: 0
+                    });
+                    p.pedidos++;
+                    p.vendas += vendas;
+                    p.lucro += pedidoAtual.lucro;
+                    p.lojas.add(loja);
+                }
+            }
+            L.custo += custo;
+            if (custo === 0) {
+                const s = semCusto[sku] || (semCusto[sku] = {
+                    sku,
+                    lojas: new Set(),
+                    linhas: 0,
+                    qtd: 0
+                });
+                s.linhas++;
+                s.qtd += qtd;
+                s.lojas.add(loja);
+                // venda sem custo: só dá para medir com precisão quando o pedido tem 1 SKU
+                if (linhaPrincipal)
+                    L.vendasSemCusto += resNum(g(l, 'vendas'));
+            }
+        });
+
+        const arr = o => Object.values(o).map(x => Object.assign(x, {
+            lojas: [...x.lojas].join(', ')
+        }));
+        return {
+            mes,
+            foraDoMes,
+            totalPedidos,
+            totalLinhas: dados.length,
+            lojas: Object.values(lojas).sort((a, b) => b.vendas - a.vendas),
+            semCusto: arr(semCusto).sort((a, b) => b.linhas - a.linhas),
+            devol: arr(devol).sort((a, b) => b.valor - a.valor),
+            prejuizo: arr(prejuizo).sort((a, b) => a.lucro - b.lucro),
+            temAnalise: true,
+        };
+    }
+
+    // ── Despesas do mês (contas a pagar, por competência = vencimento) ──
+    function resDespesasMes(mes) {
+        const [ano, m] = mes.split('-').map(Number);
+        const doMes = DADOS.contas.filter(c => {
+            if (!c.vencimento || c.status === 'Cancelado')
                 return false;
             const d = new Date(c.vencimento + 'T00:00:00');
-            return d.getFullYear() === ano && d.getMonth() + 1 === mes;
+            return d.getFullYear() === ano && d.getMonth() + 1 === m;
         });
+        const incluidas = doMes.filter(c => !RES.catsExcluidas.has(c.categoria || 'Outros'));
+        const porCat = {};
+        incluidas.forEach(c => {
+            const k = c.categoria || 'Outros';
+            porCat[k] = (porCat[k] || 0) + c.valor;
+        });
+        return {
+            total: incluidas.reduce((s, c) => s + c.valor, 0),
+            pendentes: incluidas.filter(c => c.status !== 'Pago').length,
+            excluido: doMes.filter(c => RES.catsExcluidas.has(c.categoria || 'Outros')).reduce((s, c) => s + c.valor, 0),
+            porCat: Object.entries(porCat).sort((a, b) => b[1] - a[1]),
+            qtd: incluidas.length,
+        };
+    }
 
-        const porConta = {};
-        CONTAS_SALDO.forEach(c => {
-            porConta[c.nome] = {
-                total: 0,
-                count: 0
-            };
+    function resTotais(lojas) {
+        const t = {
+            pedidos: 0,
+            valor: 0,
+            vendas: 0,
+            desc: 0,
+            comissao: 0,
+            servico: 0,
+            outras: 0,
+            reemb: 0,
+            qtdReemb: 0,
+            receb: 0,
+            custo: 0,
+            vendasSemCusto: 0
+        };
+        lojas.forEach(l => Object.keys(t).forEach(k => t[k] += l[k] || 0));
+        return t;
+    }
+
+    function resLabelMes(mes) {
+        const [a, m] = mes.split('-').map(Number);
+        return `${MESES_NOME[m - 1]} ${a}`;
+    }
+
+    const pct = (v, base) => base ? `${(v / base * 100).toLocaleString('pt-BR', {maximumFractionDigits: 1})}%` : '—';
+
+    function resCalcular() {
+        const mes = document.getElementById('res-mes-sel').value;
+        const dados = RES.porMes[mes];
+        if (!dados || !dados.lojas?.length)
+            return null;
+        const t = resTotais(dados.lojas);
+        const custoProduto = -t.custo; // custo vem negativo do UpSeller
+        const margem = t.receb + t.custo;
+        const desp = resDespesasMes(mes);
+        const antecipacao = Math.abs(parseFloat(document.getElementById('res-antecipacao').value) || 0);
+        const lucro = margem - desp.total - antecipacao;
+        const rateio = document.getElementById('res-rateio').value;
+        const baseRateio = rateio === 'vendas' ? t.vendas : t.pedidos;
+        return {
+            mes,
+            dados,
+            t,
+            custoProduto,
+            margem,
+            desp,
+            antecipacao,
+            lucro,
+            rateio,
+            baseRateio
+        };
+    }
+
+    function resRender() {
+        const r = resCalcular();
+        document.getElementById('res-vazio').style.display = r ? 'none' : 'block';
+        document.getElementById('res-conteudo').style.display = r ? 'block' : 'none';
+        if (!r)
+            return;
+        const {t, custoProduto, margem, desp, antecipacao, lucro, dados} = r;
+
+        document.getElementById('res-m-vendas').textContent = fmtBRL(t.vendas);
+        document.getElementById('res-m-pedidos').textContent = `${t.pedidos.toLocaleString('pt-BR')} pedidos`;
+        document.getElementById('res-m-margem').textContent = fmtBRL(margem);
+        document.getElementById('res-m-margem-pct').textContent = `${pct(margem, t.vendas)} das vendas`;
+        document.getElementById('res-m-desp').textContent = fmtBRL(desp.total + antecipacao);
+        document.getElementById('res-m-desp-sub').textContent = `${desp.qtd} lançamentos${desp.pendentes ? ` · ${desp.pendentes} ainda pendentes` : ''}`;
+        const lucroEl = document.getElementById('res-m-lucro');
+        lucroEl.textContent = fmtBRL(lucro);
+        lucroEl.className = 'metric-value' + (lucro < 0 ? ' danger' : '');
+        document.getElementById('res-m-lucro-card').className = 'metric-card ' + (lucro < 0 ? 'danger' : 'success');
+        document.getElementById('res-m-lucro-pct').textContent = `${pct(lucro, t.vendas)} das vendas`;
+        document.getElementById('res-fonte').textContent = dados.fonte === 'arquivo' ? 'do arquivo importado (não salvo)' : 'salvo no Notion';
+        document.getElementById('res-subtitle').textContent = `${resLabelMes(r.mes)} · ${dados.fonte === 'arquivo' ? 'arquivo importado — lembre de salvar' : 'fechamento salvo'}`;
+
+        // DRE
+        const linha = (rot, val, opts={}) => `<div class="dre-linha ${opts.cls || ''}"><span>${rot}</span><span>${opts.semValor ? '' : fmtBRL(val)}<small>${opts.pct !== undefined ? opts.pct : (opts.semValor ? '' : pct(val, t.vendas))}</small></span></div>`;
+        let html = '';
+        html += linha('Vendas de produtos', t.vendas, {
+            cls: 'dre-forte'
         });
-        pagos.forEach(c => {
-            if (c.contaPagamento && porConta[c.contaPagamento]) {
-                porConta[c.contaPagamento].total += c.valor;
-                porConta[c.contaPagamento].count++;
+        html += linha('(−) Reembolsos / devoluções', t.reemb, {
+            cls: 'dre-neg'
+        });
+        html += linha('(−) Descontos e subsídios', t.desc, {
+            cls: 'dre-neg'
+        });
+        html += linha('(−) Comissão', t.comissao, {
+            cls: 'dre-neg'
+        });
+        html += linha('(−) Taxa de serviço (inclui custo por pedido)', t.servico, {
+            cls: 'dre-neg'
+        });
+        html += linha('(−) Frete, estornos e outras taxas', t.outras, {
+            cls: 'dre-neg'
+        });
+        html += linha('= Recebido das plataformas', t.receb, {
+            cls: 'dre-total'
+        });
+        html += linha('(−) Custo dos produtos (CMV)', -custoProduto, {
+            cls: 'dre-neg'
+        });
+        html += linha('= Margem de contribuição', margem, {
+            cls: 'dre-total'
+        });
+        desp.porCat.forEach(([cat, val]) => {
+            html += linha(`(−) ${cat}`, -val, {
+                cls: 'dre-neg dre-sub'
+            });
+        });
+        if (!desp.porCat.length)
+            html += `<div class="dre-linha dre-sub" style="color:var(--yellow)"><span>⚠️ Nenhuma despesa lançada neste mês</span><span></span></div>`;
+        if (antecipacao)
+            html += linha('(−) Antecipação de recebíveis', -antecipacao, {
+                cls: 'dre-neg dre-sub'
+            });
+        html += linha('= LUCRO LÍQUIDO', lucro, {
+            cls: 'dre-final ' + (lucro < 0 ? 'dre-ruim' : 'dre-bom')
+        });
+        if (desp.excluido)
+            html += `<div style="font-size:11px;color:var(--text3);margin-top:8px">Fora do resultado (categorias desmarcadas): ${fmtBRL(desp.excluido)}</div>`;
+        if (t.vendasSemCusto)
+            html += `<div style="font-size:11px;color:var(--red);margin-top:4px">⚠️ ${fmtBRL(t.vendasSemCusto)} em vendas sem custo cadastrado — o lucro está maior do que o real.</div>`;
+        document.getElementById('res-dre').innerHTML = html;
+
+        // Por loja
+        const despTotal = desp.total + antecipacao;
+        const linhasLoja = dados.lojas.map(l => {
+            const m = l.receb + l.custo;
+            const share = r.baseRateio ? (r.rateio === 'vendas' ? l.vendas : l.pedidos) / r.baseRateio : 0;
+            const rat = despTotal * share;
+            const liq = m - rat;
+            return `<tr>
+                <td><div style="font-weight:500">${l.loja}</div><div class="td-empresa">${l.plataforma}</div></td>
+                <td>${l.pedidos.toLocaleString('pt-BR')}</td>
+                <td>${fmtBRL(l.vendas)}</td>
+                <td>${fmtBRL(l.receb)}<div class="td-empresa">${pct(l.receb, l.vendas)}</div></td>
+                <td>${fmtBRL(-l.custo)}<div class="td-empresa">${pct(-l.custo, l.vendas)}${l.vendasSemCusto ? ' · <span style="color:var(--red)">tem SKU sem custo</span>' : ''}</div></td>
+                <td style="font-weight:600">${fmtBRL(m)}<div class="td-empresa">${pct(m, l.vendas)}</div></td>
+                <td>${l.qtdReemb}<div class="td-empresa">${fmtBRL(-l.reemb)}</div></td>
+                <td>${fmtBRL(rat)}<div class="td-empresa">${pct(share, 1)}</div></td>
+                <td style="font-weight:600;color:${liq < 0 ? 'var(--red)' : 'var(--green)'}">${fmtBRL(liq)}<div class="td-empresa">${pct(liq, l.vendas)}</div></td>
+            </tr>`
+            ;
+        }).join('');
+        document.getElementById('res-lojas').innerHTML = `<table class="data-table res-table"><thead><tr>
+            <th>Loja</th><th>Pedidos</th><th>Vendas</th><th>Recebido</th><th>Custo produto</th><th>Margem</th><th>Reembolsos</th><th>Rateio desp.</th><th>Lucro líquido</th>
+            </tr></thead><tbody>${
+        linhasLoja}</tbody></table>`;
+
+        // Análises por SKU
+        const temAnalise = !!dados.temAnalise;
+        document.getElementById('res-analises').style.display = temAnalise ? 'block' : 'none';
+        document.getElementById('res-analises-off').style.display = temAnalise ? 'none' : 'block';
+        if (!temAnalise)
+            return;
+
+        const tabela = (cols, rows) => rows.length
+        ? `<table class="data-table res-table"><thead><tr>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table>`
+        : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nada encontrado 👍</div>';
+
+        document.getElementById('res-semcusto-total').textContent = dados.semCusto.length ? `${dados.semCusto.length} SKUs` : '';
+        document.getElementById('res-semcusto').innerHTML = tabela(['SKU', 'Lojas', 'Linhas', 'Unid.'],
+        dados.semCusto.slice(0, 50).map(s => `<tr><td style="font-family:var(--mono);font-size:12px">${s.sku}</td><td class="td-empresa">${s.lojas}</td><td>${s.linhas}</td><td>${s.qtd}</td></tr>`));
+
+        const totDev = dados.devol.reduce((s, d) => s + d.valor, 0);
+        document.getElementById('res-devol-total').textContent = `${t.qtdReemb} pedidos · ${fmtBRL(totDev)} · ${pct(t.qtdReemb, t.pedidos)} dos pedidos`;
+        document.getElementById('res-devol').innerHTML = tabela(['SKU', 'Lojas', 'Pedidos', 'Valor reembolsado'],
+        dados.devol.slice(0, 30).map(d => `<tr><td style="font-family:var(--mono);font-size:12px">${d.sku}</td><td class="td-empresa">${d.lojas}</td><td>${d.qtd}</td><td>${fmtBRL(d.valor)}</td></tr>`));
+
+        document.getElementById('res-prejuizo').innerHTML = tabela(['SKU', 'Lojas', 'Pedidos no prejuízo', 'Vendas', 'Prejuízo total', 'Prejuízo/pedido'],
+        dados.prejuizo.slice(0, 30).map(p => `<tr><td style="font-family:var(--mono);font-size:12px">${p.sku}</td><td class="td-empresa">${p.lojas}</td><td>${p.pedidos}</td><td>${fmtBRL(p.vendas)}</td><td style="color:var(--red);font-weight:600">${fmtBRL(p.lucro)}</td><td style="color:var(--red)">${fmtBRL(p.lucro / p.pedidos)}</td></tr>`));
+    }
+
+    // ── Notion: salvar e carregar ──
+    async function resCarregarNotion(mes) {
+        const pages = await notionQuery(CONFIG.dbFechVendas, {
+            property: 'Mês',
+            rich_text: {
+                equals: mes
             }
         });
-
-        const sorted = Object.entries(porConta).filter(([, v]) => v.total > 0).sort((a, b) => b[1].total - a[1].total);
-        const max = Math.max(...sorted.map(([, v]) => v.total), 1);
-
-        document.getElementById('saidos-por-conta').innerHTML = sorted.length
-        ? sorted.map(([nome, v]) => `
-                <div class="bar-item">
-                    <div class="bar-top">
-                        <span class="bar-name">${
-
-
-
-        nome}</span>
-                        <span style="font-size:12px;color:var(--text3)">${v.count} pagamentos</span>
-                        <span class="bar-val">${fmtBRL(v.total)}</span>
-                    </div>
-                    <div class="bar-track"><div class="bar-fill" style="width:${
-
-        Math.round(v.total / max * 100)}%"></div></div>
-                </div>`
-
-        ).join('')
-        : '<div class="empty-text" style="padding:1rem;color:var(--text3)">Nenhum pagamento com conta registrada neste mês</div>';
+        if (!pages.length)
+            return;
+        const n = (p, k) => p.properties[k]?.number || 0;
+        const tx = (p, k) => p.properties[k]?.rich_text?.[0]?.plain_text || '';
+        const dados = {
+            mes,
+            lojas: [],
+            fonte: 'notion',
+            temAnalise: false,
+            ids: pages.map(p => p.id)
+        };
+        pages.forEach(p => {
+            if (p.properties['Tipo']?.select?.name === 'Ajuste') {
+                dados.antecipacao = n(p, 'Antecipação');
+                dados.rateio = tx(p, 'Rateio') || 'pedidos';
+                const ex = tx(p, 'Categorias Excluídas');
+                dados.catsExcluidas = ex ? ex.split('|') : [];
+                return;
+            }
+            dados.lojas.push({
+                plataforma: tx(p, 'Plataforma'),
+                loja: tx(p, 'Loja'),
+                pedidos: n(p, 'Pedidos'),
+                valor: n(p, 'Valor Pedidos'),
+                vendas: n(p, 'Vendas Produtos'),
+                desc: n(p, 'Descontos'),
+                comissao: n(p, 'Comissão'),
+                servico: n(p, 'Taxa Serviço'),
+                outras: n(p, 'Outras Taxas'),
+                reemb: n(p, 'Reembolsos'),
+                qtdReemb: n(p, 'Qtd Reembolsos'),
+                receb: n(p, 'Recebimento'),
+                custo: -n(p, 'Custo Produto'),
+                vendasSemCusto: n(p, 'Vendas sem Custo'),
+            });
+        });
+        dados.lojas.sort((a, b) => b.vendas - a.vendas);
+        RES.porMes[mes] = dados;
     }
+
+    async function resSalvarNotion() {
+        const r = resCalcular();
+        if (!r)
+            return;
+        const btn = document.getElementById('res-btn-salvar');
+        btn.disabled = true;
+        btn.textContent = 'Salvando...';
+        try {
+            // Remove o fechamento anterior do mesmo mês
+            const antigos = await notionQuery(CONFIG.dbFechVendas, {
+                property: 'Mês',
+                rich_text: {
+                    equals: r.mes
+                }
+            });
+            for (const p of antigos)
+                await notionUpdate(p.id, {
+                    archived: true
+                });
+
+            const txt = v => ({
+                rich_text: [{
+                    text: {
+                        content: String(v)
+                    }
+                }]
+            });
+            const num = v => ({
+                number: Math.round(v * 100) / 100
+            });
+            for (const l of r.dados.lojas) {
+                await notionCreate(CONFIG.dbFechVendas, {
+                    'Nome': {
+                        title: [{
+                            text: {
+                                content: `${r.mes} · ${l.plataforma} · ${l.loja}`
+                            }
+                        }]
+                    },
+                    'Mês': txt(r.mes),
+                    'Tipo': {
+                        select: {
+                            name: 'Vendas'
+                        }
+                    },
+                    'Plataforma': txt(l.plataforma),
+                    'Loja': txt(l.loja),
+                    'Pedidos': num(l.pedidos),
+                    'Valor Pedidos': num(l.valor),
+                    'Vendas Produtos': num(l.vendas),
+                    'Descontos': num(l.desc),
+                    'Comissão': num(l.comissao),
+                    'Taxa Serviço': num(l.servico),
+                    'Outras Taxas': num(l.outras),
+                    'Reembolsos': num(l.reemb),
+                    'Qtd Reembolsos': num(l.qtdReemb),
+                    'Recebimento': num(l.receb),
+                    'Custo Produto': num(-l.custo),
+                    'Margem': num(l.receb + l.custo),
+                    'Vendas sem Custo': num(l.vendasSemCusto),
+                });
+            }
+            await notionCreate(CONFIG.dbFechVendas, {
+                'Nome': {
+                    title: [{
+                        text: {
+                            content: `${r.mes} · Ajustes`
+                        }
+                    }]
+                },
+                'Mês': txt(r.mes),
+                'Tipo': {
+                    select: {
+                        name: 'Ajuste'
+                    }
+                },
+                'Antecipação': num(r.antecipacao),
+                'Rateio': txt(r.rateio),
+                'Categorias Excluídas': txt([...RES.catsExcluidas].join('|')),
+            });
+            showToast('Fechamento salvo!', `${resLabelMes(r.mes)} · ${r.dados.lojas.length} lojas`, 'success');
+            r.dados.fonte = 'notion';
+            r.dados.antecipacao = r.antecipacao;
+            r.dados.rateio = r.rateio;
+            r.dados.catsExcluidas = [...RES.catsExcluidas];
+            resRender();
+        } catch (e) {
+            showToast('Erro ao salvar', e.message, 'error');
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Salvar fechamento no Notion';
+        }
+    }
+
+    function exportarResultadoWpp() {
+        const r = resCalcular();
+        if (!r) {
+            showToast('Nada para enviar', 'Importe ou carregue um fechamento', 'error');
+            return;
+        }
+        const {t, margem, desp, antecipacao, lucro} = r;
+        let msg = `📊 *Resultado ${resLabelMes(r.mes)} — Grupo MC*\n\n`;
+        msg += `🛒 Vendas: ${fmtBRL(t.vendas)} (${t.pedidos.toLocaleString('pt-BR')} pedidos)\n`;
+        msg += `💳 Recebido das plataformas: ${fmtBRL(t.receb)}\n`;
+        msg += `📦 Custo dos produtos: ${fmtBRL(-t.custo)}\n`;
+        msg += `➡️ Margem de contribuição: ${fmtBRL(margem)} (${pct(margem, t.vendas)})\n`;
+        msg += `🏢 Despesas: ${fmtBRL(desp.total + antecipacao)}\n`;
+        msg += `\n💰 *Lucro líquido: ${fmtBRL(lucro)} (${pct(lucro, t.vendas)})*\n\n`;
+        msg += `*Margem por loja*\n`;
+        r.dados.lojas.forEach(l => {
+            msg += `• ${l.loja} (${l.plataforma}): ${fmtBRL(l.receb + l.custo)}\n`;
+        });
+        msg += `\n↩️ Reembolsos: ${t.qtdReemb} pedidos · ${fmtBRL(-t.reemb)}`;
+        abrirWhatsappMsg(msg);
+    }
+
+    // ── Despesa realizada (entra no contas a pagar já como paga) ──
+    function abrirModalDespesa() {
+        const hoje = new Date().toISOString().split('T')[0];
+        document.getElementById('dsp-data').value = hoje;
+        document.getElementById('dsp-descricao').value = '';
+        document.getElementById('dsp-valor').value = '';
+        document.getElementById('dsp-categoria').innerHTML = CATEGORIAS_DESPESA.filter(c => c !== 'Fornecedor').map(c => `<option>${c}</option>`).join('');
+        document.getElementById('dsp-empresa').innerHTML = DADOS.empresas.map(e => `<option>${e.nome}</option>`).join('');
+        document.getElementById('dsp-conta').innerHTML = '<option value="">Não informar</option>' + CONTAS_SALDO.map(c => `<option>${c.nome}</option>`).join('');
+        document.getElementById('modal-despesa').classList.add('open');
+    }
+
+    function fecharModalDespesa() {
+        document.getElementById('modal-despesa').classList.remove('open');
+    }
+
+    async function salvarDespesaRealizada() {
+        const descricao = document.getElementById('dsp-descricao').value.trim();
+        const valor = parseFloat(document.getElementById('dsp-valor').value);
+        const data = document.getElementById('dsp-data').value;
+        const categoria = document.getElementById('dsp-categoria').value;
+        const empresa = document.getElementById('dsp-empresa').value;
+        const conta = document.getElementById('dsp-conta').value;
+        if (!descricao || !valor || !data || !empresa) {
+            showToast('Preencha os campos', 'Descrição, valor, data e empresa', 'error');
+            return;
+        }
+        const btn = document.getElementById('dsp-btn');
+        btn.disabled = true;
+        try {
+            const props = {
+                'Descrição': {
+                    title: [{
+                        text: {
+                            content: descricao
+                        }
+                    }]
+                },
+                'Empresa': {
+                    rich_text: [{
+                        text: {
+                            content: empresa
+                        }
+                    }]
+                },
+                'Valor': {
+                    number: valor
+                },
+                'Vencimento': {
+                    date: {
+                        start: data
+                    }
+                },
+                'Data de Pagamento': {
+                    date: {
+                        start: data
+                    }
+                },
+                'Status': {
+                    select: {
+                        name: 'Pago'
+                    }
+                },
+                'Categoria': {
+                    select: {
+                        name: categoria
+                    }
+                },
+                'Tipo': {
+                    select: {
+                        name: 'PIX'
+                    }
+                },
+            };
+            if (conta)
+                props['Conta Pagamento'] = {
+                    select: {
+                        name: conta
+                    }
+                };
+            await notionCreate(CONFIG.dbContas, props);
+            fecharModalDespesa();
+            await carregarDados();
+            resRenderCats();
+            resRender();
+            showToast('Despesa lançada!', `${descricao} — ${fmtBRL(valor)}`, 'success');
+        } catch (e) {
+            showToast('Erro ao salvar', e.message, 'error');
+        } finally {
+            btn.disabled = false;
+        }
+    }
+
+    document.getElementById('modal-despesa').addEventListener('click', function(e) {
+        if (e.target === this)
+            fecharModalDespesa();
+    });
 
     // ─── UTILS ────────────────────────────────────────────────
     function fmtBRL(val) {
