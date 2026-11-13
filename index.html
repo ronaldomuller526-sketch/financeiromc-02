@@ -2437,7 +2437,7 @@
                     <div class="upload-zone" id="res-upload" style="padding:1.5rem;margin-bottom:1.5rem" onclick="document.getElementById('res-file').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="event.preventDefault();this.classList.remove('dragover');resLerArquivo(event.dataTransfer.files[0])">
                         <input type="file" id="res-file" accept=".csv,.xlsx,.xls" style="display:none" onchange="resLerArquivo(this.files[0]);this.value=''">
                         <div class="upload-title">Importar vendas do UpSeller</div>
-                        <div class="upload-sub">Relatório "Orders Profits" (lucro dos pedidos) do mês — pode ter Shopee, TikTok e Shein juntos</div>
+                        <div class="upload-sub">Financeiro → Relatórios de Lucros → Lucro por Pedido → Exportar. Um arquivo por plataforma (Shopee, TikTok, Shein): importe um de cada vez, o app soma.</div>
                         <div class="upload-types">
                             <span class="upload-type-badge">CSV</span>
                             <span class="upload-type-badge">XLSX</span>
@@ -2875,6 +2875,16 @@
                 if (btn)
                     btn.style.display = 'none';
             });
+        }
+
+        if (role === 'devolucoes') {
+            // Só a aba Devoluções: esconde todo o resto e não carrega boletos/empresas
+            document.querySelectorAll('.sidebar .nav-item').forEach(b => {
+                if (b.getAttribute('onclick') !== "navTo('devolucoes', this)")
+                    b.style.display = 'none';
+            });
+            navTo('devolucoes', document.querySelector(`[onclick="navTo('devolucoes', this)"]`));
+            return;
         }
 
         carregarDados();
@@ -5173,7 +5183,39 @@
                 linhas = parseCSV(await file.text());
             }
             const resultado = processarUpSeller(linhas);
-            RES.porMes[resultado.mes] = Object.assign(RES.porMes[resultado.mes] || {}, resultado, {
+            // Vários arquivos no mesmo mês (ex.: Shopee, TikTok e Shein exportados separados) são somados;
+            // reimportar a mesma plataforma substitui só ela
+            const anterior = RES.porMes[resultado.mes];
+            if (anterior?.lojas?.length && anterior.fonte === 'arquivo') {
+                const plats = new Set(resultado.lojas.map(l => l.plataforma));
+                const mantidas = anterior.lojas.filter(l => !plats.has(l.plataforma));
+                if (mantidas.length) {
+                    resultado.lojas = mantidas.concat(resultado.lojas).sort((a, b) => b.vendas - a.vendas);
+                    const juntar = k => {
+                        const m = {};
+                        (anterior[k] || []).concat(resultado[k]).forEach(x => {
+                            const y = m[x.sku];
+                            if (!y) {
+                                m[x.sku] = {
+                                    ...x
+                                };
+                                return;
+                            }
+                            Object.keys(x).forEach(c => {
+                                if (typeof x[c] === 'number')
+                                    y[c] += x[c];
+                            });
+                            y.lojas = [...new Set((y.lojas + ', ' + x.lojas).split(', '))].join(', ');
+                        });
+                        return Object.values(m);
+                    };
+                    resultado.semCusto = juntar('semCusto').sort((a, b) => b.linhas - a.linhas);
+                    resultado.devol = juntar('devol').sort((a, b) => b.valor - a.valor);
+                    resultado.prejuizo = juntar('prejuizo').sort((a, b) => a.lucro - b.lucro);
+                    resultado.totalPedidos = resultado.lojas.reduce((s, l) => s + l.pedidos, 0);
+                }
+            }
+            RES.porMes[resultado.mes] = Object.assign(anterior || {}, resultado, {
                 fonte: 'arquivo'
             });
             document.getElementById('res-mes-sel').value = resultado.mes;
@@ -6540,6 +6582,14 @@
         if (senha === '1Mem1Ano@') {
             sessionStorage.setItem('gmc-auth', 'ok');
             sessionStorage.setItem('gmc-role', 'admin');
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+            iniciarApp();
+            erro.style.display = 'none';
+        } else if (senha === 'Devolucoes@2110') {
+            // Acesso só à aba de devoluções (funcionário responsável pela conferência)
+            sessionStorage.setItem('gmc-auth', 'ok');
+            sessionStorage.setItem('gmc-role', 'devolucoes');
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('app').style.display = 'block';
             iniciarApp();
