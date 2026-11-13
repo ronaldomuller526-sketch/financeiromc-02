@@ -1614,6 +1614,93 @@
         color: var(--red);
     }
 
+    .dev-prog {
+        height: 8px;
+        background: var(--bg3);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+    }
+
+    .dev-prog-fill {
+        height: 100%;
+        background: var(--green);
+        border-radius: 4px;
+        transition: width .3s;
+    }
+
+    .dev-st-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+    }
+
+    .dev-st {
+        background: var(--bg3);
+        border-radius: var(--radius-sm);
+        padding: 12px;
+        cursor: pointer;
+        transition: transform .1s;
+    }
+
+    .dev-st:hover {
+        transform: translateY(-1px);
+    }
+
+    .dev-st-nome {
+        font-size: 11px;
+        color: var(--text2);
+        text-transform: uppercase;
+        letter-spacing: .03em;
+    }
+
+    .dev-st-n {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 4px 0;
+    }
+
+    .dev-st-sub {
+        font-size: 11px;
+        color: var(--text3);
+    }
+
+    .dev-alerta {
+        margin-top: 1rem;
+        padding: 10px 14px;
+        border-radius: var(--radius-sm);
+        background: var(--yellow-bg, rgba(234, 179, 8, .12));
+        border: 1px solid var(--yellow);
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .dev-st-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .dev-filtros {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .dev-filtros .res-select {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .dev-data-lbl {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--text3);
+    }
+
     .dev-conf {
         background: var(--bg3);
         border: 1px solid var(--border);
@@ -2654,12 +2741,48 @@
 
                         <div class="card" style="margin-bottom:1.5rem">
                             <div class="card-header">
-                                <span class="card-title">Lista de devoluções</span>
-                                <select id="dev-filtro" onchange="devRender()" class="res-select" style="padding:5px 10px;font-size:12px">
-                                    <option value="conferir">A conferir no galpão</option>
-                                    <option value="todas">Todas (sem canceladas)</option>
-                                    <option value="canceladas">Canceladas</option>
-                                </select>
+                                <span class="card-title">📦 Resultado da conferência no galpão</span>
+                                <span id="dev-conf-prog-txt" style="font-size:12px;color:var(--text3)"></span>
+                            </div>
+                            <div class="card-body" style="padding:1.25rem" id="dev-conf"></div>
+                        </div>
+
+                        <div class="card" style="margin-bottom:1.5rem">
+                            <div class="card-header" style="flex-wrap:wrap;gap:10px">
+                                <span class="card-title">
+                                    Lista de devoluções 
+                                    <span id="dev-lista-qtd" style="font-size:12px;color:var(--text3);font-weight:400"></span>
+                                </span>
+                                <div class="dev-filtros">
+                                    <select id="dev-filtro" onchange="devRender()" class="res-select">
+                                        <option value="conferir">A conferir no galpão</option>
+                                        <option value="conferidas">Já conferidas (todas)</option>
+                                        <option value="conf:Voltou bom - estoque">↳ Voltou bom - estoque</option>
+                                        <option value="conf:Voltou avariado">↳ Voltou avariado</option>
+                                        <option value="conf:Item trocado/errado">↳ Item trocado/errado</option>
+                                        <option value="conf:Não voltou">↳ Não voltou</option>
+                                        <option value="contestar">⚠️ Para contestar na plataforma</option>
+                                        <option value="todas">Todas (sem canceladas)</option>
+                                        <option value="canceladas">Canceladas</option>
+                                    </select>
+                                    <select id="dev-lista-loja" onchange="devRender()" class="res-select">
+                                        <option value="todas">Todas as lojas</option>
+                                    </select>
+                                    <select id="dev-data-campo" onchange="devRender()" class="res-select">
+                                        <option value="recebidoEm">Chegada no galpão</option>
+                                        <option value="data">Data da devolução</option>
+                                    </select>
+                                    <label class="dev-data-lbl">
+                                        de 
+                                        <input type="date" id="dev-data-de" onchange="devRender()" class="res-select">
+                                    </label>
+                                    <label class="dev-data-lbl">
+                                        até 
+                                        <input type="date" id="dev-data-ate" onchange="devRender()" class="res-select">
+                                    </label>
+                                    <input type="search" id="dev-busca" oninput="devRender()" class="res-select" placeholder="Buscar pedido, SKU ou produto" style="min-width:200px">
+                                    <button class="btn-outline" style="padding:6px 12px;font-size:12px" onclick="devLimparFiltros()">Limpar</button>
+                                </div>
                             </div>
                             <div class="card-body res-scroll" style="max-height:600px" id="dev-lista"></div>
                         </div>
@@ -6451,10 +6574,32 @@
         const skus = Object.values(porSku).sort((a, b) => b.qtd - a.qtd || b.valor - a.valor).slice(0, 40);
         document.getElementById('dev-skus').innerHTML = `<table class="data-table res-table"><thead><tr><th>SKU</th><th>Produto</th><th>Devoluções</th><th>Principais motivos</th><th>Reembolsado</th><th>Perda</th></tr></thead><tbody>${skus.map(s => {const mot = Object.entries(s.motivos).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([m, n]) => `${m} (${n})`).join(', ');return `<tr><td style="font-family:var(--mono);font-size:12px">${s.sku}</td><td style="max-width:260px;overflow:hidden;text-overflow:ellipsis" title="${s.produto.replace(/"/g, '')}">${s.produto}<div class="td-empresa">${[...s.lojas].join(', ')}</div></td><td style="font-weight:600">${s.qtd}</td><td style="font-size:12px">${mot}</td><td>${fmtBRL(s.valor)}</td><td style="color:var(--red)">${fmtBRL(s.perda)}</td></tr>`;}).join('')}</tbody></table>`;
 
+        devRenderConferencia(validas);
+
         // Lista
         const filtro = document.getElementById('dev-filtro').value;
         let itens = filtro === 'canceladas' ? lista.filter(d => d.situacao === 'Cancelada')
-        : filtro === 'conferir' ? aConferir.map(([d]) => d) : validas;
+        : filtro === 'conferir' ? aConferir.map(([d]) => d)
+        : filtro === 'conferidas' ? validas.filter(d => d.tipo !== 'Só reembolso' && d.conferencia && d.conferencia !== 'A conferir')
+        : filtro.startsWith('conf:') ? validas.filter(d => d.tipo !== 'Só reembolso' && d.conferencia === filtro.slice(5))
+        : filtro === 'contestar' ? validas.filter(devContestar) : validas;
+        // Filtros da lista: loja, período e busca
+        const fLoja = document.getElementById('dev-lista-loja');
+        const lojaAtualLista = fLoja.value;
+        fLoja.innerHTML = '<option value="todas">Todas as lojas</option>' + [...new Set(lista.map(d => d.loja))].sort().map(l => `<option ${l === lojaAtualLista ? 'selected' : ''}>${l}</option>`).join('');
+        if (fLoja.value !== 'todas')
+            itens = itens.filter(d => d.loja === fLoja.value);
+        const campo = document.getElementById('dev-data-campo').value;
+        const de = document.getElementById('dev-data-de').value;
+        const ate = document.getElementById('dev-data-ate').value;
+        if (de)
+            itens = itens.filter(d => d[campo] && d[campo] >= de);
+        if (ate)
+            itens = itens.filter(d => d[campo] && d[campo] <= ate);
+        const busca = document.getElementById('dev-busca').value.trim().toLowerCase();
+        if (busca)
+            itens = itens.filter(d => [d.pedido, d.id, d.sku, d.produto].some(v => String(v || '').toLowerCase().includes(busca)));
+        document.getElementById('dev-lista-qtd').textContent = `· ${itens.length}`;
         itens = [...itens].sort((a, b) => (b.recebidoEm || '').localeCompare(a.recebidoEm || '') || b.data.localeCompare(a.data));
         document.getElementById('dev-lista').innerHTML = itens.length ? `<table class="data-table res-table"><thead><tr><th>Conferência</th><th>Data</th><th>Loja</th><th>SKU / produto</th><th>Motivo</th><th>Tipo</th><th>Logística</th><th>Reembolso</th><th>Custo</th></tr></thead><tbody>${itens.map(d => `<tr>
                 <td>${d.situacao === 'Cancelada' ? '<span class="badge badge-gray">Cancelada</span>' : `<select class="dev-conf" onchange="devSalvarConferencia('${d.id}', this)" ${d.pageId ? '' : 'disabled title="Ainda não salvo no Notion"'}>${DEV_CONFERENCIA.map(c => `<option ${c === (d.conferencia || 'A conferir') ? 'selected' : ''}>${c}</option>`).join('')}</select>`}</td>
@@ -6467,6 +6612,81 @@
                 <td>${fmtBRL(d.valor)}</td>
                 <td>${d.custo !== null ? fmtBRL(d.custo) : '<span style="color:var(--text3)">—</span>'}</td>
             </tr>`).join('')}</tbody></table>` : '<div class="empty-state" style="padding:1.5rem"><div class="empty-text">Nada aqui 👍</div></div>';
+    }
+
+    // Cliente alegou problema (avaria, defeito, item errado/faltando, diferente do anúncio), mas o produto voltou perfeito
+    function devContestar(d) {
+        return d.tipo !== 'Só reembolso' && d.conferencia === 'Voltou bom - estoque'
+            && ['Avaria (embalagem/transporte)', 'Defeito do produto (fornecedor)', 'Expedição (separação)', 'Anúncio'].includes(d.origem);
+    }
+
+    function devFiltrarLista(valor) {
+        document.getElementById('dev-filtro').value = valor;
+        devRender();
+        document.getElementById('dev-lista').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+
+    function devRenderConferencia(validas) {
+        const fisicas = validas.filter(d => d.tipo !== 'Só reembolso');
+        const conferidas = fisicas.filter(d => d.conferencia && d.conferencia !== 'A conferir');
+        const pctConf = fisicas.length ? conferidas.length / fisicas.length : 0;
+        document.getElementById('dev-conf-prog-txt').textContent = `${conferidas.length} de ${fisicas.length} conferidas`;
+        const st = [
+        ['A conferir', 'conferir', 'var(--yellow)', 'em jogo'],
+        ['Voltou bom - estoque', 'conf:Voltou bom - estoque', 'var(--green)', 'recuperado no estoque'],
+        ['Voltou avariado', 'conf:Voltou avariado', 'var(--red)', 'de perda'],
+        ['Item trocado/errado', 'conf:Item trocado/errado', 'var(--purple, #8b5cf6)', 'de perda'],
+        ['Não voltou', 'conf:Não voltou', 'var(--red)', 'de perda'],
+        ];
+        const doStatus = nome => nome === 'A conferir' ? fisicas.filter(d => !d.conferencia || d.conferencia === 'A conferir') : fisicas.filter(d => d.conferencia === nome);
+        const cards = st.map(([nome, filtro, cor, rotulo]) => {
+            const l = doStatus(nome);
+            const custo = l.reduce((s, d) => s + (d.custo || 0), 0);
+            return `<div class="dev-st" onclick="devFiltrarLista('${filtro}')" style="border-top:3px solid ${cor}">
+                <div class="dev-st-nome">${nome}</div>
+                <div class="dev-st-n">${l.length}</div>
+                <div class="dev-st-sub">${pct(l.length, fisicas.length)} · ${fmtBRL(custo)} ${rotulo}</div>
+            </div>`
+            ;
+        }).join('');
+
+        const contestar = validas.filter(devContestar);
+        const alerta = contestar.length ? `<div class="dev-alerta" onclick="devFiltrarLista('contestar')">
+            ⚠️ <b>${contestar.length} devoluções para contestar:</b> o cliente alegou avaria, defeito ou item errado, mas o produto voltou perfeito.
+            São ${fmtBRL(contestar.reduce((s, d) => s + d.valor, 0))} reembolsados que podem ser disputados com a plataforma. <u>Ver lista</u></div>` : '';
+
+        // Por loja
+        const lojas = [...new Set(fisicas.map(d => d.loja))].sort();
+        const linhas = lojas.map(loja => {
+            const f = fisicas.filter(d => d.loja === loja);
+            const c = k => f.filter(d => d.conferencia === k).length;
+            const pend = f.filter(d => !d.conferencia || d.conferencia === 'A conferir').length;
+            return `<tr><td style="font-weight:500">${loja}</td><td>${f.length}</td>
+                <td style="color:${pend ? 'var(--yellow)' : 'var(--green)'};font-weight:600">${pend ? pend : '✓'}</td>
+                <td>${c('Voltou bom - estoque')}</td><td>${c('Voltou avariado')}</td><td>${c('Item trocado/errado')}</td><td>${c('Não voltou')}</td>
+                <td>${pct(f.length - pend, f.length)}</td></tr>`;
+        }).join('');
+
+        document.getElementById('dev-conf').innerHTML = `
+            <div class="dev-prog"><div class="dev-prog-fill" style="width:${Math.round(pctConf * 100)}%"></div></div>
+            <div class="dev-st-grid">${cards}</div>
+            ${alerta}
+            <div class="res-scroll" style="margin-top:1rem"><table class="data-table res-table"><thead><tr>
+                <th>Loja</th><th>Voltaram</th><th>A conferir</th><th>Bom</th><th>Avariado</th><th>Trocado</th><th>Não voltou</th><th>Conferido</th>
+            </tr></thead><tbody>${
+
+        linhas}</tbody></table></div>
+            <div style="font-size:11px;color:var(--text3);margin-top:8px">Conta só as devoluções em que o produto volta. As de "só reembolso" ficam com o cliente e já entram como perda. Clique em um quadro para ver a lista.</div>`
+        ;
+    }
+
+    function devLimparFiltros() {
+        ['dev-data-de', 'dev-data-ate', 'dev-busca'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('dev-lista-loja').value = 'todas';
+        devRender();
     }
 
     async function devSalvarConferencia(id, sel) {
