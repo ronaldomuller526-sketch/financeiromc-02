@@ -1614,6 +1614,16 @@
         color: var(--red);
     }
 
+    .dev-conf {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xs);
+        padding: 4px 6px;
+        font-family: var(--font);
+        font-size: 12px;
+        color: var(--text);
+    }
+
     .res-chip {
         display: inline-flex;
         align-items: center;
@@ -1642,7 +1652,7 @@
             grid-template-columns: 1fr;
         }
 
-        #page-resultado .data-table {
+        #page-resultado .data-table, #page-devolucoes .data-table {
             display: table;
         }
     }
@@ -1838,6 +1848,14 @@
                         <polyline points="17 6 23 6 23 12"/>
                     </svg>
                     <span>Resultado</span>
+                </button>
+
+                <button class="nav-item" onclick="navTo('devolucoes', this)">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="9 14 4 9 9 4"/>
+                        <path d="M20 20v-7a4 4 0 0 0-4-4H4"/>
+                    </svg>
+                    <span>Devoluções</span>
                 </button>
 
                 <div class="sidebar-bottom">
@@ -2538,6 +2556,116 @@
                     </div>
                 </div>
 
+                <!-- DEVOLUÇÕES -->
+                <div class="page" id="page-devolucoes">
+                    <div class="page-header">
+                        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+                            <div>
+                                <h1>Devoluções</h1>
+                                <p id="dev-subtitle">Onde está o erro e quanto ele custa</p>
+                            </div>
+                            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                                <select id="dev-mes-sel" onchange="devCarregarMes()" class="res-select"></select>
+                                <select id="dev-loja-sel" onchange="devRender()" class="res-select">
+                                    <option value="todas">Todas as lojas</option>
+                                </select>
+                                <button class="btn-outline" onclick="exportarDevolWpp()">💬 Enviar resumo</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="upload-zone" style="padding:1.5rem;margin-bottom:1.5rem" onclick="document.getElementById('dev-file').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="event.preventDefault();this.classList.remove('dragover');devLerArquivo(event.dataTransfer.files[0])">
+                        <input type="file" id="dev-file" accept=".csv,.xlsx,.xls" style="display:none" onchange="devLerArquivo(this.files[0]);this.value=''">
+                        <div class="upload-title">Importar devoluções do UpSeller</div>
+                        <div class="upload-sub">Pedidos → Devoluções → Rastreamento de Devolução → Exportar. Pode importar de novo quando quiser: só atualiza o que mudou e não apaga a conferência do time.</div>
+                        <div class="upload-sub" style="margin-bottom:0">💡 Para trazer o custo do produto, importe antes o arquivo de vendas (aba Resultado) do mesmo mês e do mês anterior.</div>
+                        <div id="dev-upload-status" style="font-size:12px;color:var(--text2);margin-top:10px"></div>
+                    </div>
+
+                    <div id="dev-vazio" class="card">
+                        <div class="empty-state">
+                            <div class="empty-title">Nenhuma devolução neste mês</div>
+                            <div class="empty-text">Importe o arquivo do UpSeller</div>
+                        </div>
+                    </div>
+
+                    <div id="dev-conteudo" style="display:none">
+                        <div class="metrics-grid" style="margin-bottom:1.5rem">
+                            <div class="metric-card danger">
+                                <div class="metric-label">Devoluções</div>
+                                <div class="metric-value" id="dev-m-qtd">—</div>
+                                <div class="metric-sub" id="dev-m-qtd-sub">—</div>
+                            </div>
+                            <div class="metric-card warning">
+                                <div class="metric-label">Valor reembolsado</div>
+                                <div class="metric-value" id="dev-m-valor">—</div>
+                                <div class="metric-sub" id="dev-m-valor-sub">—</div>
+                            </div>
+                            <div class="metric-card danger">
+                                <div class="metric-label">Perda em produto</div>
+                                <div class="metric-value" id="dev-m-perda">—</div>
+                                <div class="metric-sub" id="dev-m-perda-sub">—</div>
+                            </div>
+                            <div class="metric-card info">
+                                <div class="metric-label">A conferir no galpão</div>
+                                <div class="metric-value" id="dev-m-conferir">—</div>
+                                <div class="metric-sub" id="dev-m-conferir-sub">produtos que voltaram</div>
+                            </div>
+                        </div>
+
+                        <div class="res-grid-2">
+                            <div class="card">
+                                <div class="card-header">
+                                    <span class="card-title">Onde está o erro</span>
+                                    <span style="font-size:11px;color:var(--text3)">origem provável pelo motivo</span>
+                                </div>
+                                <div class="card-body" style="padding:1.25rem" id="dev-origem"></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <span class="card-title">Motivos</span>
+                                </div>
+                                <div class="card-body" style="padding:1.25rem" id="dev-motivo"></div>
+                            </div>
+                        </div>
+
+                        <div class="res-grid-2">
+                            <div class="card">
+                                <div class="card-header">
+                                    <span class="card-title">Por loja</span>
+                                </div>
+                                <div class="card-body" style="padding:1.25rem" id="dev-loja"></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <span class="card-title">Só reembolso × devolução física</span>
+                                </div>
+                                <div class="card-body" style="padding:1.25rem" id="dev-tipo"></div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="margin-bottom:1.5rem">
+                            <div class="card-header">
+                                <span class="card-title">SKUs que mais devolvem</span>
+                                <span style="font-size:11px;color:var(--text3)">comece por aqui</span>
+                            </div>
+                            <div class="card-body res-scroll" id="dev-skus"></div>
+                        </div>
+
+                        <div class="card" style="margin-bottom:1.5rem">
+                            <div class="card-header">
+                                <span class="card-title">Lista de devoluções</span>
+                                <select id="dev-filtro" onchange="devRender()" class="res-select" style="padding:5px 10px;font-size:12px">
+                                    <option value="conferir">A conferir no galpão</option>
+                                    <option value="todas">Todas (sem canceladas)</option>
+                                    <option value="canceladas">Canceladas</option>
+                                </select>
+                            </div>
+                            <div class="card-body res-scroll" style="max-height:600px" id="dev-lista"></div>
+                        </div>
+                    </div>
+                </div>
+
             </main>
         </div>
     </div>
@@ -2716,7 +2844,8 @@
         dbContas: 'c7e0311365f84b81b4f1129e357dd8f7',
         dbEmpresas: 'b9137defc34b4bcca8f9b8f2ebc126fd',
         dbMovimentacoes: 'd6dd4fd4-e9d9-45fb-9226-25462939b6ae',
-        dbFechVendas: '6fa01a8166d04822bc1c51f5ea2bac30'
+        dbFechVendas: '6fa01a8166d04822bc1c51f5ea2bac30',
+        dbDevolucoes: '23ab5a9c09ed4e1c9a532cdd5aad3ebe'
     };
 
     let DADOS = {
@@ -2778,6 +2907,8 @@
             iniciarFechamento();
         if (page === 'resultado')
             iniciarResultado();
+        if (page === 'devolucoes')
+            iniciarDevolucoes();
     }
 
     // ─── NOTION API ───────────────────────────────────────────
@@ -4957,6 +5088,12 @@
         porMes: {},
         catsExcluidas: null
     };
+    // Mapa de pedidos e custo por SKU de todos os arquivos de vendas importados na sessão (usado nas devoluções)
+    const PEDIDOS_UPS = {};
+    const SKU_CUSTO = {};
+    function skuChave(s) {
+        return String(s || '').toLowerCase().split(/[^0-9a-z]+/).filter(Boolean).map(x => x.replace(/^0+(?=.)/, '')).join('');
+    }
 
     function iniciarResultado() {
         const sel = document.getElementById('res-mes-sel');
@@ -5262,8 +5399,15 @@
                     sku,
                     loja,
                     vendas,
-                    multi: false
+                    multi: false,
+                    num: String(g(l, 'pedido') || '').trim()
                 };
+                if (pedidoAtual.num)
+                    PEDIDOS_UPS[pedidoAtual.num] = {
+                        receb,
+                        custo: 0,
+                        vendas
+                    };
                 // Prejuízo: atribuído ao SKU da linha principal, só pedidos sem reembolso
                 if (!devolvido && C.lucro >= 0 && pedidoAtual.lucro < 0) {
                     const p = prejuizo[sku] || (prejuizo[sku] = {
@@ -5280,6 +5424,10 @@
                 }
             }
             L.custo += custo;
+            if (pedidoAtual?.num && PEDIDOS_UPS[pedidoAtual.num])
+                PEDIDOS_UPS[pedidoAtual.num].custo += -custo;
+            if (custo < 0 && qtd)
+                SKU_CUSTO[skuChave(sku)] = -custo / qtd;
             if (custo === 0) {
                 const s = semCusto[sku] || (semCusto[sku] = {
                     sku,
@@ -5765,6 +5913,553 @@
         } finally {
             btn.disabled = false;
         }
+    }
+
+    // ─── DEVOLUÇÕES ───────────────────────────────────────────
+    const DEV = {
+        porMes: {}
+    };
+    const DEV_CONFERENCIA = ['A conferir', 'Voltou bom - estoque', 'Voltou avariado', 'Item trocado/errado', 'Não voltou'];
+
+    // Motivo da plataforma → [motivo em português, origem provável do erro]
+    function devClassificar(codigo) {
+        const c = String(codigo || '').trim();
+        const u = c.toUpperCase();
+        if (u === 'BROKEN_PRODUCTS' || /rachado|quebrad/i.test(c))
+            return ['Produto quebrado', 'Avaria (embalagem/transporte)'];
+        if (u === 'DAMAGED_OTHERS' || /arrived damaged|danific/i.test(c))
+            return ['Produto danificado', 'Avaria (embalagem/transporte)'];
+        if (u === 'FUNCTIONAL_DMG' || /defective|defeito/i.test(c))
+            return ['Defeito de funcionamento', 'Defeito do produto (fornecedor)'];
+        if (u === 'WRONG_ITEM')
+            return ['Item errado enviado', 'Expedição (separação)'];
+        if (u === 'ITEM_MISSING' || /missing|faltando/i.test(c))
+            return ['Item/peça faltando', 'Expedição (separação)'];
+        if (/match description|descri/i.test(c) || u === 'NOT_AS_DESCRIBED')
+            return ['Diferente do anúncio', 'Anúncio'];
+        if (u === 'CHANGE_MIND' || /mind|arrepend|desist/i.test(c))
+            return ['Cliente desistiu', 'Cliente / expectativa'];
+        if (u === 'NOT_RECEIPT' || /not receiv|não receb/i.test(c))
+            return ['Não recebeu', 'Transporte / entrega'];
+        if (/late|atras/i.test(c))
+            return ['Chegou atrasado', 'Transporte / entrega'];
+        if (u === 'SUSPICIOUS_PARCEL')
+            return ['Pacote suspeito', 'Transporte / entrega'];
+        if (!c)
+            return ['Sem motivo', 'Não identificado'];
+        return [c.slice(0, 60), 'Não identificado'];
+    }
+
+    function iniciarDevolucoes() {
+        const sel = document.getElementById('dev-mes-sel');
+        if (sel.options.length === 0) {
+            const hoje = new Date();
+            for (let i = 0; i < 13; i++) {
+                const d = new Date(hoje.getFullYear(), hoje.getMonth() - i, 1);
+                const opt = document.createElement('option');
+                opt.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+                opt.textContent = `${MESES_NOME[d.getMonth()]} ${d.getFullYear()}`;
+                if (i === 1)
+                    opt.selected = true;
+                sel.appendChild(opt);
+            }
+        }
+        devCarregarMes();
+    }
+
+    async function devCarregarMes() {
+        const mes = document.getElementById('dev-mes-sel').value;
+        if (!DEV.porMes[mes]) {
+            const pages = await notionQuery(CONFIG.dbDevolucoes, {
+                property: 'Mês',
+                rich_text: {
+                    equals: mes
+                }
+            });
+            if (pages.length)
+                DEV.porMes[mes] = pages.map(devDePagina);
+        }
+        devRender();
+    }
+
+    function devDePagina(p) {
+        const pr = p.properties;
+        const tx = k => (pr[k]?.rich_text || []).map(t => t.plain_text).join('');
+        return {
+            pageId: p.id,
+            id: pr['Devolução']?.title?.[0]?.plain_text || '',
+            pedido: tx('Pedido'),
+            mes: tx('Mês'),
+            data: pr['Data']?.date?.start || '',
+            plataforma: tx('Plataforma'),
+            loja: tx('Loja'),
+            valor: pr['Valor Reembolso']?.number || 0,
+            motivo: tx('Motivo'),
+            origem: tx('Origem'),
+            comentario: tx('Comentário Cliente'),
+            tipo: pr['Tipo']?.select?.name || '',
+            situacao: pr['Situação']?.select?.name || '',
+            statusPlat: tx('Status Plataforma'),
+            logistica: tx('Logística'),
+            recebidoEm: pr['Recebido em']?.date?.start || '',
+            sku: tx('SKU'),
+            produto: tx('Produto'),
+            qtd: pr['Qtd']?.number || 1,
+            custo: pr['Custo Produto']?.number ?? null,
+            saldo: pr['Saldo Pedido Carteira']?.number ?? null,
+            conferencia: pr['Conferência']?.select?.name || '',
+            obs: tx('Observação'),
+        };
+    }
+
+    // ── Importação ──
+    async function devLerArquivo(file) {
+        if (!file)
+            return;
+        const status = document.getElementById('dev-upload-status');
+        status.textContent = `Lendo ${file.name}...`;
+        try {
+            let linhas;
+            if (/\.xlsx?$/i.test(file.name)) {
+                await carregarSheetJS();
+                const wb = XLSX.read(await file.arrayBuffer(), {
+                    type: 'array'
+                });
+                linhas = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], {
+                    header: 1,
+                    raw: true,
+                    defval: ''
+                });
+            } else {
+                linhas = parseCSV(await file.text());
+            }
+            const devs = processarDevolucoes(linhas);
+            const meses = [...new Set(devs.map(d => d.mes))].sort();
+            // Junta com o que já está no Notion, preservando conferência e observação do time
+            for (const mes of meses) {
+                const existentes = await notionQuery(CONFIG.dbDevolucoes, {
+                    property: 'Mês',
+                    rich_text: {
+                        equals: mes
+                    }
+                });
+                const porId = {};
+                existentes.map(devDePagina).forEach(d => porId[d.id] = d);
+                const novos = devs.filter(d => d.mes === mes);
+                novos.forEach(d => {
+                    const ant = porId[d.id];
+                    if (ant) {
+                        d.pageId = ant.pageId;
+                        d.conferencia = ant.conferencia || d.conferencia;
+                        d.obs = ant.obs;
+                        if (d.custo === null)
+                            d.custo = ant.custo;
+                        if (d.saldo === null)
+                            d.saldo = ant.saldo;
+                        d._mudou = ['situacao', 'statusPlat', 'logistica', 'recebidoEm', 'valor', 'custo', 'saldo'].some(k => (d[k] ?? '') !== (ant[k] ?? ''));
+                        delete porId[d.id];
+                    } else
+                        d._novo = true;
+                });
+                DEV.porMes[mes] = novos.concat(Object.values(porId));
+            }
+            const mesPrincipal = meses.reduce((a, m) => devs.filter(d => d.mes === m).length > devs.filter(d => d.mes === a).length ? m : a, meses[0]);
+            document.getElementById('dev-mes-sel').value = mesPrincipal;
+            devRender();
+
+            const pendentes = devs.filter(d => d._novo || d._mudou);
+            const comCusto = devs.filter(d => d.custo !== null).length;
+            status.innerHTML = `✓ ${devs.length} devoluções lidas · custo encontrado em ${comCusto}${comCusto < devs.length ? ` (para o resto, importe o arquivo de vendas do mês do pedido na aba Resultado e importe as devoluções de novo)` : ''}`;
+            if (pendentes.length)
+                await devSincronizar(pendentes, status);
+        } catch (e) {
+            console.error(e);
+            status.textContent = '';
+            showToast('Não consegui ler o arquivo', e.message, 'error');
+        }
+    }
+
+    function processarDevolucoes(linhas) {
+        const iCab = linhas.findIndex(l => l.some(c => normCab(c).startsWith('pedidos de devolucao')) && l.some(c => normCab(c).startsWith('valor de reembolso')));
+        if (iCab < 0)
+            throw new Error('Não encontrei as colunas do relatório de devoluções do UpSeller');
+        const cab = linhas[iCab].map(normCab);
+        const col = (...n) => {
+            for (const x of n) {
+                const i = cab.findIndex(c => c.startsWith(x));
+                if (i >= 0)
+                    return i;
+            }
+            return -1;
+        };
+        const C = {
+            id: col('pedidos de devolucao'),
+            pedido: col('no de pedido da plataforma', 'nº de pedido da plataforma', 'n de pedido da plataforma'),
+            plataforma: col('plataforma'),
+            loja: col('loja'),
+            data: col('tempo de devolucao'),
+            valor: col('valor de reembolso'),
+            motivo: col('devolucao/razao', 'razao'),
+            tipo: col('tipo de devolucao'),
+            statusPlat: col('status na plataforma'),
+            estado: col('estado'),
+            recebido: col('hora de recebimento'),
+            titulo: col('titulo'),
+            skuVar: col('produtos/sku'),
+            sku: col('sku (armazem)'),
+            qtd: col('qtd'),
+            logistica: col('estado de logistica'),
+        };
+        const g = (l, k) => C[k] >= 0 ? l[C[k]] : '';
+        const porId = {};
+        linhas.slice(iCab + 1).forEach(l => {
+            const id = String(g(l, 'id') || '').trim();
+            if (!id)
+                return;
+            const sku = String(g(l, 'sku') || g(l, 'skuVar') || '').replace(/\s*\n\s*/g, ' + ').trim();
+            const qtd = resNum(g(l, 'qtd')) || 1;
+            let d = porId[id];
+            if (!d) {
+                const data = resData(g(l, 'data'));
+                const motivoBruto = String(g(l, 'motivo') || '');
+                const virgula = motivoBruto.indexOf(',');
+                const codigo = virgula >= 0 ? motivoBruto.slice(0, virgula) : motivoBruto;
+                const [motivo, origem] = devClassificar(codigo);
+                const st = String(g(l, 'statusPlat') || '').toUpperCase();
+                const estado = String(g(l, 'estado') || '').toLowerCase();
+                const tipo = /^REFUND$/i.test(String(g(l, 'tipo')).trim()) ? 'Só reembolso' : 'Devolução + reembolso';
+                const situacao = ['CANCELLED', 'CLOSED'].includes(st) ? 'Cancelada' : (estado === 'completed' || st === 'REEMBOLSADO') ? 'Concluída' : 'Em andamento';
+                d = porId[id] = {
+                    id,
+                    pedido: String(g(l, 'pedido') || '').trim(),
+                    data,
+                    mes: data.slice(0, 7),
+                    plataforma: String(g(l, 'plataforma') || '').trim(),
+                    loja: String(g(l, 'loja') || '').trim(),
+                    valor: resNum(g(l, 'valor')),
+                    motivo,
+                    origem,
+                    comentario: virgula >= 0 ? motivoBruto.slice(virgula + 1).trim() : '',
+                    tipo,
+                    situacao,
+                    statusPlat: String(g(l, 'statusPlat') || ''),
+                    logistica: String(g(l, 'logistica') || ''),
+                    recebidoEm: resData(g(l, 'recebido')),
+                    produto: String(g(l, 'titulo') || '').trim(),
+                    skus: [],
+                    qtd: 0,
+                    custoSku: 0,
+                    custoSkuOk: true,
+                    conferencia: situacao === 'Cancelada' ? '' : tipo === 'Só reembolso' ? 'Não voltou' : 'A conferir',
+                    obs: '',
+                };
+            }
+            d.skus.push(sku);
+            d.qtd += qtd;
+            const unit = SKU_CUSTO[skuChave(sku)];
+            if (unit)
+                d.custoSku += unit * qtd;
+            else
+                d.custoSkuOk = false;
+        });
+        return Object.values(porId).filter(d => d.mes).map(d => {
+            d.sku = d.skus.join(' + ');
+            const ped = PEDIDOS_UPS[d.pedido];
+            d.custo = ped && ped.custo ? Math.round(ped.custo * 100) / 100 : (d.custoSkuOk && d.custoSku ? Math.round(d.custoSku * 100) / 100 : null);
+            d.saldo = ped ? Math.round(ped.receb * 100) / 100 : null;
+            delete d.skus;
+            delete d.custoSku;
+            delete d.custoSkuOk;
+            return d;
+        });
+    }
+
+    async function devSincronizar(lista, statusEl) {
+        const txt = v => ({
+            rich_text: [{
+                text: {
+                    content: String(v || '').slice(0, 1900)
+                }
+            }]
+        });
+        const dt = v => ({
+            date: v ? {
+                start: v
+            } : null
+        });
+        let feitos = 0,
+            erros = 0;
+        const props = d => {
+            const p = {
+                'Situação': {
+                    select: {
+                        name: d.situacao
+                    }
+                },
+                'Status Plataforma': txt(d.statusPlat),
+                'Logística': txt(d.logistica),
+                'Recebido em': dt(d.recebidoEm),
+                'Valor Reembolso': {
+                    number: d.valor
+                },
+            };
+            if (d.custo !== null)
+                p['Custo Produto'] = {
+                    number: d.custo
+                };
+            if (d.saldo !== null)
+                p['Saldo Pedido Carteira'] = {
+                    number: d.saldo
+                };
+            if (d._novo)
+                Object.assign(p, {
+                    'Devolução': {
+                        title: [{
+                            text: {
+                                content: d.id
+                            }
+                        }]
+                    },
+                    'Pedido': txt(d.pedido),
+                    'Mês': txt(d.mes),
+                    'Data': dt(d.data),
+                    'Plataforma': txt(d.plataforma),
+                    'Loja': txt(d.loja),
+                    'Motivo': txt(d.motivo),
+                    'Origem': txt(d.origem),
+                    'Tipo': {
+                        select: {
+                            name: d.tipo
+                        }
+                    },
+                    'SKU': txt(d.sku),
+                    'Produto': txt(d.produto),
+                    'Qtd': {
+                        number: d.qtd
+                    },
+                    'Comentário Cliente': txt(d.comentario),
+                });
+            if (d._novo && d.conferencia)
+                p['Conferência'] = {
+                    select: {
+                        name: d.conferencia
+                    }
+                };
+            return p;
+        };
+        const trabalhar = async () => {
+            while (lista.length) {
+                const d = lista.shift();
+                try {
+                    if (d._novo) {
+                        const r = await notionCreate(CONFIG.dbDevolucoes, props(d));
+                        d.pageId = r.id;
+                    }
+                    else
+                        await notionUpdate(d.pageId, props(d));
+                    delete d._novo;
+                    delete d._mudou;
+                } catch (e) {
+                    erros++;
+                    console.error(e);
+                }
+                feitos++;
+                if (feitos % 10 === 0)
+                    statusEl.dataset.prog = `Salvando no Notion... ${feitos}`;
+                statusEl.querySelector('.dev-prog') && (statusEl.querySelector('.dev-prog').textContent = ` · salvando no Notion: ${feitos}`);
+            }
+        };
+        statusEl.insertAdjacentHTML('beforeend', '<span class="dev-prog"> · salvando no Notion...</span>');
+        await Promise.all([trabalhar(), trabalhar(), trabalhar()]);
+        statusEl.querySelector('.dev-prog').textContent = erros ? ` · ⚠️ ${erros} não foram salvas no Notion (veja se a integração tem acesso à base ↩️ Devoluções)` : ` · ✓ salvo no Notion (${feitos})`;
+        devRender();
+    }
+
+    // ── Cálculo ──
+    function devPerda(d) {
+        // Perda em produto: o que não volta para o estoque em condição de venda + taxas que a plataforma cobrou
+        if (d.situacao === 'Cancelada')
+            return {
+                valor: 0,
+                pendente: false,
+                semCusto: false
+            };
+        const taxas = d.saldo !== null && d.saldo < 0 ? -d.saldo : 0;
+        const perdeProduto = d.tipo === 'Só reembolso' || ['Voltou avariado', 'Não voltou', 'Item trocado/errado'].includes(d.conferencia);
+        const pendente = d.tipo !== 'Só reembolso' && (!d.conferencia || d.conferencia === 'A conferir');
+        return {
+            valor: taxas + (perdeProduto ? (d.custo || 0) : 0),
+            pendente,
+            semCusto: perdeProduto && d.custo === null,
+            emRisco: pendente ? (d.custo || 0) : 0
+        };
+    }
+
+    function devFiltradas() {
+        const mes = document.getElementById('dev-mes-sel').value;
+        const loja = document.getElementById('dev-loja-sel').value;
+        let l = DEV.porMes[mes] || [];
+        if (loja !== 'todas')
+            l = l.filter(d => d.loja === loja);
+        return l;
+    }
+
+    function barras(pares, fmt=v => v, total) {
+        const max = Math.max(...pares.map(p => p[1]), 1);
+        return pares.length ? pares.map(([nome, v, extra]) => `
+            <div class="bar-item">
+                <div class="bar-top"><span class="bar-name">${
+        nome}</span><span class="bar-val">${fmt(v)}${total ? ` <small style="color:var(--text3);font-weight:400">${pct(v, total)}</small>` : ''}</span></div>
+                <div class="bar-track"><div class="bar-fill" style="width:${Math.round(v / max * 100)}%"></div></div>
+                ${extra ? `<div style="font-size:11px;color:var(--text3);margin-top:3px">${extra}</div>` : ''}
+            </div>`
+        ).join('') : '<div class="empty-text" style="color:var(--text3)">Sem dados</div>';
+    }
+
+    function devRender() {
+        const mes = document.getElementById('dev-mes-sel').value;
+        const todas = DEV.porMes[mes] || [];
+        // lojas no filtro
+        const selLoja = document.getElementById('dev-loja-sel');
+        const atual = selLoja.value;
+        const lojas = [...new Set(todas.map(d => d.loja))].sort();
+        selLoja.innerHTML = '<option value="todas">Todas as lojas</option>' + lojas.map(l => `<option ${l === atual ? 'selected' : ''}>${l}</option>`).join('');
+
+        const lista = devFiltradas();
+        const validas = lista.filter(d => d.situacao !== 'Cancelada');
+        document.getElementById('dev-vazio').style.display = lista.length ? 'none' : 'block';
+        document.getElementById('dev-conteudo').style.display = lista.length ? 'block' : 'none';
+        if (!lista.length)
+            return;
+
+        const perdas = validas.map(d => [d, devPerda(d)]);
+        const valorTot = validas.reduce((s, d) => s + d.valor, 0);
+        const perdaTot = perdas.reduce((s, [, p]) => s + p.valor, 0);
+        const semCusto = perdas.filter(([, p]) => p.semCusto).length;
+        const aConferir = perdas.filter(([, p]) => p.pendente);
+        const emRisco = aConferir.reduce((s, [, p]) => s + p.emRisco, 0);
+        const canceladas = lista.length - validas.length;
+        const pedidosMes=RES.porMes[mes]?.lojas?.filter(l => document.getElementById('dev-loja-sel').value === 'todas' || l.loja === document.getElementById('dev-loja-sel').value).reduce((s, l) => s + l.pedidos, 0);
+
+        document.getElementById('dev-m-qtd').textContent = validas.length;
+        document.getElementById('dev-m-qtd-sub').textContent = `${pedidosMes ? pct(validas.length, pedidosMes) + ' dos pedidos · ' : ''}${canceladas} canceladas fora da conta`;
+        document.getElementById('dev-m-valor').textContent = fmtBRL(valorTot);
+        document.getElementById('dev-m-valor-sub').textContent = `ticket médio ${fmtBRL(validas.length ? valorTot / validas.length : 0)}`;
+        document.getElementById('dev-m-perda').textContent = fmtBRL(perdaTot);
+        document.getElementById('dev-m-perda-sub').textContent = semCusto ? `⚠️ ${semCusto} sem custo encontrado` : 'produto que não volta + taxas';
+        document.getElementById('dev-m-conferir').textContent = aConferir.length;
+        document.getElementById('dev-m-conferir-sub').textContent = emRisco ? `${fmtBRL(emRisco)} em produto em jogo` : 'produtos que voltaram';
+        document.getElementById('dev-subtitle').textContent = `${resLabelMes(mes)} · ${validas.length} devoluções · ${fmtBRL(valorTot)} reembolsados`;
+
+        const agrupar = (chave) => {
+            const m = {};
+            perdas.forEach(([d, p]) => {
+                const k = d[chave] || '—';
+                const x = m[k] || (m[k] = {
+                    qtd: 0,
+                    valor: 0,
+                    perda: 0
+                });
+                x.qtd++;
+                x.valor += d.valor;
+                x.perda += p.valor;
+            });
+            return Object.entries(m).sort((a, b) => b[1].qtd - a[1].qtd);
+        };
+        const extra = x => `${fmtBRL(x.valor)} reembolsado · ${fmtBRL(x.perda)} de perda`;
+        document.getElementById('dev-origem').innerHTML = barras(agrupar('origem').map(([k, x]) => [k, x.qtd, extra(x)]), v => `${v}`, validas.length);
+        document.getElementById('dev-motivo').innerHTML = barras(agrupar('motivo').map(([k, x]) => [k, x.qtd, extra(x)]), v => `${v}`, validas.length);
+        document.getElementById('dev-loja').innerHTML = barras(agrupar('loja').map(([k, x]) => {
+            const ped=RES.porMes[mes]?.lojas?.filter(l => l.loja === k).reduce((s, l) => s + l.pedidos, 0);
+            return [k, x.qtd, `${extra(x)}${ped ? ` · ${pct(x.qtd, ped)} dos pedidos da loja` : ''}`];
+        }), v => `${v}`, validas.length);
+        document.getElementById('dev-tipo').innerHTML = barras(agrupar('tipo').map(([k, x]) => [k, x.qtd, `${extra(x)}${k === 'Só reembolso' ? ' · o cliente fica com o produto' : ' · o produto volta e precisa ser conferido'}`]), v => `${v}`, validas.length)
+        + `<div style="font-size:11px;color:var(--text3);margin-top:8px">${canceladas} devoluções canceladas (cliente desistiu da reclamação ou disputa ganha) não entram nos números.</div>`;
+
+        // SKUs
+        const porSku = {};
+        perdas.forEach(([d, p]) => {
+            const x = porSku[d.sku] || (porSku[d.sku] = {
+                sku: d.sku,
+                produto: d.produto,
+                lojas: new Set(),
+                qtd: 0,
+                valor: 0,
+                perda: 0,
+                motivos: {}
+            });
+            x.qtd++;
+            x.valor += d.valor;
+            x.perda += p.valor;
+            x.lojas.add(d.loja);
+            x.motivos[d.motivo] = (x.motivos[d.motivo] || 0) + 1;
+        });
+        const skus = Object.values(porSku).sort((a, b) => b.qtd - a.qtd || b.valor - a.valor).slice(0, 40);
+        document.getElementById('dev-skus').innerHTML = `<table class="data-table res-table"><thead><tr><th>SKU</th><th>Produto</th><th>Devoluções</th><th>Principais motivos</th><th>Reembolsado</th><th>Perda</th></tr></thead><tbody>${skus.map(s => {const mot = Object.entries(s.motivos).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([m, n]) => `${m} (${n})`).join(', ');return `<tr><td style="font-family:var(--mono);font-size:12px">${s.sku}</td><td style="max-width:260px;overflow:hidden;text-overflow:ellipsis" title="${s.produto.replace(/"/g, '')}">${s.produto}<div class="td-empresa">${[...s.lojas].join(', ')}</div></td><td style="font-weight:600">${s.qtd}</td><td style="font-size:12px">${mot}</td><td>${fmtBRL(s.valor)}</td><td style="color:var(--red)">${fmtBRL(s.perda)}</td></tr>`;}).join('')}</tbody></table>`;
+
+        // Lista
+        const filtro = document.getElementById('dev-filtro').value;
+        let itens = filtro === 'canceladas' ? lista.filter(d => d.situacao === 'Cancelada')
+        : filtro === 'conferir' ? aConferir.map(([d]) => d) : validas;
+        itens = [...itens].sort((a, b) => (b.recebidoEm || '').localeCompare(a.recebidoEm || '') || b.data.localeCompare(a.data));
+        document.getElementById('dev-lista').innerHTML = itens.length ? `<table class="data-table res-table"><thead><tr><th>Conferência</th><th>Data</th><th>Loja</th><th>SKU / produto</th><th>Motivo</th><th>Tipo</th><th>Logística</th><th>Reembolso</th><th>Custo</th></tr></thead><tbody>${itens.map(d => `<tr>
+                <td>${d.situacao === 'Cancelada' ? '<span class="badge badge-gray">Cancelada</span>' : `<select class="dev-conf" onchange="devSalvarConferencia('${d.id}', this)" ${d.pageId ? '' : 'disabled title="Ainda não salvo no Notion"'}>${DEV_CONFERENCIA.map(c => `<option ${c === (d.conferencia || 'A conferir') ? 'selected' : ''}>${c}</option>`).join('')}</select>`}</td>
+                <td style="font-size:12px">${fmtData(d.data)}<div class="td-empresa" style="font-family:var(--mono)">${d.pedido}</div></td>
+                <td style="font-size:12px">${d.loja}<div class="td-empresa">${d.plataforma}</div></td>
+                <td style="max-width:240px;overflow:hidden;text-overflow:ellipsis"><span style="font-family:var(--mono);font-size:12px">${d.sku}</span><div class="td-empresa" title="${d.produto.replace(/"/g, '')}">${d.produto}</div></td>
+                <td style="font-size:12px;white-space:normal;min-width:180px">${d.motivo}<div class="td-empresa" style="white-space:normal">${d.comentario ? '“' + d.comentario.slice(0, 140) + (d.comentario.length > 140 ? '…' : '') + '”' : ''}</div></td>
+                <td style="font-size:11px">${d.tipo}</td>
+                <td style="font-size:11px">${d.recebidoEm ? '📦 chegou ' + fmtData(d.recebidoEm) : (d.logistica || '—').replace('LOGISTICS_', '').toLowerCase()}</td>
+                <td>${fmtBRL(d.valor)}</td>
+                <td>${d.custo !== null ? fmtBRL(d.custo) : '<span style="color:var(--text3)">—</span>'}</td>
+            </tr>`).join('')}</tbody></table>` : '<div class="empty-state" style="padding:1.5rem"><div class="empty-text">Nada aqui 👍</div></div>';
+    }
+
+    async function devSalvarConferencia(id, sel) {
+        const mes = document.getElementById('dev-mes-sel').value;
+        const d = (DEV.porMes[mes] || []).find(x => x.id === id);
+        if (!d || !d.pageId)
+            return;
+        sel.disabled = true;
+        try {
+            await notionUpdate(d.pageId, {
+                'Conferência': {
+                    select: {
+                        name: sel.value
+                    }
+                }
+            });
+            d.conferencia = sel.value;
+            showToast('Conferência salva', `${d.sku} — ${sel.value}`, 'success');
+            devRender();
+        } catch (e) {
+            showToast('Erro ao salvar', e.message, 'error');
+            sel.disabled = false;
+        }
+    }
+
+    function exportarDevolWpp() {
+        const mes = document.getElementById('dev-mes-sel').value;
+        const validas = devFiltradas().filter(d => d.situacao !== 'Cancelada');
+        if (!validas.length) {
+            showToast('Nada para enviar', '', 'error');
+            return;
+        }
+        const conta = k => {
+            const m = {};
+            validas.forEach(d => m[d[k]] = (m[d[k]] || 0) + 1);
+            return Object.entries(m).sort((a, b) => b[1] - a[1]);
+        };
+        const valor = validas.reduce((s, d) => s + d.valor, 0);
+        const perda = validas.reduce((s, d) => s + devPerda(d).valor, 0);
+        let msg = `↩️ *Devoluções ${resLabelMes(mes)}*\n\n${validas.length} devoluções · ${fmtBRL(valor)} reembolsados · ${fmtBRL(perda)} de perda em produto\n\n*Onde está o erro*\n`;
+        conta('origem').forEach(([k, n]) => msg += `• ${k}: ${n} (${pct(n, validas.length)})\n`);
+        msg += `\n*SKUs que mais devolvem*\n`;
+        conta('sku').slice(0, 5).forEach(([k, n]) => msg += `• ${k}: ${n}\n`);
+        const conf = validas.filter(d => devPerda(d).pendente).length;
+        if (conf)
+            msg += `\n📦 ${conf} produtos devolvidos aguardando conferência no galpão`;
+        abrirWhatsappMsg(msg);
     }
 
     document.getElementById('modal-despesa').addEventListener('click', function(e) {
