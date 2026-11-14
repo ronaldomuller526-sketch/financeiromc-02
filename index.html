@@ -1681,6 +1681,49 @@
         }
     }
 
+    .av-info {
+        font-size: 11px;
+        color: var(--text2);
+        margin-top: 5px;
+        line-height: 1.6;
+        white-space: normal;
+        max-width: 190px;
+    }
+
+    .av-edit {
+        color: var(--accent);
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .av-btn-ok {
+        margin-top: 4px;
+        padding: 3px 8px;
+        font-size: 11px;
+        border-radius: var(--radius-xs);
+        border: 1px solid var(--green);
+        background: transparent;
+        color: var(--green);
+        cursor: pointer;
+        font-family: var(--font);
+    }
+
+    .av-radio {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 13px;
+        color: var(--text);
+        margin: 6px 0;
+        cursor: pointer;
+        text-transform: none;
+        letter-spacing: 0;
+    }
+
+    .av-radio input {
+        width: auto;
+    }
+
     .dev-filtros {
         display: flex;
         flex-wrap: wrap;
@@ -2790,6 +2833,7 @@
                                         <option value="conf:Voltou avariado">↳ Voltou avariado</option>
                                         <option value="conf:Item trocado/errado">↳ Item trocado/errado</option>
                                         <option value="conf:Não voltou">↳ Não voltou</option>
+                                        <option value="aguardando">🔧 Avariados aguardando reposição</option>
                                         <option value="contestar">⚠️ Para contestar na plataforma</option>
                                         <option value="todas">Todas (sem canceladas)</option>
                                         <option value="canceladas">Canceladas</option>
@@ -2819,6 +2863,48 @@
                 </div>
 
             </main>
+        </div>
+    </div>
+
+    <!-- MODAL AVARIA -->
+    <div class="modal-overlay" id="modal-avaria">
+        <div class="modal" style="max-width:480px;width:95%">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
+                <h3>💥 Registrar avaria</h3>
+                <button onclick="devFecharAvaria()" style="background:none;border:none;color:var(--text2);cursor:pointer;font-size:20px;padding:4px">×</button>
+            </div>
+            <div id="av-produto" style="font-size:12px;margin-bottom:1rem;line-height:1.5"></div>
+            <div class="fgroup-row">
+                <div class="fgroup">
+                    <label>Peças em cada kit</label>
+                    <input type="number" min="1" id="av-kit" oninput="devAvariaCalc()">
+                </div>
+                <div class="fgroup">
+                    <label>Kits devolvidos</label>
+                    <input type="number" min="1" id="av-qtd" oninput="devAvariaCalc()">
+                </div>
+            </div>
+            <div class="fgroup">
+                <label>Quantas peças vieram avariadas?</label>
+                <input type="number" min="1" id="av-avariadas" oninput="devAvariaCalc()" style="font-size:18px;font-weight:600">
+            </div>
+            <div class="fgroup">
+                <label>O que vai ser feito com o kit?</label>
+                <label class="av-radio">
+                    <input type="radio" name="av-dest" id="av-dest-repor" onchange="devAvariaCalc()">
+                     Repor as peças quebradas e voltar ao estoque de venda
+                </label>
+                <label class="av-radio">
+                    <input type="radio" name="av-dest" id="av-dest-perda" onchange="devAvariaCalc()">
+                     Perda total (não volta para venda)
+                </label>
+            </div>
+            <div class="fgroup" id="av-previsao-box">
+                <label>Previsão de volta ao estoque de venda</label>
+                <input type="date" id="av-previsao">
+            </div>
+            <div id="av-resumo" style="font-size:12px;color:var(--text2);margin:0.5rem 0 1rem;min-height:18px"></div>
+            <button class="btn-save" id="av-btn" onclick="devSalvarAvaria()">Salvar avaria</button>
         </div>
     </div>
 
@@ -6207,6 +6293,12 @@
             saldo: pr['Saldo Pedido Carteira']?.number ?? null,
             conferencia: pr['Conferência']?.select?.name || '',
             obs: tx('Observação'),
+            pecasKit: pr['Peças no Kit']?.number ?? null,
+            pecasAvariadas: pr['Peças Avariadas']?.number ?? null,
+            destinoAvaria: pr['Destino Avaria']?.select?.name || '',
+            previsaoEstoque: pr['Previsão Retorno Estoque']?.date?.start || '',
+            retornouEstoque: pr['Retornou ao Estoque em']?.date?.start || '',
+            conferidoEm: pr['Conferido em']?.date?.start || '',
         };
     }
 
@@ -6250,6 +6342,7 @@
                         d.pageId = ant.pageId;
                         d.conferencia = ant.conferencia || d.conferencia;
                         d.obs = ant.obs;
+                        ['pecasKit', 'pecasAvariadas', 'destinoAvaria', 'previsaoEstoque', 'retornouEstoque', 'conferidoEm'].forEach(k => d[k] = ant[k]);
                         if (d.custo === null)
                             d.custo = ant.custo;
                         if (d.saldo === null)
@@ -6495,6 +6588,16 @@
                 semCusto: false
             };
         const taxas = d.saldo !== null && d.saldo < 0 ? -d.saldo : 0;
+        // Avaria parcial: só a fração de peças quebradas vira perda quando o kit é reposto e volta ao estoque
+        if (d.conferencia === 'Voltou avariado' && d.destinoAvaria === 'Repor peças e voltar ao estoque' && d.pecasKit > 0 && d.pecasAvariadas !== null) {
+            const frac = Math.min(1, d.pecasAvariadas / (d.pecasKit * (d.qtd || 1)));
+            return {
+                valor: taxas + (d.custo || 0) * frac,
+                pendente: false,
+                semCusto: d.custo === null,
+                emRisco: 0
+            };
+        }
         const perdeProduto = d.tipo === 'Só reembolso' || ['Voltou avariado', 'Não voltou', 'Item trocado/errado'].includes(d.conferencia);
         const pendente = d.tipo !== 'Só reembolso' && (!d.conferencia || d.conferencia === 'A conferir');
         return {
@@ -6629,7 +6732,8 @@
         : filtro === 'conferir' ? aConferir
         : filtro === 'conferidas' ? validas.filter(d => d.tipo !== 'Só reembolso' && d.conferencia && d.conferencia !== 'A conferir')
         : filtro.startsWith('conf:') ? validas.filter(d => d.tipo !== 'Só reembolso' && d.conferencia === filtro.slice(5))
-        : filtro === 'contestar' ? validas.filter(devContestar) : validas;
+        : filtro === 'contestar' ? validas.filter(devContestar)
+        : filtro === 'aguardando' ? validas.filter(devAguardando) : validas;
         // Filtros da lista: loja, período e busca
         const fLoja = document.getElementById('dev-lista-loja');
         const lojaAtualLista = fLoja.value;
@@ -6649,7 +6753,7 @@
         document.getElementById('dev-lista-qtd').textContent = `· ${itens.length}`;
         itens = [...itens].sort((a, b) => (b.recebidoEm || '').localeCompare(a.recebidoEm || '') || b.data.localeCompare(a.data));
         document.getElementById('dev-lista').innerHTML = itens.length ? `<table class="data-table res-table"><thead><tr><th>Conferência</th><th>Data</th><th>Loja</th><th>SKU / produto</th><th>Motivo</th><th>Tipo</th><th>Logística</th><th>Reembolso</th><th>Custo</th></tr></thead><tbody>${itens.map(d => `<tr>
-                <td>${d.situacao === 'Cancelada' ? '<span class="badge badge-gray">Cancelada</span>' : `<select class="dev-conf" onchange="devSalvarConferencia('${d.id}', this)" ${d.pageId ? '' : 'disabled title="Ainda não salvo no Notion"'}>${DEV_CONFERENCIA.map(c => `<option ${c === (d.conferencia || 'A conferir') ? 'selected' : ''}>${c}</option>`).join('')}</select>`}</td>
+                <td>${d.situacao === 'Cancelada' ? '<span class="badge badge-gray">Cancelada</span>' : `<select class="dev-conf" onchange="devSalvarConferencia('${d.id}', this)" ${d.pageId ? '' : 'disabled title="Ainda não salvo no Notion"'}>${DEV_CONFERENCIA.map(c => `<option ${c === (d.conferencia || 'A conferir') ? 'selected' : ''}>${c}</option>`).join('')}</select>${devInfoAvaria(d)}`}</td>
                 <td style="font-size:12px">${fmtData(d.data)}<div class="td-empresa" style="font-family:var(--mono)">${d.pedido}</div></td>
                 <td style="font-size:12px">${d.loja}<div class="td-empresa">${d.plataforma}</div></td>
                 <td style="max-width:240px;overflow:hidden;text-overflow:ellipsis"><span style="font-family:var(--mono);font-size:12px">${d.sku}</span><div class="td-empresa" title="${d.produto.replace(/"/g, '')}">${d.produto}</div></td>
@@ -6691,7 +6795,8 @@
         const doStatus = nome => nome === 'A conferir' ? fisicas.filter(d => !d.conferencia || d.conferencia === 'A conferir') : fisicas.filter(d => d.conferencia === nome);
         const cards = st.map(([nome, filtro, cor, rotulo]) => {
             const l = doStatus(nome);
-            const custo = l.reduce((s, d) => s + (d.custo || 0), 0);
+            // Perda considera avaria parcial (só as peças quebradas quando o kit é reposto)
+            const custo = ['A conferir', 'Voltou bom - estoque'].includes(nome) ? l.reduce((s, d) => s + (d.custo || 0), 0) : l.reduce((s, d) => s + devPerda(d).valor, 0);
             return `<div class="dev-st" onclick="devFiltrarLista('${filtro}')" style="border-top:3px solid ${cor}">
                 <div class="dev-st-nome">${nome}</div>
                 <div class="dev-st-n">${l.length}</div>
@@ -6704,6 +6809,15 @@
         const alerta = contestar.length ? `<div class="dev-alerta" onclick="devFiltrarLista('contestar')">
             ⚠️ <b>${contestar.length} devoluções para contestar:</b> o cliente alegou avaria, defeito ou item errado, mas o produto voltou perfeito.
             São ${fmtBRL(contestar.reduce((s, d) => s + d.valor, 0))} reembolsados que podem ser disputados com a plataforma. <u>Ver lista</u></div>` : '';
+
+        const hojeIso = new Date().toISOString().slice(0, 10);
+        const aguard = validas.filter(devAguardando);
+        const atrasados = aguard.filter(d => d.previsaoEstoque && d.previsaoEstoque < hojeIso).length;
+        const avariados = fisicas.filter(d => d.conferencia === 'Voltou avariado');
+        const pecasQuebradas = avariados.reduce((s, d) => s + (d.pecasAvariadas || 0), 0);
+        const alertaRepor = aguard.length ? `<div class="dev-alerta" style="background:var(--blue-bg);border-color:var(--accent)" onclick="devFiltrarLista('aguardando')">
+            🔧 <b>${aguard.length} kits avariados aguardando reposição</b> para voltar ao estoque de venda${atrasados ? ` · <span style="color:var(--red)"><b>${atrasados} com previsão vencida</b></span>` : ''}. <u>Ver lista</u></div>` : '';
+        const resumoAvaria = avariados.length ? `<div style="font-size:12px;color:var(--text2);margin-top:10px">💥 Avarias: ${avariados.length} devoluções · ${pecasQuebradas} peças quebradas · ${avariados.filter(d => d.destinoAvaria === 'Perda total').length} perda total · ${avariados.filter(d => d.retornouEstoque).length} já voltaram ao estoque</div>` : '';
 
         // Por loja
         const lojas = [...new Set(fisicas.map(d => d.loja))].sort();
@@ -6720,7 +6834,9 @@
         document.getElementById('dev-conf').innerHTML = `
             <div class="dev-prog"><div class="dev-prog-fill" style="width:${Math.round(pctConf * 100)}%"></div></div>
             <div class="dev-st-grid">${cards}</div>
+            ${resumoAvaria}
             ${alerta}
+            ${alertaRepor}
             <div class="res-scroll" style="margin-top:1rem"><table class="data-table res-table"><thead><tr>
                 <th>Loja</th><th>Voltaram</th><th>A conferir</th><th>Bom</th><th>Avariado</th><th>Trocado</th><th>Não voltou</th><th>Conferido</th>
             </tr></thead><tbody>${
@@ -6741,22 +6857,229 @@
         const d = (DEV.porMes[mes] || []).find(x => x.id === id);
         if (!d || !d.pageId)
             return;
+        if (sel.value === 'Voltou avariado') {
+            devAbrirAvaria(d);
+            return;
+        }
         sel.disabled = true;
         try {
-            await notionUpdate(d.pageId, {
+            const hoje = new Date().toISOString().slice(0, 10);
+            const r = await notionUpdate(d.pageId, {
                 'Conferência': {
                     select: {
                         name: sel.value
                     }
-                }
+                },
+                'Conferido em': {
+                    date: sel.value === 'A conferir' ? null : {
+                        start: hoje
+                    }
+                },
+                'Destino Avaria': {
+                    select: null
+                },
+                'Peças Avariadas': {
+                    number: null
+                },
+                'Previsão Retorno Estoque': {
+                    date: null
+                },
             });
+            if (r?.object === 'error')
+                throw new Error(r.message);
             d.conferencia = sel.value;
+            d.conferidoEm = sel.value === 'A conferir' ? '' : hoje;
+            d.destinoAvaria = '';
+            d.pecasAvariadas = null;
+            d.previsaoEstoque = '';
             showToast('Conferência salva', `${d.sku} — ${sel.value}`, 'success');
             devRender();
         } catch (e) {
             showToast('Erro ao salvar', e.message, 'error');
             sel.disabled = false;
         }
+    }
+
+    // ── Avaria parcial ──
+    function devPecasKit(sku) {
+        const s = String(sku || '');
+        const estrelas = [...s.matchAll(/\*(\d+)/g)].map(m => +m[1]);
+        if (estrelas.length)
+            return estrelas.reduce((a, b) => a + b, 0);
+        const m = s.match(/-(\d{2})\s*$/);
+        return m ? +m[1] : '';
+    }
+
+    let DEV_AVARIA_ATUAL = null;
+    function devAbrirAvaria(d) {
+        DEV_AVARIA_ATUAL = d;
+        const kit = d.pecasKit || devPecasKit(d.sku);
+        const em7 = new Date(Date.now() + 7 * 864e5).toISOString().slice(0, 10);
+        document.getElementById('av-produto').innerHTML = `<b style="font-family:var(--mono)">${d.sku}</b><br><span style="color:var(--text3)">${d.produto}</span><br><span style="color:var(--text3)">Pedido ${d.pedido} · ${d.loja} · ${d.qtd} unidade(s) devolvida(s)</span>`;
+        document.getElementById('av-kit').value = kit;
+        document.getElementById('av-qtd').value = d.qtd || 1;
+        document.getElementById('av-avariadas').value = d.pecasAvariadas ?? '';
+        const repor = d.destinoAvaria !== 'Perda total';
+        document.getElementById('av-dest-repor').checked = repor;
+        document.getElementById('av-dest-perda').checked = !repor;
+        document.getElementById('av-previsao').value = d.previsaoEstoque || em7;
+        devAvariaCalc();
+        document.getElementById('modal-avaria').classList.add('open');
+        setTimeout(() => document.getElementById('av-avariadas').focus(), 100);
+    }
+
+    function devFecharAvaria() {
+        document.getElementById('modal-avaria').classList.remove('open');
+        DEV_AVARIA_ATUAL = null;
+        devRender(); // volta o seletor ao valor salvo se cancelou
+    }
+
+    function devAvariaCalc() {
+        const d = DEV_AVARIA_ATUAL;
+        if (!d)
+            return;
+        const kit = +document.getElementById('av-kit').value || 0;
+        const qtd = +document.getElementById('av-qtd').value || 1;
+        const av = +document.getElementById('av-avariadas').value || 0;
+        const repor = document.getElementById('av-dest-repor').checked;
+        document.getElementById('av-previsao-box').style.display = repor ? 'block' : 'none';
+        const total = kit * qtd;
+        let txt = '';
+        if (total && av > total)
+            txt = `<span style="color:var(--red)">⚠️ Mais peças avariadas (${av}) do que o total devolvido (${total}).</span>`;
+        else if (total) {
+            const perda = d.custo !== null ? (repor ? d.custo * av / total : d.custo) : null;
+            txt = `${av} de ${total} peças avariadas · ${total - av} boas.` + (perda !== null ? ` Perda: <b>${fmtBRL(perda)}</b>${repor ? ` (de ${fmtBRL(d.custo)} do kit)` : ' (kit inteiro)'}` : '');
+        }
+        document.getElementById('av-resumo').innerHTML = txt;
+    }
+
+    async function devSalvarAvaria() {
+        const d = DEV_AVARIA_ATUAL;
+        if (!d)
+            return;
+        const kit = +document.getElementById('av-kit').value;
+        const qtd = +document.getElementById('av-qtd').value || 1;
+        const av = +document.getElementById('av-avariadas').value;
+        const repor = document.getElementById('av-dest-repor').checked;
+        const previsao = document.getElementById('av-previsao').value;
+        if (!kit || !av) {
+            showToast('Preencha as peças', 'Peças por kit e quantas vieram avariadas', 'error');
+            return;
+        }
+        if (av > kit * qtd) {
+            showToast('Confira os números', 'Mais peças avariadas do que o total devolvido', 'error');
+            return;
+        }
+        if (repor && !previsao) {
+            showToast('Informe a previsão', 'Quando o kit volta ao estoque de venda', 'error');
+            return;
+        }
+        const btn = document.getElementById('av-btn');
+        btn.disabled = true;
+        try {
+            const hoje = new Date().toISOString().slice(0, 10);
+            const destino = repor ? 'Repor peças e voltar ao estoque' : 'Perda total';
+            const r = await notionUpdate(d.pageId, {
+                'Conferência': {
+                    select: {
+                        name: 'Voltou avariado'
+                    }
+                },
+                'Conferido em': {
+                    date: {
+                        start: hoje
+                    }
+                },
+                'Peças no Kit': {
+                    number: kit
+                },
+                'Peças Avariadas': {
+                    number: av
+                },
+                'Qtd': {
+                    number: qtd
+                },
+                'Destino Avaria': {
+                    select: {
+                        name: destino
+                    }
+                },
+                'Previsão Retorno Estoque': {
+                    date: repor ? {
+                        start: previsao
+                    } : null
+                },
+            });
+            if (r?.object === 'error')
+                throw new Error(r.message);
+            Object.assign(d, {
+                conferencia: 'Voltou avariado',
+                conferidoEm: hoje,
+                pecasKit: kit,
+                pecasAvariadas: av,
+                qtd,
+                destinoAvaria: destino,
+                previsaoEstoque: repor ? previsao : ''
+            });
+            showToast('Avaria registrada', `${av} de ${kit * qtd} peças · ${repor ? 'volta ao estoque ' + fmtData(previsao) : 'perda total'}`, 'success');
+            document.getElementById('modal-avaria').classList.remove('open');
+            DEV_AVARIA_ATUAL = null;
+            devRender();
+        } catch (e) {
+            showToast('Erro ao salvar', e.message, 'error');
+        } finally {
+            btn.disabled = false;
+        }
+    }
+
+    async function devMarcarRetorno(id) {
+        const mes = document.getElementById('dev-mes-sel').value;
+        const d = (DEV.porMes[mes] || []).find(x => x.id === id);
+        if (!d)
+            return;
+        const hoje = new Date().toISOString().slice(0, 10);
+        try {
+            const r = await notionUpdate(d.pageId, {
+                'Retornou ao Estoque em': {
+                    date: {
+                        start: hoje
+                    }
+                }
+            });
+            if (r?.object === 'error')
+                throw new Error(r.message);
+            d.retornouEstoque = hoje;
+            showToast('Voltou ao estoque', `${d.sku} disponível para venda`, 'success');
+            devRender();
+        } catch (e) {
+            showToast('Erro ao salvar', e.message, 'error');
+        }
+    }
+
+    function devInfoAvaria(d) {
+        if (d.conferencia !== 'Voltou avariado')
+            return '';
+        const hoje = new Date().toISOString().slice(0, 10);
+        let h = `<div class="av-info">`;
+        if (d.pecasAvariadas !== null && d.pecasKit)
+            h += `💥 ${d.pecasAvariadas} de ${d.pecasKit * (d.qtd || 1)} peças`;
+        else
+            h += `<span style="color:var(--yellow)">peças não informadas</span>`;
+        if (d.destinoAvaria === 'Perda total')
+            h += ` · perda total`;
+        else if (d.retornouEstoque)
+            h += ` · <span style="color:var(--green)">✓ no estoque ${fmtData(d.retornouEstoque)}</span>`;
+        else if (d.destinoAvaria) {
+            const atrasado = d.previsaoEstoque && d.previsaoEstoque < hoje;
+            h += ` · <span style="color:${atrasado ? 'var(--red)' : 'var(--text2)'}">repor até ${fmtData(d.previsaoEstoque)}${atrasado ? ' (atrasado)' : ''}</span>`
+            + `<br><button class="av-btn-ok" onclick="devMarcarRetorno('${d.id}')">✓ Voltou ao estoque</button>`;
+        }
+        return h + ` <a class="av-edit" onclick="devAbrirAvaria((DEV.porMes[document.getElementById('dev-mes-sel').value]||[]).find(x=>x.id==='${d.id}'))">editar</a></div>`;
+    }
+
+    function devAguardando(d) {
+        return d.conferencia === 'Voltou avariado' && d.destinoAvaria === 'Repor peças e voltar ao estoque' && !d.retornouEstoque;
     }
 
     function exportarDevolWpp() {
