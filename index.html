@@ -2361,7 +2361,7 @@
                 <div class="sidebar-logo" style="flex-direction:column;align-items:flex-start;gap:2px;padding:0 8px;margin-bottom:2rem">
                     <div style="font-size:19px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);line-height:1">Grupo MC</div>
                     <div style="font-size:11px;font-weight:400;color:var(--text3);letter-spacing:0.3px">Financeiro</div>
-                    <div style="font-size:10px;color:var(--text3);opacity:.7">versão 16/11 · equipe</div>
+                    <div style="font-size:10px;color:var(--text3);opacity:.7">versão 16/11 · promo por loja</div>
                 </div>
 
                 <div class="nav-section-title">Menu</div>
@@ -7752,14 +7752,12 @@
             secao: '⚡ Promoção relâmpago',
             itens: [
             {
-                id: 'promoShopee',
-                tipo: 'num',
-                label: 'Promoções criadas — Shopee'
-            },
-            {
-                id: 'promoTiktok',
-                tipo: 'num',
-                label: 'Promoções criadas — TikTok'
+                id: 'promoLojas',
+                tipo: 'lojas',
+                grupos: {
+                    Shopee: ['Mundo das Compras', 'Leão Home', 'Apollo Home', 'Achados do Lar', 'Casa 777'],
+                    TikTok: ['Mundo das Compras', 'Leão Home', 'Casa 777'],
+                }
             },
             ]
         },
@@ -7930,7 +7928,7 @@
         const len = k => (d[k] || []).filter(x => Object.values(x).some(v => String(v || '').trim())).length;
         if (nome === 'Warley')
             return {
-                'Promoções Relâmpago': n(d.promoShopee) + n(d.promoTiktok),
+                'Promoções Relâmpago': Object.keys(d.promoLojas || {}).length + n(d.promoShopee) + n(d.promoTiktok),
                 'Descontos Conferidos': (d.descShopee ? 1 : 0) + (d.descTiktok ? 1 : 0),
                 'Chats Respondidos': Object.keys(d.chats || {}).length,
                 'Afiliados Contatados': len('afiliados'),
@@ -7958,6 +7956,10 @@
         'Descontos Conferidos': {
             max: 2,
             rotulo: 'de 2 plataformas'
+        },
+        'Promoções Relâmpago': {
+            max: 8,
+            rotulo: 'de 8 lojas'
         },
     };
 
@@ -8083,6 +8085,10 @@
             `<label class="prod-opcao ${v === o ? 'on' : ''}"><input type="radio" name="pf-${it.id}" ${v === o ? 'checked' : ''} onchange="PROD.form['${it.id}']='${o}';this.closest('.prod-opcoes').querySelectorAll('.prod-opcao').forEach(e=>e.classList.remove('on'));this.parentElement.classList.add('on')"> ${o}</label>`).join('')}</div></div>`;
         if (it.tipo === 'texto')
             return `<div class="prod-linha"><label>${it.label}</label><input type="text" class="prod-input" value="${prodEscapar(v)}" oninput="PROD.form['${it.id}']=this.value"></div>`;
+        if (it.tipo === 'lojas') {
+            const c = f[it.id] || {};
+            return `<table class="prod-chats">${Object.entries(it.grupos).map(([p, lojas]) => `<tr><td>${p}</td><td style="text-align:left">${lojas.map(l => {const k = `${p}|${l}`;return `<label class="prod-chat ${c[k] ? 'on' : ''}" style="margin:2px"><input type="checkbox" ${c[k] ? 'checked' : ''} onchange="prodMarcar('${it.id}','${k}', this, '${l}')"><span>${c[k] ? '✓ ' + l : l}</span></label>`;}).join('')}</td></tr>`).join('')}</table><div style="font-size:11px;color:var(--text3);margin-top:6px">Toque na loja quando a promoção relâmpago dela estiver criada.</div>`;
+        }
         if (it.tipo === 'chats') {
             const c = f.chats || {};
             return `<table class="prod-chats"><thead><tr><th></th>${CHAT_HORARIOS.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${['Shopee', 'TikTok'].map(p => `<tr><td>${p}</td>${CHAT_HORARIOS.map(h => {const k = `${p}|${h}`;return `<td><label class="prod-chat ${c[k] ? 'on' : ''}"><input type="checkbox" ${c[k] ? 'checked' : ''} onchange="prodChat('${k}', this)"><span>${c[k] ? '✓ ' + c[k] : 'responder'}</span></label></td>`;}).join('')}</tr>`).join('')}</tbody></table><div style="font-size:11px;color:var(--text3);margin-top:6px">Marque quando terminar cada rodada. O horário em que marcou fica registrado.</div>`;
@@ -8134,6 +8140,16 @@
         const it = prodItemDef(id);
         document.getElementById('pl-' + id).innerHTML = PROD.form[id].map((x, j) => prodListaLinha(it, x, j)).join('');
     }
+    function prodMarcar(id, k, el, rotulo) {
+        PROD.form[id] = PROD.form[id] || {};
+        if (el.checked)
+            PROD.form[id][k] = new Date().toTimeString().slice(0, 5);
+        else
+            delete PROD.form[id][k];
+        el.parentElement.classList.toggle('on', el.checked);
+        el.nextElementSibling.textContent = el.checked ? '✓ ' + rotulo : rotulo;
+    }
+
     function prodChat(k, el) {
         PROD.form.chats = PROD.form.chats || {};
         if (el.checked)
@@ -8456,6 +8472,8 @@
                     h += `<div>${v ? '✅' : '❌'} ${it.label}</div>`;
                 else if (it.tipo === 'select' || it.tipo === 'texto')
                     h += `<div>${it.label}: <b>${prodEscapar(v || '—')}</b></div>`;
+                else if (it.tipo === 'lojas')
+                    h += Object.entries(it.grupos).map(([p, lojas]) => `<div><b>${p}:</b> ${lojas.map(l => (v || {})[p + '|' + l] ? `✅ ${l} <small style="color:var(--text3)">${v[p + '|' + l]}</small>` : `❌ ${l}`).join(' · ')}</div>`).join('') + ((d.promoShopee || d.promoTiktok) ? `<div style="color:var(--text3)">(registro antigo: Shopee ${d.promoShopee || 0}, TikTok ${d.promoTiktok || 0})</div>` : '');
                 else if (it.tipo === 'chats')
                     h += `<table class="prod-chats"><thead><tr><th></th>${CHAT_HORARIOS.map(x => `<th>${x}</th>`).join('')}</tr></thead><tbody>${['Shopee', 'TikTok'].map(p => `<tr><td>${p}</td>${CHAT_HORARIOS.map(x => `<td>${(v || {})[p + '|' + x] ? '✅ ' + v[p + '|' + x] : '❌'}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
                 else if (it.tipo === 'lista')
