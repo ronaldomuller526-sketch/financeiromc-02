@@ -1724,6 +1724,17 @@
         width: auto;
     }
 
+    .plat-badge {
+        display: inline-block;
+        padding: 1px 7px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: .02em;
+        vertical-align: middle;
+    }
+
     .dev-filtros {
         display: flex;
         flex-wrap: wrap;
@@ -1783,6 +1794,452 @@
         }
 
         #page-resultado .data-table, #page-devolucoes .data-table {
+            display: table;
+        }
+    }/* PRODUTIVIDADE E TAREFAS */
+
+    .prod-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .prod-sec {
+        margin: 0;
+    }
+
+    .prod-linha {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 6px 0;
+        flex-wrap: wrap;
+    }
+
+    .prod-linha label {
+        font-size: 13px;
+        color: var(--text);
+    }
+
+    .prod-input {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xs);
+        padding: 8px 10px;
+        font-family: var(--font);
+        font-size: 13px;
+        color: var(--text);
+        outline: none;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .prod-input:focus {
+        border-color: var(--accent);
+    }
+
+    .prod-num {
+        width: 110px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .prod-check {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-size: 13px;
+        padding: 6px 0;
+        cursor: pointer;
+    }
+
+    .prod-check input {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--green);
+    }
+
+    .prod-opcoes {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .prod-opcao {
+        padding: 7px 12px;
+        border: 1px solid var(--border2);
+        border-radius: 20px;
+        font-size: 12px;
+        cursor: pointer;
+        color: var(--text2);
+    }
+
+    .prod-opcao input {
+        display: none;
+    }
+
+    .prod-opcao.on {
+        background: var(--blue-bg);
+        border-color: var(--accent);
+        color: var(--accent);
+        font-weight: 600;
+    }
+
+    .prod-chats {
+        border-collapse: collapse;
+    }
+
+    .prod-chats th {
+        font-size: 11px;
+        color: var(--text3);
+        font-weight: 500;
+        padding: 4px 8px;
+        text-align: center;
+    }
+
+    .prod-chats td {
+        padding: 4px 6px;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .prod-chats td:first-child {
+        text-align: left;
+        font-weight: 500;
+        padding-right: 14px;
+    }
+
+    .prod-chat {
+        display: inline-block;
+        padding: 7px 12px;
+        border: 1px dashed var(--border2);
+        border-radius: var(--radius-xs);
+        cursor: pointer;
+        font-size: 12px;
+        color: var(--text3);
+        min-width: 92px;
+    }
+
+    .prod-chat input {
+        display: none;
+    }
+
+    .prod-chat.on {
+        border: 1px solid var(--green);
+        background: rgba(34, 197, 94, .1);
+        color: var(--green);
+        font-weight: 600;
+    }
+
+    .prod-lista-linha {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .prod-idx {
+        font-size: 11px;
+        color: var(--text3);
+        width: 16px;
+        text-align: right;
+        flex-shrink: 0;
+    }
+
+    .prod-x {
+        background: none;
+        border: none;
+        color: var(--text3);
+        font-size: 18px;
+        cursor: pointer;
+        padding: 0 4px;
+        flex-shrink: 0;
+    }
+
+    .prod-x:hover {
+        color: var(--red);
+    }
+
+    .prod-salvar-bar {
+        position: sticky;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: 0 -4px 16px rgba(0, 0, 0, .06);
+        z-index: 5;
+        flex-wrap: wrap;
+    }
+
+    .prod-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .prod-card {
+        margin: 0;
+    }
+
+    .prod-pill {
+        font-size: 11px;
+        padding: 3px 9px;
+        border-radius: 12px;
+    }
+
+    .prod-pill.bom {
+        background: rgba(34, 197, 94, .12);
+        color: var(--green);
+    }
+
+    .prod-pill.ruim {
+        background: rgba(239, 68, 68, .1);
+        color: var(--red);
+    }
+
+    .prod-met {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 7px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+    }
+
+    .prod-met:last-of-type {
+        border-bottom: none;
+    }
+
+    .prod-met > span:last-child {
+        text-align: right;
+    }
+
+    .prod-met small {
+        display: block;
+        font-size: 11px;
+        color: var(--text3);
+    }
+
+    .prod-av {
+        display: inline-block;
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 10px;
+        margin: 1px;
+    }
+
+    .prod-av-0 {
+        background: rgba(34, 197, 94, .12);
+        color: var(--green);
+    }
+
+    .prod-av-1 {
+        background: var(--blue-bg);
+        color: var(--accent);
+    }
+
+    .prod-av-2 {
+        background: rgba(239, 68, 68, .1);
+        color: var(--red);
+    }
+
+    .prod-det-sec {
+        margin-bottom: 1rem;
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .prod-det-tit {
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .tar-resumo {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .tar-res-card {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 10px 14px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 12px;
+        cursor: pointer;
+        min-width: 150px;
+    }
+
+    .tar-res-card b {
+        font-size: 14px;
+    }
+
+    .tar-kanban {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        align-items: start;
+    }
+
+    .tar-col {
+        background: var(--bg3);
+        border-radius: var(--radius);
+        padding: 12px;
+        min-height: 200px;
+    }
+
+    .tar-col-tit {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        color: var(--text2);
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .tar-col-tit span {
+        background: var(--bg2);
+        border-radius: 10px;
+        padding: 0 8px;
+        font-weight: 500;
+    }
+
+    .tar-card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    .tar-card.atrasada {
+        border-left: 3px solid var(--red);
+    }
+
+    .tar-tit {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.35;
+    }
+
+    .tar-desc {
+        font-size: 12px;
+        color: var(--text2);
+        margin-top: 6px;
+        white-space: pre-wrap;
+    }
+
+    .tar-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 11px;
+        color: var(--text2);
+        margin-top: 8px;
+    }
+
+    .tar-prio {
+        font-size: 10px;
+        padding: 2px 7px;
+        border-radius: 10px;
+        flex-shrink: 0;
+        font-weight: 600;
+    }
+
+    .tar-prio-a {
+        background: rgba(239, 68, 68, .12);
+        color: var(--red);
+    }
+
+    .tar-prio-m {
+        background: rgba(234, 179, 8, .15);
+        color: #a16207;
+    }
+
+    .tar-prio-b {
+        background: var(--bg3);
+        color: var(--text3);
+    }
+
+    .tar-acoes {
+        display: flex;
+        justify-content: space-between;
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .tar-acoes button {
+        background: none;
+        border: 1px solid var(--border2);
+        border-radius: var(--radius-xs);
+        padding: 4px 9px;
+        font-size: 11px;
+        cursor: pointer;
+        color: var(--text2);
+        font-family: var(--font);
+    }
+
+    .tar-acoes .tar-next {
+        border-color: var(--accent);
+        color: var(--accent);
+        font-weight: 600;
+    }
+
+    .tar-vazio {
+        font-size: 12px;
+        color: var(--text3);
+        text-align: center;
+        padding: 1.5rem 0;
+    }
+
+    .user-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: var(--text2);
+        padding: 8px 10px;
+        margin-bottom: 8px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+    }
+
+    .user-box button {
+        background: none;
+        border: none;
+        color: var(--accent);
+        cursor: pointer;
+        font-size: 12px;
+        font-family: var(--font);
+    }
+
+    @media (max-width: 768px) {
+        .tar-kanban {
+            grid-template-columns: 1fr;
+        }
+
+        .prod-lista-linha {
+            flex-wrap: wrap;
+        }
+
+        .prod-lista-linha .prod-input {
+            flex: 1 1 100% !important;
+        }
+
+        #page-produtividade .data-table {
             display: table;
         }
     }
@@ -1904,6 +2361,7 @@
                 <div class="sidebar-logo" style="flex-direction:column;align-items:flex-start;gap:2px;padding:0 8px;margin-bottom:2rem">
                     <div style="font-size:19px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);line-height:1">Grupo MC</div>
                     <div style="font-size:11px;font-weight:400;color:var(--text3);letter-spacing:0.3px">Financeiro</div>
+                    <div style="font-size:10px;color:var(--text3);opacity:.7">versão 16/11 · equipe</div>
                 </div>
 
                 <div class="nav-section-title">Menu</div>
@@ -1994,6 +2452,23 @@
                         <polyline points="9 12 11 14 15 10"/>
                     </svg>
                     <span>Conferência</span>
+                </button>
+
+                <button class="nav-item" onclick="navTo('produtividade', this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 20V10"/>
+                        <path d="M18 20V4"/>
+                        <path d="M6 20v-4"/>
+                    </svg>
+                    <span>Produtividade</span>
+                </button>
+
+                <button class="nav-item" onclick="navTo('tarefas', this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 11l3 3L22 4"/>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                    <span>Tarefas</span>
                 </button>
 
                 <div class="sidebar-bottom">
@@ -2838,6 +3313,9 @@
                                         <option value="todas">Todas (sem canceladas)</option>
                                         <option value="canceladas">Canceladas</option>
                                     </select>
+                                    <select id="dev-lista-plat" onchange="devRender()" class="res-select">
+                                        <option value="todas">Todas as plataformas</option>
+                                    </select>
                                     <select id="dev-lista-loja" onchange="devRender()" class="res-select">
                                         <option value="todas">Todas as lojas</option>
                                     </select>
@@ -2860,6 +3338,38 @@
                             <div class="card-body res-scroll" style="max-height:none" id="dev-lista"></div>
                         </div>
                     </div>
+                </div>
+
+                <!-- PRODUTIVIDADE -->
+                <div class="page" id="page-produtividade">
+                    <div class="page-header">
+                        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+                            <div>
+                                <h1>Produtividade</h1>
+                                <p id="prod-subtitle">Relatório do dia</p>
+                            </div>
+                            <div id="prod-topo" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"></div>
+                        </div>
+                    </div>
+                    <div id="prod-conteudo"></div>
+                </div>
+
+                <!-- TAREFAS -->
+                <div class="page" id="page-tarefas">
+                    <div class="page-header">
+                        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+                            <div>
+                                <h1>Tarefas</h1>
+                                <p id="tar-subtitle">Solicitações e pendências da equipe</p>
+                            </div>
+                            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                                <select id="tar-resp-sel" onchange="tarRender()" class="res-select"></select>
+                                <button class="btn-save" id="tar-btn-nova" style="width:auto;padding:9px 16px;margin:0" onclick="tarAbrirModal()">+ Nova tarefa</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tar-resumo" style="margin-bottom:1.25rem"></div>
+                    <div class="tar-kanban" id="tar-kanban"></div>
                 </div>
 
             </main>
@@ -2907,6 +3417,56 @@
             <button class="btn-save" id="av-btn" onclick="devSalvarAvaria()">Salvar avaria</button>
         </div>
     </div>
+
+    <!-- MODAL NOVA TAREFA -->
+    <div class="modal-overlay" id="modal-tarefa">
+        <div class="modal" style="max-width:480px;width:95%">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
+                <h3 id="tar-modal-titulo">Nova tarefa</h3>
+                <button onclick="tarFecharModal()" style="background:none;border:none;color:var(--text2);cursor:pointer;font-size:20px;padding:4px">×</button>
+            </div>
+            <div class="fgroup">
+                <label>O que precisa ser feito</label>
+                <input type="text" id="tar-titulo" placeholder="Ex: Subir 5 vídeos da linha Duralex na Leão Home TikTok">
+            </div>
+            <div class="fgroup">
+                <label>Detalhes</label>
+                <textarea id="tar-desc" rows="3" placeholder="Contexto, links, como fazer..."></textarea>
+            </div>
+            <div class="fgroup-row">
+                <div class="fgroup">
+                    <label>Responsável</label>
+                    <select id="tar-resp"></select>
+                </div>
+                <div class="fgroup">
+                    <label>Prazo</label>
+                    <input type="date" id="tar-prazo">
+                </div>
+            </div>
+            <div class="fgroup">
+                <label>Prioridade</label>
+                <select id="tar-prio">
+                    <option>Alta</option>
+                    <option selected>Média</option>
+                    <option>Baixa</option>
+                </select>
+            </div>
+            <button class="btn-save" id="tar-btn-salvar" onclick="tarSalvar()">Criar tarefa</button>
+        </div>
+    </div>
+
+    <!-- MODAL DETALHE DO RELATÓRIO -->
+    <div class="modal-overlay" id="modal-prod-det">
+        <div class="modal" style="max-width:640px;width:95%;max-height:85vh;overflow:auto">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
+                <h3 id="prod-det-titulo">Relatório</h3>
+                <button onclick="document.getElementById('modal-prod-det').classList.remove('open')" style="background:none;border:none;color:var(--text2);cursor:pointer;font-size:20px;padding:4px">×</button>
+            </div>
+            <div id="prod-det-corpo"></div>
+        </div>
+    </div>
+
+    <datalist id="lista-contas"></datalist>
 
     <!-- MODAL DESPESA REALIZADA -->
     <div class="modal-overlay" id="modal-despesa">
@@ -3083,7 +3643,9 @@
         dbEmpresas: 'b9137defc34b4bcca8f9b8f2ebc126fd',
         dbMovimentacoes: 'd6dd4fd4-e9d9-45fb-9226-25462939b6ae',
         dbFechVendas: '6fa01a8166d04822bc1c51f5ea2bac30',
-        dbDevolucoes: '23ab5a9c09ed4e1c9a532cdd5aad3ebe'
+        dbDevolucoes: '23ab5a9c09ed4e1c9a532cdd5aad3ebe',
+        dbProdutividade: '41a74c880981811082eccba2dad57093',
+        dbTarefas: '41a74c880981812cab24e6a38455796d'
     };
 
     let DADOS = {
@@ -3107,7 +3669,7 @@
         const role = sessionStorage.getItem('gmc-role');
         if (role === 'funcionario') {
             // Esconder abas restritas
-            const abasRestritas = ['comparar', 'empresas', 'fechamento', 'saldo', 'resultado'];
+            const abasRestritas = ['comparar', 'empresas', 'fechamento', 'saldo', 'resultado', 'produtividade', 'tarefas'];
             abasRestritas.forEach(aba => {
                 const btn = document.querySelector(`[onclick="navTo('${aba}', this)"]`);
                 if (btn)
@@ -3115,13 +3677,23 @@
             });
         }
 
-        if (role === 'devolucoes') {
-            // Só a aba Devoluções: esconde todo o resto e não carrega boletos/empresas
+        // Nome de quem está logado + botão sair
+        const usuario = sessionStorage.getItem('gmc-user') || (role === 'admin' ? 'Ronaldo (admin)' : role === 'funcionario' ? 'Financeiro' : '');
+        if (usuario && !document.getElementById('user-box')) {
+            document.querySelector('.sidebar-bottom').insertAdjacentHTML('afterbegin', `<div class="user-box" id="user-box"><span>👤 ${usuario}</span><button onclick="sairApp()">Sair</button></div>`);
+        }
+
+        if (role === 'equipe') {
+            // Login individual da equipe: só as abas da função dele
+            const abas = (EQUIPE_ACESSO[sessionStorage.getItem('gmc-user')] || {}).abas || [];
             document.querySelectorAll('.sidebar .nav-item').forEach(b => {
-                if (!["navTo('devolucoes', this)", "navTo('conferencia', this)"].includes(b.getAttribute('onclick')))
+                const m = (b.getAttribute('onclick') || '').match(/navTo\('([^']+)'/);
+                if (!m || !abas.includes(m[1]))
                     b.style.display = 'none';
             });
-            navTo('devolucoes', document.querySelector(`[onclick="navTo('devolucoes', this)"]`));
+            const inicial = abas[0];
+            if (inicial)
+                navTo(inicial, document.querySelector(`[onclick="navTo('${inicial}', this)"]`));
             return;
         }
 
@@ -3159,6 +3731,10 @@
             iniciarDevolucoes();
         if (page === 'conferencia')
             iniciarDevolucoes();
+        if (page === 'produtividade')
+            iniciarProdutividade();
+        if (page === 'tarefas')
+            iniciarTarefas();
     }
 
     // ─── NOTION API ───────────────────────────────────────────
@@ -3217,6 +3793,19 @@
             const err = await r.json();
             throw new Error(err.message || 'Erro ao salvar');
         }
+        return r.json();
+    }
+
+    async function notionArchive(pageId) {
+        const r = await fetch(`/api/notion?path=pages/${pageId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                archived: true
+            })
+        });
         return r.json();
     }
 
@@ -6004,9 +6593,7 @@
                 }
             });
             for (const p of antigos)
-                await notionUpdate(p.id, {
-                    archived: true
-                });
+                await notionArchive(p.id);
 
             const txt = v => ({
                 rich_text: [{
@@ -6608,12 +7195,47 @@
         };
     }
 
+    // Mesmo nome de loja existe em plataformas diferentes (ex.: Leão Home na Shopee e no TikTok)
+    function devPlat(p) {
+        const x = String(p || '').toLowerCase();
+        if (x.includes('tiktok'))
+            return 'TikTok';
+        if (x.includes('shopee'))
+            return 'Shopee';
+        if (x.includes('shein'))
+            return 'Shein';
+        if (x.includes('mercado'))
+            return 'Mercado Livre';
+        return p || '—';
+    }
+    function devLojaKey(d) {
+        return `${d.loja} · ${devPlat(d.plataforma)}`;
+    }
+    function devChaves(lista) {
+        lista.forEach(d => d.lojaKey = devLojaKey(d));
+        return lista;
+    }
+    function devPlatBadge(p) {
+        const n = devPlat(p);
+        const cor = {
+            Shopee: '#ee4d2d',
+            TikTok: '#111',
+            Shein: '#555',
+            'Mercado Livre': '#d4a800'
+        }[n] || 'var(--text3)';
+        return `<span class="plat-badge" style="background:${cor}">${n}</span>`;
+    }
+    function devLojaHtml(key) {
+        const [loja, plat] = key.split(' · ');
+        return `${loja} ${devPlatBadge(plat)}`;
+    }
+
     function devFiltradas() {
         const mes = document.getElementById('dev-mes-sel').value;
         const loja = document.getElementById('dev-loja-sel').value;
-        let l = DEV.porMes[mes] || [];
+        let l = devChaves(DEV.porMes[mes] || []);
         if (loja !== 'todas')
-            l = l.filter(d => d.loja === loja);
+            l = l.filter(d => d.lojaKey === loja);
         return l;
     }
 
@@ -6635,7 +7257,7 @@
         // lojas no filtro
         const selLoja = document.getElementById('dev-loja-sel');
         const atual = selLoja.value;
-        const lojas = [...new Set(todas.map(d => d.loja))].sort();
+        const lojas = [...new Set(devChaves(todas).map(d => d.lojaKey))].sort();
         selLoja.innerHTML = '<option value="todas">Todas as lojas</option>' + lojas.map(l => `<option ${l === atual ? 'selected' : ''}>${l}</option>`).join('');
 
         devRenderConfPage();
@@ -6683,8 +7305,8 @@
         const extra = x => `${fmtBRL(x.valor)} reembolsado · ${fmtBRL(x.perda)} de perda`;
         document.getElementById('dev-origem').innerHTML = barras(agrupar('origem').map(([k, x]) => [k, x.qtd, extra(x)]), v => `${v}`, validas.length);
         document.getElementById('dev-motivo').innerHTML = barras(agrupar('motivo').map(([k, x]) => [k, x.qtd, extra(x)]), v => `${v}`, validas.length);
-        document.getElementById('dev-loja').innerHTML = barras(agrupar('loja').map(([k, x]) => {
-            const ped=RES.porMes[mes]?.lojas?.filter(l => l.loja === k).reduce((s, l) => s + l.pedidos, 0);
+        document.getElementById('dev-loja').innerHTML = barras(agrupar('lojaKey').map(([k, x]) => {
+            const ped=RES.porMes[mes]?.lojas?.filter(l => devLojaKey(l) === k).reduce((s, l) => s + l.pedidos, 0);
             return [k, x.qtd, `${extra(x)}${ped ? ` · ${pct(x.qtd, ped)} dos pedidos da loja` : ''}`];
         }), v => `${v}`, validas.length);
         document.getElementById('dev-tipo').innerHTML = barras(agrupar('tipo').map(([k, x]) => [k, x.qtd, `${extra(x)}${k === 'Só reembolso' ? ' · o cliente fica com o produto' : ' · o produto volta e precisa ser conferido'}`]), v => `${v}`, validas.length)
@@ -6705,7 +7327,7 @@
             x.qtd++;
             x.valor += d.valor;
             x.perda += p.valor;
-            x.lojas.add(d.loja);
+            x.lojas.add(d.lojaKey);
             x.motivos[d.motivo] = (x.motivos[d.motivo] || 0) + 1;
         });
         const skus = Object.values(porSku).sort((a, b) => b.qtd - a.qtd || b.valor - a.valor).slice(0, 40);
@@ -6717,7 +7339,7 @@
     function devRenderConfPage() {
         const mes = document.getElementById('dev-mes-sel').value;
         document.getElementById('conf-mes-sel').value = mes;
-        const lista = DEV.porMes[mes] || [];
+        const lista = devChaves(DEV.porMes[mes] || []);
         const validas = lista.filter(d => d.situacao !== 'Cancelada');
         const aConferir = validas.filter(d => devPerda(d).pendente);
         document.getElementById('conf-vazio').style.display = lista.length ? 'none' : 'block';
@@ -6737,9 +7359,14 @@
         // Filtros da lista: loja, período e busca
         const fLoja = document.getElementById('dev-lista-loja');
         const lojaAtualLista = fLoja.value;
-        fLoja.innerHTML = '<option value="todas">Todas as lojas</option>' + [...new Set(lista.map(d => d.loja))].sort().map(l => `<option ${l === lojaAtualLista ? 'selected' : ''}>${l}</option>`).join('');
+        fLoja.innerHTML = '<option value="todas">Todas as lojas</option>' + [...new Set(lista.map(d => d.lojaKey))].sort().map(l => `<option ${l === lojaAtualLista ? 'selected' : ''}>${l}</option>`).join('');
         if (fLoja.value !== 'todas')
-            itens = itens.filter(d => d.loja === fLoja.value);
+            itens = itens.filter(d => d.lojaKey === fLoja.value);
+        const fPlat = document.getElementById('dev-lista-plat');
+        const platAtual = fPlat.value;
+        fPlat.innerHTML = '<option value="todas">Todas as plataformas</option>' + [...new Set(lista.map(d => devPlat(d.plataforma)))].sort().map(p => `<option ${p === platAtual ? 'selected' : ''}>${p}</option>`).join('');
+        if (fPlat.value !== 'todas')
+            itens = itens.filter(d => devPlat(d.plataforma) === fPlat.value);
         const campo = document.getElementById('dev-data-campo').value;
         const de = document.getElementById('dev-data-de').value;
         const ate = document.getElementById('dev-data-ate').value;
@@ -6755,7 +7382,7 @@
         document.getElementById('dev-lista').innerHTML = itens.length ? `<table class="data-table res-table"><thead><tr><th>Conferência</th><th>Data</th><th>Loja</th><th>SKU / produto</th><th>Motivo</th><th>Tipo</th><th>Logística</th><th>Reembolso</th><th>Custo</th></tr></thead><tbody>${itens.map(d => `<tr>
                 <td>${d.situacao === 'Cancelada' ? '<span class="badge badge-gray">Cancelada</span>' : `<select class="dev-conf" onchange="devSalvarConferencia('${d.id}', this)" ${d.pageId ? '' : 'disabled title="Ainda não salvo no Notion"'}>${DEV_CONFERENCIA.map(c => `<option ${c === (d.conferencia || 'A conferir') ? 'selected' : ''}>${c}</option>`).join('')}</select>${devInfoAvaria(d)}`}</td>
                 <td style="font-size:12px">${fmtData(d.data)}<div class="td-empresa" style="font-family:var(--mono)">${d.pedido}</div></td>
-                <td style="font-size:12px">${d.loja}<div class="td-empresa">${d.plataforma}</div></td>
+                <td style="font-size:12px;white-space:nowrap">${d.loja}<div style="margin-top:3px">${devPlatBadge(d.plataforma)}</div></td>
                 <td style="max-width:240px;overflow:hidden;text-overflow:ellipsis"><span style="font-family:var(--mono);font-size:12px">${d.sku}</span><div class="td-empresa" title="${d.produto.replace(/"/g, '')}">${d.produto}</div></td>
                 <td style="font-size:12px;white-space:normal;min-width:180px">${d.motivo}<div class="td-empresa" style="white-space:normal">${d.comentario ? '“' + d.comentario.slice(0, 140) + (d.comentario.length > 140 ? '…' : '') + '”' : ''}</div></td>
                 <td style="font-size:11px">${d.tipo}</td>
@@ -6820,12 +7447,12 @@
         const resumoAvaria = avariados.length ? `<div style="font-size:12px;color:var(--text2);margin-top:10px">💥 Avarias: ${avariados.length} devoluções · ${pecasQuebradas} peças quebradas · ${avariados.filter(d => d.destinoAvaria === 'Perda total').length} perda total · ${avariados.filter(d => d.retornouEstoque).length} já voltaram ao estoque</div>` : '';
 
         // Por loja
-        const lojas = [...new Set(fisicas.map(d => d.loja))].sort();
+        const lojas = [...new Set(fisicas.map(d => d.lojaKey))].sort();
         const linhas = lojas.map(loja => {
-            const f = fisicas.filter(d => d.loja === loja);
+            const f = fisicas.filter(d => d.lojaKey === loja);
             const c = k => f.filter(d => d.conferencia === k).length;
             const pend = f.filter(d => !d.conferencia || d.conferencia === 'A conferir').length;
-            return `<tr><td style="font-weight:500">${loja}</td><td>${f.length}</td>
+            return `<tr><td style="font-weight:500">${devLojaHtml(loja)}</td><td>${f.length}</td>
                 <td style="color:${pend ? 'var(--yellow)' : 'var(--green)'};font-weight:600">${pend ? pend : '✓'}</td>
                 <td>${c('Voltou bom - estoque')}</td><td>${c('Voltou avariado')}</td><td>${c('Item trocado/errado')}</td><td>${c('Não voltou')}</td>
                 <td>${pct(f.length - pend, f.length)}</td></tr>`;
@@ -6849,6 +7476,7 @@
     function devLimparFiltros() {
         ['dev-data-de', 'dev-data-ate', 'dev-busca'].forEach(id => document.getElementById(id).value = '');
         document.getElementById('dev-lista-loja').value = 'todas';
+        document.getElementById('dev-lista-plat').value = 'todas';
         devRender();
     }
 
@@ -6915,7 +7543,7 @@
         DEV_AVARIA_ATUAL = d;
         const kit = d.pecasKit || devPecasKit(d.sku);
         const em7 = new Date(Date.now() + 7 * 864e5).toISOString().slice(0, 10);
-        document.getElementById('av-produto').innerHTML = `<b style="font-family:var(--mono)">${d.sku}</b><br><span style="color:var(--text3)">${d.produto}</span><br><span style="color:var(--text3)">Pedido ${d.pedido} · ${d.loja} · ${d.qtd} unidade(s) devolvida(s)</span>`;
+        document.getElementById('av-produto').innerHTML = `<b style="font-family:var(--mono)">${d.sku}</b><br><span style="color:var(--text3)">${d.produto}</span><br><span style="color:var(--text3)">Pedido ${d.pedido} · ${d.loja} ${devPlatBadge(d.plataforma)} · ${d.qtd} unidade(s) devolvida(s)</span>`;
         document.getElementById('av-kit').value = kit;
         document.getElementById('av-qtd').value = d.qtd || 1;
         document.getElementById('av-avariadas').value = d.pecasAvariadas ?? '';
@@ -7106,6 +7734,972 @@
         abrirWhatsappMsg(msg);
     }
 
+    // ─── EQUIPE: PRODUTIVIDADE E TAREFAS ──────────────────────
+    const EQUIPE_NOMES = ['Warley', 'Fabricio', 'Marcio'];
+    const CONTAS_LOJAS = (() => {
+        const lojas = ['Mundo das Compras', 'Leão Home', 'Apollo Home', 'Casa 777', 'Achados do Lar', 'Mundo das Compras BR'];
+        const out = [];
+        lojas.forEach(l => ['Shopee', 'TikTok', 'Shein'].forEach(p => out.push(`${l} · ${p}`)));
+        return out;
+    })();
+    const CHAT_HORARIOS = ['09:00', '11:30', '16:00'];
+    const AVALIACOES = ['Acima do esperado', 'Dentro do esperado', 'Abaixo do esperado'];
+
+    // Formulário de cada funcionário. tipo: num | check | chats | lista | select | texto
+    const FORM_EQUIPE = {
+        Warley: [
+        {
+            secao: '⚡ Promoção relâmpago',
+            itens: [
+            {
+                id: 'promoShopee',
+                tipo: 'num',
+                label: 'Promoções criadas — Shopee'
+            },
+            {
+                id: 'promoTiktok',
+                tipo: 'num',
+                label: 'Promoções criadas — TikTok'
+            },
+            ]
+        },
+        {
+            secao: '🏷️ Conferir descontos',
+            itens: [
+            {
+                id: 'descShopee',
+                tipo: 'check',
+                label: 'Descontos conferidos — Shopee'
+            },
+            {
+                id: 'descTiktok',
+                tipo: 'check',
+                label: 'Descontos conferidos — TikTok'
+            },
+            ]
+        },
+        {
+            secao: '💬 Respostas de chat',
+            itens: [{
+                id: 'chats',
+                tipo: 'chats'
+            }]
+        },
+        {
+            secao: '🤝 Contato com afiliados',
+            itens: [{
+                id: 'afiliados',
+                tipo: 'lista',
+                campos: [{
+                    k: 'desc',
+                    label: 'Quem, por onde e resultado',
+                    w: 3
+                }]
+            }]
+        },
+        {
+            secao: '✏️ Atualização de anúncios',
+            itens: [{
+                id: 'anuncios',
+                tipo: 'lista',
+                campos: [{
+                    k: 'sku',
+                    label: 'SKU'
+                }, {
+                    k: 'conta',
+                    label: 'Conta',
+                    contas: true
+                }, {
+                    k: 'desc',
+                    label: 'O que mudou'
+                }]
+            }]
+        },
+        {
+            secao: '🎬 Criação de vídeos',
+            itens: [{
+                id: 'videos',
+                tipo: 'lista',
+                campos: [{
+                    k: 'sku',
+                    label: 'SKU'
+                }, {
+                    k: 'conta',
+                    label: 'Conta',
+                    contas: true
+                }]
+            }]
+        },
+        ],
+        Fabricio: [
+        {
+            secao: '🖼️ Geração de imagens (criativos)',
+            itens: [{
+                id: 'imagens',
+                tipo: 'lista',
+                campos: [{
+                    k: 'sku',
+                    label: 'SKU'
+                }, {
+                    k: 'conta',
+                    label: 'Loja',
+                    contas: true
+                }, {
+                    k: 'qtd',
+                    label: 'Qtd. imagens',
+                    num: true
+                }]
+            }]
+        },
+        {
+            secao: '📢 Anúncios publicados',
+            itens: [{
+                id: 'publicados',
+                tipo: 'lista',
+                campos: [{
+                    k: 'sku',
+                    label: 'SKU'
+                }, {
+                    k: 'conta',
+                    label: 'Loja',
+                    contas: true
+                }]
+            }]
+        },
+        ],
+        Marcio: [
+        {
+            secao: '📦 Expedição',
+            itens: [{
+                id: 'expedidos',
+                tipo: 'num',
+                label: 'Pedidos expedidos'
+            }]
+        },
+        {
+            secao: '↩️ Devoluções e reembolsos',
+            itens: [{
+                id: 'devolucoes',
+                tipo: 'num',
+                label: 'Devoluções e reembolsos tratados',
+                autoDev: true
+            }]
+        },
+        {
+            secao: '👥 Avaliação da equipe',
+            itens: [
+            {
+                id: 'avaliacao',
+                tipo: 'select',
+                label: 'Como a equipe rendeu hoje',
+                opcoes: AVALIACOES
+            },
+            {
+                id: 'avaliacaoObs',
+                tipo: 'texto',
+                label: 'Comentário sobre a equipe (opcional)'
+            },
+            ]
+        },
+        {
+            secao: '🛠️ Problemas, pendências e melhorias',
+            itens: [{
+                id: 'pendencias',
+                tipo: 'lista',
+                campos: [{
+                    k: 'desc',
+                    label: 'Problema / pendência / melhoria',
+                    w: 2
+                }, {
+                    k: 'resp',
+                    label: 'Quem vai resolver'
+                }, {
+                    k: 'prazo',
+                    label: 'Até quando',
+                    data: true
+                }],
+                nota: 'Cada item vira uma tarefa na aba Tarefas, com responsável e prazo.'
+            }]
+        },
+        ],
+    };
+
+    // Números de cada relatório (colunas do Notion) — calculados a partir do formulário
+    function prodResumo(nome, d) {
+        const n = v => +v || 0;
+        const len = k => (d[k] || []).filter(x => Object.values(x).some(v => String(v || '').trim())).length;
+        if (nome === 'Warley')
+            return {
+                'Promoções Relâmpago': n(d.promoShopee) + n(d.promoTiktok),
+                'Descontos Conferidos': (d.descShopee ? 1 : 0) + (d.descTiktok ? 1 : 0),
+                'Chats Respondidos': Object.keys(d.chats || {}).length,
+                'Afiliados Contatados': len('afiliados'),
+                'Anúncios Atualizados': len('anuncios'),
+                'Vídeos Criados': len('videos'),
+            };
+        if (nome === 'Fabricio')
+            return {
+                'Imagens Geradas': (d.imagens || []).reduce((s, x) => s + n(x.qtd), 0),
+                'Anúncios Publicados': len('publicados'),
+            };
+        if (nome === 'Marcio')
+            return {
+                'Pedidos Expedidos': n(d.expedidos),
+                'Devoluções Tratadas': n(d.devolucoes),
+            };
+        return {};
+    }
+    // Metas de referência por dia (para o semáforo do painel) — ajuste à vontade
+    const PROD_REF = {
+        'Chats Respondidos': {
+            max: 6,
+            rotulo: 'de 6 rodadas'
+        },
+        'Descontos Conferidos': {
+            max: 2,
+            rotulo: 'de 2 plataformas'
+        },
+    };
+
+    const PROD = {
+        form: {},
+        pageId: null,
+        registros: [],
+        periodo: '7d'
+    };
+    const hojeISO = () => {
+        const d = new Date();
+        d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+        return d.toISOString().slice(0, 10);
+    };
+    const usuarioAtual = () => sessionStorage.getItem('gmc-user') || '';
+    const ehAdmin = () => sessionStorage.getItem('gmc-role') === 'admin';
+
+    function prodEscapar(s) {
+        return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function prodDePagina(p) {
+        const pr = p.properties;
+        let det = {};
+        try {
+            det = JSON.parse((pr['Detalhes']?.rich_text || []).map(t => t.plain_text).join('') || '{}');
+        } catch (e) {
+            det = {};
+        }
+        const nums = {};
+        Object.keys(pr).forEach(k => {
+            if (pr[k]?.type === 'number')
+                nums[k] = pr[k].number || 0;
+        });
+        return {
+            pageId: p.id,
+            data: pr['Data']?.date?.start || '',
+            nome: pr['Funcionário']?.select?.name || '',
+            avaliacao: pr['Avaliação Equipe']?.select?.name || '',
+            obs: (pr['Observação']?.rich_text || []).map(t => t.plain_text).join(''),
+            det,
+            nums,
+        };
+    }
+
+    // ── Tela ──
+    async function iniciarProdutividade() {
+        document.getElementById('lista-contas').innerHTML = CONTAS_LOJAS.map(c => `<option value="${c}">`).join('');
+        if (ehAdmin())
+            return prodPainelAdmin();
+        const nome = usuarioAtual();
+        if (!FORM_EQUIPE[nome]) {
+            document.getElementById('prod-conteudo').innerHTML = '<div class="card"><div class="empty-state"><div class="empty-text">Entre com o seu login individual para preencher o relatório.</div></div></div>';
+            return;
+        }
+        document.getElementById('prod-topo').innerHTML = `<label class="dev-data-lbl">Dia <input type="date" id="prod-data" class="res-select" value="${hojeISO()}" max="${hojeISO()}" onchange="prodCarregarDia()"></label>`;
+        await prodCarregarDia();
+    }
+
+    async function prodCarregarDia() {
+        const nome = usuarioAtual();
+        const data = document.getElementById('prod-data').value;
+        document.getElementById('prod-subtitle').textContent = `${nome} · relatório de ${fmtData(data)}`;
+        document.getElementById('prod-conteudo').innerHTML = '<div class="card"><div class="empty-state"><div class="empty-text">Carregando...</div></div></div>';
+        const pages = await notionQuery(CONFIG.dbProdutividade, {
+            and: [
+            {
+                property: 'Funcionário',
+                select: {
+                    equals: nome
+                }
+            },
+            {
+                property: 'Data',
+                date: {
+                    equals: data
+                }
+            },
+            ]
+        });
+        const reg = pages.map(prodDePagina).find(r => r.nome === nome && r.data === data) || null;
+        PROD.pageId = reg?.pageId || null;
+        PROD.form = reg ? Object.assign({}, reg.det, {
+            obs: reg.obs
+        }) : {};
+        PROD.salvoEm = reg ? 'salvo' : '';
+        prodRenderForm();
+        prodHistoricoProprio();
+    }
+
+    function prodRenderForm() {
+        const nome = usuarioAtual();
+        const f = PROD.form;
+        let html = '<div class="prod-form">';
+        FORM_EQUIPE[nome].forEach(sec => {
+            html += `<div class="card prod-sec"><div class="card-header"><span class="card-title">${sec.secao}</span></div><div class="card-body" style="padding:1rem 1.25rem">`;
+            sec.itens.forEach(it => {
+                html += prodCampoHtml(it, f);
+            });
+            html += '</div></div>';
+        });
+        html += `<div class="card prod-sec"><div class="card-header"><span class="card-title">📝 Observações do dia</span></div><div class="card-body" style="padding:1rem 1.25rem">
+            <textarea id="prod-obs" rows="3" class="prod-input" placeholder="O que travou, o que ficou pendente, ideias..." oninput="PROD.form.obs=this.value">${prodEscapar(f.obs)}</textarea></div></div>`;
+        html += `<div class="prod-salvar-bar"><span id="prod-status" style="font-size:12px;color:var(--text3)">${PROD.pageId ? '✓ Relatório deste dia já salvo — pode editar e salvar de novo' : 'Ainda não salvo'}</span>
+            <button class="btn-save" id="prod-btn-salvar" style="width:auto;padding:11px 28px;margin:0" onclick="prodSalvar()">Salvar relatório do dia</button></div>`
+        ;
+        html += '</div><div class="card" style="margin-top:1.5rem"><div class="card-header"><span class="card-title">Meus últimos dias</span></div><div class="card-body res-scroll" id="prod-hist"></div></div>';
+        document.getElementById('prod-conteudo').innerHTML = html;
+        if (FORM_EQUIPE[nome].some(s => s.itens.some(i => i.autoDev)))
+            prodSugerirDevolucoes();
+    }
+
+    function prodCampoHtml(it, f) {
+        const v = f[it.id];
+        if (it.tipo === 'num')
+            return `<div class="prod-linha"><label>${it.label}</label><div style="display:flex;gap:8px;align-items:center">
+            <input type="number" min="0" class="prod-input prod-num" id="pf-${it.id}" value="${v ?? ''}" oninput="PROD.form['${it.id}']=this.value" placeholder="0">
+            ${it.autoDev ? '<span id="prod-auto-dev" style="font-size:11px;color:var(--text3)"></span>' : ''}</div></div>`;
+        if (it.tipo === 'check')
+            return `<label class="prod-check"><input type="checkbox" ${v ? 'checked' : ''} onchange="PROD.form['${it.id}']=this.checked"> ${it.label}</label>`;
+        if (it.tipo === 'select')
+            return `<div class="prod-linha"><label>${it.label}</label><div class="prod-opcoes">${it.opcoes.map(o =>
+            `<label class="prod-opcao ${v === o ? 'on' : ''}"><input type="radio" name="pf-${it.id}" ${v === o ? 'checked' : ''} onchange="PROD.form['${it.id}']='${o}';this.closest('.prod-opcoes').querySelectorAll('.prod-opcao').forEach(e=>e.classList.remove('on'));this.parentElement.classList.add('on')"> ${o}</label>`).join('')}</div></div>`;
+        if (it.tipo === 'texto')
+            return `<div class="prod-linha"><label>${it.label}</label><input type="text" class="prod-input" value="${prodEscapar(v)}" oninput="PROD.form['${it.id}']=this.value"></div>`;
+        if (it.tipo === 'chats') {
+            const c = f.chats || {};
+            return `<table class="prod-chats"><thead><tr><th></th>${CHAT_HORARIOS.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${['Shopee', 'TikTok'].map(p => `<tr><td>${p}</td>${CHAT_HORARIOS.map(h => {const k = `${p}|${h}`;return `<td><label class="prod-chat ${c[k] ? 'on' : ''}"><input type="checkbox" ${c[k] ? 'checked' : ''} onchange="prodChat('${k}', this)"><span>${c[k] ? '✓ ' + c[k] : 'responder'}</span></label></td>`;}).join('')}</tr>`).join('')}</tbody></table><div style="font-size:11px;color:var(--text3);margin-top:6px">Marque quando terminar cada rodada. O horário em que marcou fica registrado.</div>`;
+        }
+        if (it.tipo === 'lista') {
+            const itens = (v && v.length) ? v : [{}];
+            return `<div id="pl-${it.id}">${itens.map((x, i) => prodListaLinha(it, x, i)).join('')}</div>
+                <button class="btn-outline" style="padding:6px 12px;font-size:12px;margin-top:6px" onclick="prodListaAdd('${it.id}')">+ adicionar</button>
+                ${it.nota ? `<div style="font-size:11px;color:var(--text3);margin-top:6px">${it.nota}</div>` : ''}`;
+        }
+        return '';
+    }
+
+    function prodListaLinha(it, x, i) {
+        const cols = it.campos.map(c => {
+            const tipo = c.data ? 'date' : c.num ? 'number' : 'text';
+            const extra = c.contas ? 'list="lista-contas"' : '';
+            const dis = x.tarefaId && c.k !== 'desc' ? '' : '';
+            return `<input type="${tipo}" ${extra} class="prod-input" style="flex:${c.w || 1}" placeholder="${c.label}" value="${prodEscapar(x[c.k])}" oninput="prodListaSet('${it.id}',${i},'${c.k}',this.value)" ${dis}>`;
+        }).join('');
+        return `<div class="prod-lista-linha"><span class="prod-idx">${i + 1}</span>${cols}${x.tarefaId ? '<span title="Já virou tarefa" style="font-size:14px">✅</span>' : ''}<button class="prod-x" title="Remover" onclick="prodListaDel('${it.id}',${i})">×</button></div>`;
+    }
+
+    function prodItemDef(id) {
+        for (const s of FORM_EQUIPE[usuarioAtual()])
+            for (const it of s.itens)
+                if (it.id === id)
+                    return it;
+    }
+    function prodListaSet(id, i, k, v) {
+        PROD.form[id] = PROD.form[id] && PROD.form[id].length ? PROD.form[id] : [{}];
+        PROD.form[id][i] = PROD.form[id][i] || {};
+        PROD.form[id][i][k] = v;
+    }
+    function prodListaAdd(id) {
+        PROD.form[id] = PROD.form[id] && PROD.form[id].length ? PROD.form[id] : [{}];
+        PROD.form[id].push({});
+        const it = prodItemDef(id);
+        document.getElementById('pl-' + id).innerHTML = PROD.form[id].map((x, i) => prodListaLinha(it, x, i)).join('');
+        const ins = document.querySelectorAll(`#pl-${id} .prod-lista-linha:last-child input`);
+        if (ins[0])
+            ins[0].focus();
+    }
+    function prodListaDel(id, i) {
+        PROD.form[id] = (PROD.form[id] || [{}]);
+        PROD.form[id].splice(i, 1);
+        if (!PROD.form[id].length)
+            PROD.form[id] = [{}];
+        const it = prodItemDef(id);
+        document.getElementById('pl-' + id).innerHTML = PROD.form[id].map((x, j) => prodListaLinha(it, x, j)).join('');
+    }
+    function prodChat(k, el) {
+        PROD.form.chats = PROD.form.chats || {};
+        if (el.checked)
+            PROD.form.chats[k] = new Date().toTimeString().slice(0, 5);
+        else
+            delete PROD.form.chats[k];
+        el.parentElement.classList.toggle('on', el.checked);
+        el.nextElementSibling.textContent = el.checked ? '✓ ' + PROD.form.chats[k] : 'responder';
+    }
+
+    async function prodSugerirDevolucoes() {
+        // Conta quantas conferências o próprio app registrou no dia
+        const data = document.getElementById('prod-data').value;
+        const pages = await notionQuery(CONFIG.dbDevolucoes, {
+            property: 'Conferido em',
+            date: {
+                equals: data
+            }
+        });
+        const el = document.getElementById('prod-auto-dev');
+        if (!el)
+            return;
+        el.innerHTML = pages.length ? `app registrou <b>${pages.length}</b> conferências neste dia · <a style="color:var(--accent);cursor:pointer;text-decoration:underline" onclick="document.getElementById('pf-devolucoes').value=${pages.length};PROD.form.devolucoes=${pages.length}">usar</a>` : 'nenhuma conferência registrada no app neste dia';
+    }
+
+    function prodLimpo(form) {
+        // Remove linhas vazias das listas antes de salvar
+        const out = {};
+        Object.entries(form).forEach(([k, v]) => {
+            if (k === 'obs')
+                return;
+            if (Array.isArray(v)) {
+                const l = v.filter(x => Object.entries(x).some(([kk, vv]) => kk !== 'tarefaId' && String(vv || '').trim()));
+                if (l.length)
+                    out[k] = l;
+            }
+            else if (v !== '' && v !== false && v !== undefined && v !== null)
+                out[k] = v;
+        });
+        return out;
+    }
+
+    function prodRichText(str) {
+        const parts = [];
+        for (let i = 0; i < str.length && parts.length < 100; i += 1900)
+            parts.push({
+                text: {
+                    content: str.slice(i, i + 1900)
+                }
+            });
+        return {
+            rich_text: parts
+        };
+    }
+
+    async function prodSalvar() {
+        const nome = usuarioAtual();
+        const data = document.getElementById('prod-data').value;
+        const btn = document.getElementById('prod-btn-salvar');
+        btn.disabled = true;
+        btn.textContent = 'Salvando...';
+        try {
+            const det = prodLimpo(PROD.form);
+            // Pendências viram tarefas (só as novas)
+            if (det.pendencias) {
+                for (const p of det.pendencias) {
+                    if (p.tarefaId || !String(p.desc || '').trim())
+                        continue;
+                    const t = await notionCreate(CONFIG.dbTarefas, {
+                        'Título': {
+                            title: [{
+                                text: {
+                                    content: p.desc.slice(0, 200)
+                                }
+                            }]
+                        },
+                        'Descrição': {
+                            rich_text: [{
+                                text: {
+                                    content: `Levantado por ${nome} no relatório de ${fmtData(data)}`
+                                }
+                            }]
+                        },
+                        'Responsável': {
+                            rich_text: [{
+                                text: {
+                                    content: p.resp || nome
+                                }
+                            }]
+                        },
+                        'Prazo': {
+                            date: p.prazo ? {
+                                start: p.prazo
+                            } : null
+                        },
+                        'Prioridade': {
+                            select: {
+                                name: 'Média'
+                            }
+                        },
+                        'Status': {
+                            select: {
+                                name: 'A fazer'
+                            }
+                        },
+                        'Criado por': {
+                            rich_text: [{
+                                text: {
+                                    content: nome
+                                }
+                            }]
+                        },
+                        'Origem': {
+                            select: {
+                                name: 'Pendência do relatório'
+                            }
+                        },
+                    });
+                    p.tarefaId = t.id;
+                }
+                PROD.form.pendencias = det.pendencias;
+            }
+            const props = {
+                'Nome': {
+                    title: [{
+                        text: {
+                            content: `${data} · ${nome}`
+                        }
+                    }]
+                },
+                'Data': {
+                    date: {
+                        start: data
+                    }
+                },
+                'Funcionário': {
+                    select: {
+                        name: nome
+                    }
+                },
+                'Observação': {
+                    rich_text: [{
+                        text: {
+                            content: String(PROD.form.obs || '').slice(0, 1900)
+                        }
+                    }]
+                },
+                'Detalhes': prodRichText(JSON.stringify(det)),
+            };
+            Object.entries(prodResumo(nome, det)).forEach(([k, v]) => props[k] = {
+                number: v
+            });
+            if (nome === 'Marcio')
+                props['Avaliação Equipe'] = {
+                    select: det.avaliacao ? {
+                        name: det.avaliacao
+                    } : null
+                };
+            if (PROD.pageId) {
+                const r = await notionUpdate(PROD.pageId, props);
+                if (r?.object === 'error')
+                    throw new Error(r.message);
+            } else {
+                const r = await notionCreate(CONFIG.dbProdutividade, props);
+                PROD.pageId = r.id;
+            }
+            document.getElementById('prod-status').textContent = `✓ Salvo às ${new Date().toTimeString().slice(0, 5)}`;
+            showToast('Relatório salvo!', `${nome} · ${fmtData(data)}`, 'success');
+            prodRenderForm();
+            document.getElementById('prod-status').textContent = `✓ Salvo às ${new Date().toTimeString().slice(0, 5)}`;
+        } catch (e) {
+            showToast('Erro ao salvar', e.message, 'error');
+        } finally {
+            const b = document.getElementById('prod-btn-salvar');
+            if (b) {
+                b.disabled = false;
+                b.textContent = 'Salvar relatório do dia';
+            }
+        }
+    }
+
+    async function prodHistoricoProprio() {
+        const nome = usuarioAtual();
+        const ini = new Date(Date.now() - 13 * 864e5).toISOString().slice(0, 10);
+        const pages = await notionQuery(CONFIG.dbProdutividade, {
+            and: [
+            {
+                property: 'Funcionário',
+                select: {
+                    equals: nome
+                }
+            }, {
+                property: 'Data',
+                date: {
+                    on_or_after: ini
+                }
+            },
+            ]
+        });
+        const regs = pages.map(prodDePagina);
+        const el = document.getElementById('prod-hist');
+        if (el)
+            el.innerHTML = prodTabelaDias(nome, regs, ini, hojeISO(), false);
+    }
+
+    // ── Painel do admin ──
+    function prodPeriodo() {
+        const hoje = hojeISO();
+        const d = n => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
+        const agora = new Date();
+        const p = PROD.periodo;
+        if (p === 'hoje')
+            return [hoje, hoje];
+        if (p === 'ontem')
+            return [d(1), d(1)];
+        if (p === '7d')
+            return [d(6), hoje];
+        if (p === 'mes')
+            return [`${agora.getFullYear()}-${String(agora.getMonth() + 1).padStart(2, '0')}-01`, hoje];
+        if (p === 'mesant') {
+            const a = new Date(agora.getFullYear(), agora.getMonth() - 1, 1),
+                b = new Date(agora.getFullYear(), agora.getMonth(), 0);
+            const f = x => `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`;
+            return [f(a), f(b)];
+        }
+        return [document.getElementById('prod-de')?.value || d(6), document.getElementById('prod-ate')?.value || hoje];
+    }
+
+    function prodDiasUteis(ini, fim) {
+        const dias = [];
+        for (let t = new Date(ini + 'T12:00:00'); t <= new Date(fim + 'T12:00:00'); t.setDate(t.getDate() + 1)) {
+            if (t.getDay() !== 0)
+                dias.push(t.toISOString().slice(0, 10)); // segunda a sábado
+        }
+        return dias;
+    }
+
+    async function prodPainelAdmin() {
+        const [ini, fim] = prodPeriodo();
+        document.getElementById('prod-subtitle').textContent = `Equipe · ${fmtData(ini)}${ini !== fim ? ' a ' + fmtData(fim) : ''}`;
+        document.getElementById('prod-topo').innerHTML = `
+            <select class="res-select" onchange="PROD.periodo=this.value;prodPainelAdmin()">
+                ${
+        [['hoje', 'Hoje'], ['ontem', 'Ontem'], ['7d', 'Últimos 7 dias'], ['mes', 'Este mês'], ['mesant', 'Mês passado'], ['custom', 'Personalizado']].map(([v, l]) => `<option value="${v}" ${PROD.periodo === v ? 'selected' : ''}>${l}</option>`).join('')}
+            </select>
+            ${
+        PROD.periodo === 'custom' ? `<input type="date" id="prod-de" class="res-select" value="${ini}" onchange="prodPainelAdmin()"><input type="date" id="prod-ate" class="res-select" value="${fim}" onchange="prodPainelAdmin()">` : ''}`;
+        document.getElementById('prod-conteudo').innerHTML = '<div class="card"><div class="empty-state"><div class="empty-text">Carregando...</div></div></div>';
+        const pages = await notionQuery(CONFIG.dbProdutividade, {
+            and: [
+            {
+                property: 'Data',
+                date: {
+                    on_or_after: ini
+                }
+            }, {
+                property: 'Data',
+                date: {
+                    on_or_before: fim
+                }
+            },
+            ]
+        });
+        PROD.registros = pages.map(prodDePagina);
+        const dias = prodDiasUteis(ini, fim);
+        const hoje = hojeISO();
+        let html = '<div class="prod-cards">';
+        EQUIPE_NOMES.forEach(nome => {
+            const regs = PROD.registros.filter(r => r.nome === nome);
+            const diasCom = new Set(regs.map(r => r.data));
+            const diasCobrados = dias.filter(d => d <= hoje);
+            const faltando = diasCobrados.filter(d => !diasCom.has(d));
+            const metricas = Object.keys(prodResumo(nome, {}));
+            const tot = {};
+            metricas.forEach(m => tot[m] = regs.reduce((s, r) => s + (r.nums[m] || 0), 0));
+            const nd = Math.max(diasCom.size, 1);
+            html += `<div class="card prod-card">
+                <div class="card-header"><span class="card-title">${nome}</span>
+                    <span class="prod-pill ${faltando.length ? 'ruim' : 'bom'}">${diasCom.size} de ${diasCobrados.length} dias com relatório</span></div>
+                <div class="card-body" style="padding:1rem 1.25rem">
+                    ${
+            metricas.map(m => {const ref = PROD_REF[m];const media = tot[m] / nd;const sub = ref ? `média ${media.toLocaleString('pt-BR', {maximumFractionDigits: 1})} ${ref.rotulo} · ${pct(tot[m], ref.max * nd)}` : `média ${media.toLocaleString('pt-BR', {maximumFractionDigits: 1})}/dia`;return `<div class="prod-met"><span>${m}</span><span><b>${tot[m].toLocaleString('pt-BR')}</b><small>${sub}</small></span></div>`;}).join('')}
+                    ${nome === 'Marcio' ? (() => {const av = {};regs.forEach(r => {if (r.avaliacao)av[r.avaliacao] = (av[r.avaliacao] || 0) + 1;});return `<div class="prod-met"><span>Avaliação da equipe</span><span style="text-align:right">${AVALIACOES.filter(a => av[a]).map(a => `<span class="prod-av prod-av-${AVALIACOES.indexOf(a)}">${a.replace(' do esperado', '')}: ${av[a]}</span>`).join(' ') || '<small>—</small>'}</span></div>`;})() : ''}
+                    ${faltando.length ? `<div style="font-size:11px;color:var(--red);margin-top:8px">Sem relatório: ${faltando.slice(-8).map(fmtData).join(', ')}${faltando.length > 8 ? '…' : ''}</div>` : ''}
+                </div></div>`
+            ;
+        });
+        html += '</div>';
+        EQUIPE_NOMES.forEach(nome => {
+            html += `<div class="card" style="margin-bottom:1.5rem"><div class="card-header"><span class="card-title">${nome} · dia a dia</span><span style="font-size:11px;color:var(--text3)">clique no dia para ver o detalhe (SKUs, contas, pendências)</span></div>
+                <div class="card-body res-scroll">${prodTabelaDias(nome, PROD.registros.filter(r => r.nome === nome), ini, fim, true)}</div></div>`;
+        });
+        document.getElementById('prod-conteudo').innerHTML = html;
+    }
+
+    function prodTabelaDias(nome, regs, ini, fim, admin) {
+        const metricas = Object.keys(prodResumo(nome, {}));
+        const porDia = {};
+        regs.forEach(r => porDia[r.data] = r);
+        const dias = prodDiasUteis(ini, fim).filter(d => d <= hojeISO()).reverse();
+        if (!dias.length)
+            return '<div class="empty-text" style="padding:1rem;color:var(--text3)">Sem dias no período</div>';
+        return `<table class="data-table res-table"><thead><tr><th>Dia</th>${metricas.map(m => `<th>${m}</th>`).join('')}${nome === 'Marcio' ? '<th>Avaliação</th>' : ''}<th>Obs.</th></tr></thead><tbody>${dias.map(d => {const r = porDia[d];const sem = new Date(d + 'T12:00:00').toLocaleDateString('pt-BR', {weekday: 'short'});if (!r)return `<tr><td>${fmtData(d)} <small style="color:var(--text3)">${sem}</small></td><td colspan="${metricas.length + (nome === 'Marcio' ? 2 : 1)}" style="color:var(--red);font-size:12px">sem relatório</td></tr>`;return `<tr ${admin ? `style="cursor:pointer" onclick="prodVerDetalhe('${r.pageId}')"` : ''}><td>${fmtData(d)} <small style="color:var(--text3)">${sem}</small></td>${metricas.map(m => `<td>${r.nums[m] ?? 0}</td>`).join('')}${nome === 'Marcio' ? `<td>${r.avaliacao ? `<span class="prod-av prod-av-${AVALIACOES.indexOf(r.avaliacao)}">${r.avaliacao.replace(' do esperado', '')}</span>` : '—'}</td>` : ''}<td style="font-size:12px;max-width:260px;white-space:normal;color:var(--text2)">${prodEscapar(r.obs).slice(0, 120)}</td></tr>`;}).join('')}</tbody></table>`;
+    }
+
+    function prodVerDetalhe(pageId) {
+        const r = PROD.registros.find(x => x.pageId === pageId);
+        if (!r)
+            return;
+        const d = r.det;
+        document.getElementById('prod-det-titulo').textContent = `${r.nome} · ${fmtData(r.data)}`;
+        let h = '';
+        (FORM_EQUIPE[r.nome] || []).forEach(sec => {
+            h += `<div class="prod-det-sec"><div class="prod-det-tit">${sec.secao}</div>`;
+            sec.itens.forEach(it => {
+                const v = d[it.id];
+                if (it.tipo === 'num')
+                    h += `<div>${it.label}: <b>${v || 0}</b></div>`;
+                else if (it.tipo === 'check')
+                    h += `<div>${v ? '✅' : '❌'} ${it.label}</div>`;
+                else if (it.tipo === 'select' || it.tipo === 'texto')
+                    h += `<div>${it.label}: <b>${prodEscapar(v || '—')}</b></div>`;
+                else if (it.tipo === 'chats')
+                    h += `<table class="prod-chats"><thead><tr><th></th>${CHAT_HORARIOS.map(x => `<th>${x}</th>`).join('')}</tr></thead><tbody>${['Shopee', 'TikTok'].map(p => `<tr><td>${p}</td>${CHAT_HORARIOS.map(x => `<td>${(v || {})[p + '|' + x] ? '✅ ' + v[p + '|' + x] : '❌'}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+                else if (it.tipo === 'lista')
+                    h += (v && v.length) ? `<table class="data-table res-table" style="margin-top:4px"><thead><tr>${it.campos.map(c => `<th>${c.label}</th>`).join('')}</tr></thead><tbody>${v.map(x => `<tr>${it.campos.map(c => `<td style="white-space:normal">${prodEscapar(c.data && x[c.k] ? fmtData(x[c.k]) : x[c.k] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table>` : '<div style="color:var(--text3)">nada registrado</div>';
+            });
+            h += '</div>';
+        });
+        if (r.obs)
+            h += `<div class="prod-det-sec"><div class="prod-det-tit">📝 Observações</div><div style="white-space:pre-wrap">${prodEscapar(r.obs)}</div></div>`;
+        document.getElementById('prod-det-corpo').innerHTML = h;
+        document.getElementById('modal-prod-det').classList.add('open');
+    }
+
+    // ── Tarefas ──
+    const TAR = {
+        lista: [],
+        editando: null
+    };
+    const TAR_STATUS = ['A fazer', 'Fazendo', 'Concluída'];
+
+    function tarDePagina(p) {
+        const pr = p.properties;
+        const tx = k => (pr[k]?.rich_text || []).map(t => t.plain_text).join('');
+        return {
+            id: p.id,
+            titulo: pr['Título']?.title?.map(t => t.plain_text).join('') || '',
+            desc: tx('Descrição'),
+            resp: tx('Responsável'),
+            prazo: pr['Prazo']?.date?.start || '',
+            prio: pr['Prioridade']?.select?.name || 'Média',
+            status: pr['Status']?.select?.name || 'A fazer',
+            criadoPor: tx('Criado por'),
+            origem: pr['Origem']?.select?.name || '',
+            concluidaEm: pr['Concluída em']?.date?.start || '',
+        };
+    }
+
+    async function iniciarTarefas() {
+        const admin = ehAdmin();
+        document.getElementById('tar-btn-nova').style.display = admin ? '' : 'none';
+        const sel = document.getElementById('tar-resp-sel');
+        sel.style.display = admin ? '' : 'none';
+        document.getElementById('tar-kanban').innerHTML = '<div class="card"><div class="empty-state"><div class="empty-text">Carregando...</div></div></div>';
+        const pages = await notionQuery(CONFIG.dbTarefas);
+        TAR.lista = pages.map(tarDePagina);
+        if (admin) {
+            const atual = sel.value || 'todos';
+            const nomes = [...new Set(EQUIPE_NOMES.concat(TAR.lista.map(t => t.resp).filter(Boolean)))];
+            sel.innerHTML = '<option value="todos">Todos</option>' + nomes.map(n => `<option ${n === atual ? 'selected' : ''}>${n}</option>`).join('');
+        }
+        tarRender();
+    }
+
+    function tarVisiveis() {
+        const admin = ehAdmin();
+        const eu = usuarioAtual();
+        let l = TAR.lista;
+        if (!admin)
+            l = l.filter(t => t.resp === eu || t.criadoPor === eu);
+        else {
+            const r = document.getElementById('tar-resp-sel').value;
+            if (r && r !== 'todos')
+                l = l.filter(t => t.resp === r);
+        }
+        // Concluídas há mais de 30 dias saem do quadro
+        const corte = new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 10);
+        return l.filter(t => t.status !== 'Concluída' || !t.concluidaEm || t.concluidaEm >= corte);
+    }
+
+    function tarRender() {
+        const hoje = hojeISO();
+        const l = tarVisiveis();
+        const atrasada = t => t.status !== 'Concluída' && t.prazo && t.prazo < hoje;
+        document.getElementById('tar-subtitle').textContent = ehAdmin() ? 'Solicitações e pendências da equipe' : `Tarefas de ${usuarioAtual()}`;
+
+        // Resumo por pessoa (admin) ou próprio
+        const pessoas = ehAdmin() ? [...new Set(EQUIPE_NOMES.concat(TAR.lista.map(t => t.resp).filter(Boolean)))] : [usuarioAtual()];
+        const mesIni = hoje.slice(0, 8) + '01';
+        document.getElementById('tar-resumo').innerHTML = `<div class="tar-resumo">${pessoas.map(p => {const t = TAR.lista.filter(x => x.resp === p);const abertas = t.filter(x => x.status !== 'Concluída').length;const atr = t.filter(atrasada).length;const conc = t.filter(x => x.status === 'Concluída' && x.concluidaEm >= mesIni).length;if (!t.length && !EQUIPE_NOMES.includes(p))return '';return `<div class="tar-res-card" ${ehAdmin() ? `onclick="document.getElementById('tar-resp-sel').value='${p}';tarRender()"` : ''}><b>${p}</b><span>${abertas} abertas</span>${atr ? `<span style="color:var(--red)">${atr} atrasadas</span>` : '<span style="color:var(--green)">em dia</span>'}<span style="color:var(--text3)">${conc} concluídas no mês</span></div>`;}).join('')}</div>`;
+
+        const prioOrd = {
+            Alta: 0,
+            'Média': 1,
+            Baixa: 2
+        };
+        document.getElementById('tar-kanban').innerHTML = TAR_STATUS.map(st => {
+            const itens = l.filter(t => t.status === st).sort((a, b) => (atrasada(b) - atrasada(a)) || (prioOrd[a.prio] - prioOrd[b.prio]) || (a.prazo || '9').localeCompare(b.prazo || '9'));
+            return `<div class="tar-col"><div class="tar-col-tit">${st} <span>${itens.length}</span></div>${itens.map(t => {const i = TAR_STATUS.indexOf(st);return `<div class="tar-card ${atrasada(t) ? 'atrasada' : ''}">
+                    <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">
+                        <div class="tar-tit">${
+                prodEscapar(t.titulo)}</div><span class="tar-prio tar-prio-${t.prio === 'Alta' ? 'a' : t.prio === 'Baixa' ? 'b' : 'm'}">${t.prio}</span></div>
+                    ${t.desc ? `<div class="tar-desc">${prodEscapar(t.desc)}</div>` : ''}
+                    <div class="tar-meta">
+                        <span>👤 ${
+                prodEscapar(t.resp || '—')}</span>
+                        ${t.prazo ? `<span style="${atrasada(t) ? 'color:var(--red);font-weight:600' : ''}">📅 ${fmtData(t.prazo)}${atrasada(t) ? ' · atrasada' : ''}</span>` : ''}
+                        ${t.origem === 'Pendência do relatório' ? `<span>🛠️ pendência de ${prodEscapar(t.criadoPor)}</span>` : ''}
+                        ${t.status === 'Concluída' && t.concluidaEm ? `<span style="color:var(--green)">✓ ${fmtData(t.concluidaEm)}</span>` : ''}
+                    </div>
+                    <div class="tar-acoes">
+                        ${
+
+                i > 0 ? `<button onclick="tarMover('${t.id}',-1)">← ${TAR_STATUS[i - 1]}</button>` : '<span></span>'}
+                        ${ehAdmin() ? `<button onclick="tarAbrirModal('${t.id}')">editar</button>` : ''}
+                        ${i < 2 ? `<button class="tar-next" onclick="tarMover('${t.id}',1)">${TAR_STATUS[i + 1]} →</button>` : ''}
+                    </div>
+                </div>`
+                ;}).join('') || '<div class="tar-vazio">nada aqui</div>'}</div>`;
+        }).join('');
+    }
+
+    async function tarMover(id, dir) {
+        const t = TAR.lista.find(x => x.id === id);
+        if (!t)
+            return;
+        const novo = TAR_STATUS[TAR_STATUS.indexOf(t.status) + dir];
+        if (!novo)
+            return;
+        const hoje = hojeISO();
+        const r = await notionUpdate(id, {
+            'Status': {
+                select: {
+                    name: novo
+                }
+            },
+            'Concluída em': {
+                date: novo === 'Concluída' ? {
+                    start: hoje
+                } : null
+            }
+        });
+        if (r?.object === 'error') {
+            showToast('Erro ao salvar', r.message, 'error');
+            return;
+        }
+        t.status = novo;
+        t.concluidaEm = novo === 'Concluída' ? hoje : '';
+        if (novo === 'Concluída')
+            showToast('Tarefa concluída! 🎉', t.titulo, 'success');
+        tarRender();
+    }
+
+    function tarAbrirModal(id) {
+        const t = id ? TAR.lista.find(x => x.id === id) : null;
+        TAR.editando = t;
+        const nomes = [...new Set(EQUIPE_NOMES.concat(TAR.lista.map(x => x.resp).filter(Boolean)))];
+        document.getElementById('tar-resp').innerHTML = nomes.map(n => `<option ${t?.resp === n ? 'selected' : ''}>${n}</option>`).join('');
+        document.getElementById('tar-modal-titulo').textContent = t ? 'Editar tarefa' : 'Nova tarefa';
+        document.getElementById('tar-btn-salvar').textContent = t ? 'Salvar alterações' : 'Criar tarefa';
+        document.getElementById('tar-titulo').value = t?.titulo || '';
+        document.getElementById('tar-desc').value = t?.desc || '';
+        document.getElementById('tar-prazo').value = t?.prazo || '';
+        document.getElementById('tar-prio').value = t?.prio || 'Média';
+        document.getElementById('modal-tarefa').classList.add('open');
+        setTimeout(() => document.getElementById('tar-titulo').focus(), 100);
+    }
+    function tarFecharModal() {
+        document.getElementById('modal-tarefa').classList.remove('open');
+        TAR.editando = null;
+    }
+
+    async function tarSalvar() {
+        const titulo = document.getElementById('tar-titulo').value.trim();
+        if (!titulo) {
+            showToast('Escreva a tarefa', '', 'error');
+            return;
+        }
+        const props = {
+            'Título': {
+                title: [{
+                    text: {
+                        content: titulo
+                    }
+                }]
+            },
+            'Descrição': {
+                rich_text: [{
+                    text: {
+                        content: document.getElementById('tar-desc').value.slice(0, 1900)
+                    }
+                }]
+            },
+            'Responsável': {
+                rich_text: [{
+                    text: {
+                        content: document.getElementById('tar-resp').value
+                    }
+                }]
+            },
+            'Prazo': {
+                date: document.getElementById('tar-prazo').value ? {
+                    start: document.getElementById('tar-prazo').value
+                } : null
+            },
+            'Prioridade': {
+                select: {
+                    name: document.getElementById('tar-prio').value
+                }
+            },
+        };
+        const btn = document.getElementById('tar-btn-salvar');
+        btn.disabled = true;
+        try {
+            if (TAR.editando) {
+                const r = await notionUpdate(TAR.editando.id, props);
+                if (r?.object === 'error')
+                    throw new Error(r.message);
+            } else {
+                Object.assign(props, {
+                    'Status': {
+                        select: {
+                            name: 'A fazer'
+                        }
+                    },
+                    'Criado por': {
+                        rich_text: [{
+                            text: {
+                                content: 'Ronaldo'
+                            }
+                        }]
+                    },
+                    'Origem': {
+                        select: {
+                            name: 'Solicitação'
+                        }
+                    }
+                });
+                await notionCreate(CONFIG.dbTarefas, props);
+            }
+            showToast(TAR.editando ? 'Tarefa atualizada' : 'Tarefa criada', titulo, 'success');
+            tarFecharModal();
+            await iniciarTarefas();
+        } catch (e) {
+            showToast('Erro ao salvar', e.message, 'error');
+        } finally {
+            btn.disabled = false;
+        }
+    }
+
+    function sairApp() {
+        sessionStorage.clear();
+        location.reload();
+    }
+
     document.getElementById('modal-despesa').addEventListener('click', function(e) {
         if (e.target === this)
             fecharModalDespesa();
@@ -7163,6 +8757,21 @@
 
     <script>
     // ─── LOGIN ────────────────────────────────────────────────
+    // Logins individuais da equipe e as abas que cada um vê (a primeira é a tela inicial)
+    const EQUIPE_ACESSO = {
+        Warley: {
+            senha: 'WarleyMC2027@',
+            abas: ['produtividade', 'tarefas']
+        },
+        Fabricio: {
+            senha: 'FabricioMC2028@',
+            abas: ['produtividade', 'tarefas']
+        },
+        Marcio: {
+            senha: 'MarcioMC2029@',
+            abas: ['produtividade', 'tarefas', 'devolucoes', 'conferencia']
+        },
+    };
     const SENHA_HASH = '5a8c3f2e1b9d4f7a2c6e8b1d3f5a7c9e'; // hash placeholder
 
     function fazerLogin() {
@@ -7176,10 +8785,12 @@
             document.getElementById('app').style.display = 'block';
             iniciarApp();
             erro.style.display = 'none';
-        } else if (senha === 'Devolucoes@2110') {
-            // Acesso só à aba de devoluções (funcionário responsável pela conferência)
+        } else if (Object.values(EQUIPE_ACESSO).some(u => u.senha === senha)) {
+            // Login individual da equipe
+            const nome = Object.keys(EQUIPE_ACESSO).find(n => EQUIPE_ACESSO[n].senha === senha);
             sessionStorage.setItem('gmc-auth', 'ok');
-            sessionStorage.setItem('gmc-role', 'devolucoes');
+            sessionStorage.setItem('gmc-role', 'equipe');
+            sessionStorage.setItem('gmc-user', nome);
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('app').style.display = 'block';
             iniciarApp();
