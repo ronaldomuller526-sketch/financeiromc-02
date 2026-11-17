@@ -1614,6 +1614,59 @@
         color: var(--red);
     }
 
+    .cas-linha {
+        display: grid;
+        grid-template-columns: minmax(120px, 34%) 1fr;
+        align-items: center;
+        gap: 10px;
+        padding: 5px 0;
+        font-size: 12.5px;
+    }
+
+    .cas-trilho {
+        position: relative;
+        height: 22px;
+    }
+
+    .cas-barra {
+        position: absolute;
+        top: 3px;
+        height: 16px;
+        border-radius: 3px;
+        min-width: 2px;
+    }
+
+    .cas-barra.total {
+        background: var(--accent);
+    }
+
+    .cas-barra.neg {
+        background: var(--border);
+    }
+
+    .cas-barra.pos {
+        background: var(--green);
+        opacity: .6;
+    }
+
+    .cas-barra.bom {
+        background: var(--green);
+    }
+
+    .cas-barra.ruim {
+        background: var(--red);
+    }
+
+    .cas-valor {
+        position: absolute;
+        top: 3px;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        white-space: nowrap;
+        color: var(--text2);
+        line-height: 16px;
+    }
+
     .dev-prog {
         height: 8px;
         background: var(--bg3);
@@ -2263,7 +2316,9 @@
 
 
 
-                                                                      1. 
+
+                                                                                      1. 
+                                                                                
                                                                 
                                                 
                                 
@@ -2271,7 +2326,9 @@
 
 
 
-                                                                 → criar integração → copiar token
+
+                                                                                 → criar integração → copiar token
+                                                                                
                                                                 
                                                 
                                 
@@ -2280,7 +2337,9 @@
 
 
 
-                                                                      2. 
+
+                                                                                      2. 
+                                                                                
                                                                 
                                                 
                                 
@@ -2288,7 +2347,9 @@
 
 
 
-                                                                 → API Keys → criar chave
+
+                                                                                 → API Keys → criar chave
+                                                                                
                                                                 
                                                 
                                 
@@ -2297,8 +2358,10 @@
 
 
 
-                                                                      3. Cole os IDs dos databases criados no seu Notion
-                                                                    
+
+                                                                                      3. Cole os IDs dos databases criados no seu Notion
+                                                                                    
+                                                                            
                                                             
                                             
                             
@@ -2329,8 +2392,10 @@
 
 
 
-                                                                      Salvar e entrar
-                                                                    
+
+                                                                                      Salvar e entrar
+                                                                                    
+                                                                            
                                                             
                                             
                             
@@ -2511,8 +2576,10 @@
 
 
 
-                                                                                                                                                                Ver no Notion
-                                                                                                                                                              
+
+                                                                                                                                                                                                    Ver no Notion
+                                                                                                                                                                                                  
+                                                                                                                                                                                
                                                                                                                                             
                                                                                                         
                                                                     
@@ -2527,8 +2594,10 @@
 
 
 
-                                                                                                                                                                Atualizar
-                                                                                                                                                              
+
+                                                                                                                                                                                                    Atualizar
+                                                                                                                                                                                                  
+                                                                                                                                                                                
                                                                                                                                             
                                                                                                         
                                                                     
@@ -2734,8 +2803,10 @@
 
 
 
-                                                                                                                                                                Salvar no Notion
-                                                                                                                                                              
+
+                                                                                                                                                                                                    Salvar no Notion
+                                                                                                                                                                                                  
+                                                                                                                                                                                
                                                                                                                                             
                                                                                                         
                                                                     
@@ -2749,8 +2820,8 @@
                                 </div>
                                 <div class="wpp-msg" id="wpp-text"></div>
                                 <button class="btn-wpp" onclick="abrirWhatsapp()">
-                                                                                                                                                Abrir no WhatsApp
-                                                                                                                                              </button>
+                                                                                                                                                                                Abrir no WhatsApp
+                                                                                                                                                                              </button>
                             </div>
                         </div>
                     </div>
@@ -2774,8 +2845,10 @@
 
 
 
-                                                                                                                                              Nova empresa
-                                                                                                                                            
+
+                                                                                                                                                                              Nova empresa
+                                                                                                                                                                            
+                                                                                                                                                            
                                                                                                                             
                                                                                             
                                                             
@@ -2848,7 +2921,9 @@
 
 
 
-                                                                                                                                                Nova entrada
+
+                                                                                                                                                                                    Nova entrada
+                                                                                                                                                                                
                                                                                                                                             
                                                                                                         
                                                                     
@@ -2863,14 +2938,16 @@
 
 
 
-                                                                                                                                                Transferência
+
+                                                                                                                                                                                    Transferência
+                                                                                                                                                                                
                                                                                                                                             
                                                                                                         
                                                                     
                                 </button>
                                 <button class="btn-outline" onclick="abrirModalMovimentacao('inicial')">
-                                                                                                                                    💰 Saldo inicial
-                                                                                                                                </button>
+                                                                                                                                                                    💰 Saldo inicial
+                                                                                                                                                                </button>
                             </div>
                         </div>
                     </div>
@@ -3090,6 +3167,15 @@
                             </div>
                         </div>
 
+                        <!-- CASCATA -->
+                        <div class="card" style="margin-bottom:1.5rem">
+                            <div class="card-header">
+                                <span class="card-title">Para onde foi o dinheiro das vendas</span>
+                                <span style="font-size:11px;color:var(--text3)">das vendas brutas até o lucro líquido</span>
+                            </div>
+                            <div class="card-body" style="padding:1rem 1.25rem" id="res-cascata"></div>
+                        </div>
+
                         <div class="res-grid-2">
                             <!-- DRE -->
                             <div class="card">
@@ -3105,6 +3191,20 @@
                                     <span class="card-title">Ajustes do fechamento</span>
                                 </div>
                                 <div class="card-body" style="padding:1.25rem">
+                                    <div class="upload-zone" style="padding:1rem;margin-bottom:1rem" onclick="document.getElementById('res-extrato-file').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="event.preventDefault();this.classList.remove('dragover');resLerExtratos(event.dataTransfer.files)">
+                                        <input type="file" id="res-extrato-file" accept=".xlsx,.xls" multiple style="display:none" onchange="resLerExtratos(this.files);this.value=''">
+                                        <div class="upload-title" style="font-size:13px">Importar extratos da carteira Shopee</div>
+                                        <div class="upload-sub">Minha Carteira → Transações → Exportar (my_balance_transaction_report). Pode selecionar os 5 de uma vez: o app pega o ADS e os ajustes de cada loja.</div>
+                                        <div id="res-extrato-status" style="font-size:12px;color:var(--text2);margin-top:8px"></div>
+                                    </div>
+                                    <div class="fgroup">
+                                        <label>ADS pago com saldo de outras plataformas (TikTok, Shein…) — R$</label>
+                                        <input type="number" step="0.01" id="res-ads-extra" placeholder="0,00" oninput="resRender()">
+                                    </div>
+                                    <div class="fgroup">
+                                        <label>Outros ajustes de carteira (crédito +, débito −) — R$</label>
+                                        <input type="number" step="0.01" id="res-aj-extra" placeholder="0,00" oninput="resRender()">
+                                    </div>
                                     <div class="fgroup">
                                         <label>Antecipação de recebíveis (Shopee Acelera e similares) — R$</label>
                                         <input type="number" step="0.01" id="res-antecipacao" placeholder="0,00" oninput="resRender()">
@@ -3130,7 +3230,7 @@
                         <div class="card" style="margin-bottom:1.5rem">
                             <div class="card-header">
                                 <span class="card-title">Resultado por loja e plataforma</span>
-                                <span style="font-size:11px;color:var(--text3)">Margem = recebido − custo do produto</span>
+                                <span style="font-size:11px;color:var(--text3)">Margem de contribuição = recebido − custo do produto − ADS ± ajustes da carteira</span>
                             </div>
                             <div class="card-body res-scroll" id="res-lojas"></div>
                         </div>
@@ -3297,7 +3397,9 @@
                         <div class="card" style="margin-bottom:1.5rem">
                             <div class="card-header" style="flex-wrap:wrap;gap:10px">
                                 <span class="card-title">
-                                    Lista de devoluções 
+
+                                                                        Lista de devoluções 
+                                                                        
                                     <span id="dev-lista-qtd" style="font-size:12px;color:var(--text3);font-weight:400"></span>
                                 </span>
                                 <div class="dev-filtros">
@@ -3324,11 +3426,15 @@
                                         <option value="data">Data da devolução</option>
                                     </select>
                                     <label class="dev-data-lbl">
-                                        de 
+
+                                                                                de 
+                                                                                
                                         <input type="date" id="dev-data-de" onchange="devRender()" class="res-select">
                                     </label>
                                     <label class="dev-data-lbl">
-                                        até 
+
+                                                                                até 
+                                                                                
                                         <input type="date" id="dev-data-ate" onchange="devRender()" class="res-select">
                                     </label>
                                     <input type="search" id="dev-busca" oninput="devRender()" class="res-select" placeholder="Buscar pedido, SKU ou produto" style="min-width:200px">
@@ -3402,11 +3508,15 @@
                 <label>O que vai ser feito com o kit?</label>
                 <label class="av-radio">
                     <input type="radio" name="av-dest" id="av-dest-repor" onchange="devAvariaCalc()">
-                     Repor as peças quebradas e voltar ao estoque de venda
+
+                                         Repor as peças quebradas e voltar ao estoque de venda
+                                    
                 </label>
                 <label class="av-radio">
                     <input type="radio" name="av-dest" id="av-dest-perda" onchange="devAvariaCalc()">
-                     Perda total (não volta para venda)
+
+                                         Perda total (não volta para venda)
+                                    
                 </label>
             </div>
             <div class="fgroup" id="av-previsao-box">
@@ -4039,6 +4149,11 @@
 
 
 
+
+
+
+
+
             ;
             return;
         }
@@ -4067,11 +4182,13 @@
 
 
 
+
             c.descricao || '—'}</div>
         <div class="td-empresa">${c.empresa}</div>
         ${linhaHtml}
       </td>
       <td>${
+
 
 
 
@@ -4083,6 +4200,7 @@
 
 
 
+
             fmtBRL(c.valor)}
         ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red);font-weight:400">inclui ${fmtBRL(c.jurosMulta)} juros/multa</div>` : ''}
       </td>
@@ -4090,10 +4208,12 @@
 
 
 
+
             fmtData(c.vencimento)}</td>
       <td style="color:var(--green);font-size:12px">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
       <td style="display:flex;gap:6px;align-items:center">
         <button class="btn-pago" onclick="marcarPago('${
+
 
 
 
@@ -4113,9 +4233,14 @@
 
 
 
+
+
+
             c.status === 'Pago' ? `<button class="btn-pago" onclick="desfazerPago('${c.id}', this)" style="color:var(--red);border-color:var(--red)">↩ Desfazer</button>` : ''}
       </td>
     </tr>`
+
+
 
 
 
@@ -4179,6 +4304,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         rows}</tbody>
     </table>
     <div class="mobile-cards">
@@ -4188,8 +4326,11 @@
 
 
 
+
+
         sorted.map(c => {const v = new Date(c.vencimento + 'T00:00:00');const isAtrasado = v < hoje;const isHoje = v.toDateString() === hoje.toDateString();const isSemana = v > hoje && v <= semana;const statusBadge = isAtrasado ? '<span class="badge badge-red"><span class="badge-dot"></span>Atrasado</span>' : isHoje ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Hoje</span>' : isSemana ? '<span class="badge badge-yellow"><span class="badge-dot"></span>Esta semana</span>' : '<span class="badge badge-gray">Futuro</span>';const linha = c.cedente && c.cedente.length > 10 ? c.cedente : '';return '<div class="mobile-card">' + '<div class="mobile-card-header">' + '<div><div class="mobile-card-title">' + (c.descricao || '—') + '</div>' + '<div class="mobile-card-empresa">' + c.empresa + (c.categoria ? ' · ' + c.categoria : '') + '</div></div>' + statusBadge + '</div>' + '<div class="mobile-card-row">' + '<span class="mobile-card-valor">' + fmtBRL(c.valor) + '</span>' + '<span class="mobile-card-data">📅 ' + fmtData(c.vencimento) + '</span>' + '</div>' + (linha ? '<div class="mobile-card-linha">' + linha + ' <button onclick="navigator.clipboard.writeText(\'' + linha.replace(/'/g, '') + '\').then(()=>{this.textContent=\'✓\';setTimeout(()=>this.textContent=\'copiar\',2000)})" style="background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;font-size:10px;color:var(--text2);cursor:pointer;padding:1px 6px;font-family:var(--font)">copiar</button></div>' : '') + '<div class="mobile-card-actions">' + '<button class="btn-pago" onclick="marcarPago(\'' + c.id + '\', this)">' + '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' + ' Marcar como Pago</button>' + '</div></div>';}).join('')}
     </div>`
+
 
 
 
@@ -4328,6 +4469,10 @@
 
 
 
+
+
+
+
             ;
             return;
         }
@@ -4355,10 +4500,13 @@
 
 
 
+
+
             emp.nome}</div>
           <div class="empresa-seg">${emp.segmento}</div>
         </div>
         <span class="badge ${
+
 
 
 
@@ -4367,6 +4515,9 @@
       <div class="empresa-metrics">
         <div class="emp-metric">
           <div class="emp-metric-val">${
+
+
+
 
 
 
@@ -4394,11 +4545,17 @@
 
 
 
+
+
+
             fmtBRL(totalPago)}</div>
           <div class="emp-metric-label">Pagos</div>
         </div>
         <div class="emp-metric">
           <div class="emp-metric-val ${
+
+
+
 
 
 
@@ -4416,6 +4573,11 @@
       </div>
       <div style="margin-top:10px;font-size:11px;color:var(--text3);text-align:right">Ver boletos →</div>
     </div>`
+
+
+
+
+
 
 
 
@@ -4473,11 +4635,13 @@
 
 
 
+
             : '';
 
             return `<tr>
       <td>
         <div style="font-weight:500;font-size:13px">${
+
 
 
 
@@ -4489,11 +4653,13 @@
 
 
 
+
             statusBadge}</td>
       <td style="font-size:12px;color:var(--text2)">${fmtData(c.vencimento)}</td>
       <td style="font-weight:600">${fmtBRL(c.valor)}</td>
       <td>
         <button class="btn-pago" onclick="event.stopPropagation();marcarPagoModal('${
+
 
 
 
@@ -4503,6 +4669,11 @@
         </button>
       </td>
     </tr>`
+
+
+
+
+
 
 
 
@@ -4545,8 +4716,12 @@
 
 
 
+
+
+
         rows}</tbody>
       </table>`
+
 
 
 
@@ -4673,6 +4848,8 @@
 
 
 
+
+
         nome}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
@@ -4685,9 +4862,13 @@
 
 
 
+
+
         Math.round(val / maxEmp * 100)}%"></div>
         </div>
       </div>`
+
+
 
 
 
@@ -4723,6 +4904,8 @@
 
 
 
+
+
         cat}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
@@ -4735,9 +4918,13 @@
 
 
 
+
+
         Math.round(val / maxCat * 100)}%"></div>
         </div>
       </div>`
+
+
 
 
 
@@ -4789,10 +4976,12 @@
 
 
 
+
         atrasados.length})</div>
       ${atrasados.slice(0, 5).map(c => `
         <div class="alerta-item">
           <span class="alerta-item-name">${
+
 
 
 
@@ -4809,10 +4998,13 @@
 
 
 
+
+
         venHoje.length})</div>
       ${venHoje.map(c => `
         <div class="alerta-item">
           <span class="alerta-item-name">${
+
 
 
 
@@ -4829,9 +5021,12 @@
 
 
 
+
+
         venSemana.length})</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
       ${
+
 
 
 
@@ -4841,11 +5036,14 @@
 
 
 
+
         c.descricao} <span style="color:var(--text3)">· ${fmtData(c.vencimento)}</span></span>
           <span class="alerta-item-val">${fmtBRL(c.valor)}</span>
         </div>`).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 0">Nenhum esta semana</div>'}
       </div>
     </div>`
+
+
 
 
 
@@ -5359,6 +5557,8 @@
 
 
 
+
+
         cat}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
@@ -5366,8 +5566,10 @@
 
 
 
+
         Math.round(val / maxCat * 100)}%"></div></div>
       </div>`
+
 
 
 
@@ -5395,6 +5597,8 @@
 
 
 
+
+
         emp}</span>
           <span class="bar-val">${fmtBRL(val)}</span>
         </div>
@@ -5402,8 +5606,10 @@
 
 
 
+
         Math.round(val / maxEmp * 100)}%"></div></div>
       </div>`
+
 
 
 
@@ -5430,6 +5636,9 @@
 
 
 
+
+
+
         sorted.map(c => `<tr>
           <td style="font-weight:500;font-size:13px">${c.descricao || '—'}</td>
           <td style="font-size:12px;color:var(--text2)">${c.empresa}</td>
@@ -5440,6 +5649,7 @@
 
 
 
+
         fmtBRL(c.valor)}
             ${c.jurosMulta > 0 ? `<div style="font-size:10px;color:var(--red)">inclui ${fmtBRL(c.jurosMulta)} juros</div>` : ''}
           </td>
@@ -5447,10 +5657,12 @@
 
 
 
+
         fmtData(c.vencimento)}</td>
           <td style="font-size:12px;color:var(--green);font-weight:500">${c.dataPagamento ? fmtData(c.dataPagamento) : '—'}</td>
           <td>
             <button class="btn-pago" onclick="desfazerPagoFechamento('${
+
 
 
 
@@ -5470,8 +5682,12 @@
 
 
 
+
+
+
         ).join('')}</tbody>
       </table>`
+
 
 
 
@@ -5669,6 +5885,7 @@
                 </div>`
 
 
+
                 ;
             }).join('');
         }
@@ -5734,6 +5951,9 @@
 
 
 
+
+
+
         historico.map(h => `<tr>
                     <td style="font-size:12px;color:var(--text2)">${fmtData(h.data)}</td>
                     <td style="font-weight:500;font-size:13px">${h.descricao || '—'}</td>
@@ -5745,9 +5965,11 @@
                     <td>${
 
 
+
         h.origem === 'mov' ? `<button class="btn-pago" style="color:var(--red);border-color:var(--red)" onclick="excluirMovimentacao('${h.id}',this)">✕</button>` : ''}</td>
                 </tr>`).join('')}</tbody>
               </table>`
+
 
 
 
@@ -5981,6 +6203,8 @@
             await resCarregarNotion(mes);
         const dados = RES.porMes[mes];
         document.getElementById('res-antecipacao').value = dados?.antecipacao || '';
+        document.getElementById('res-ads-extra').value = dados?.adsExtra || '';
+        document.getElementById('res-aj-extra').value = dados?.ajExtra || '';
         if(dados?.rateio)
             document.getElementById('res-rateio').value = dados.rateio;
         if(dados?.catsExcluidas) {
@@ -6044,6 +6268,14 @@
                     resultado.totalPedidos = resultado.lojas.reduce((s, l) => s + l.pedidos, 0);
                 }
             }
+            // Mantém ADS e ajustes de carteira já importados para as mesmas lojas
+            (anterior?.lojas || []).forEach(a => {
+                const n = resultado.lojas.find(l => l.plataforma === a.plataforma && l.loja === a.loja);
+                if (n && !n.ads && !n.ajCarteira) {
+                    n.ads = a.ads || 0;
+                    n.ajCarteira = a.ajCarteira || 0;
+                }
+            });
             RES.porMes[resultado.mes] = Object.assign(anterior || {}, resultado, {
                 fonte: 'arquivo'
             });
@@ -6054,6 +6286,104 @@
             console.error(e);
             status.textContent = '';
             showToast('Não consegui ler o arquivo', e.message, 'error');
+        }
+    }
+
+    // ── Extrato da carteira Shopee: ADS (recargas pagas com saldo) e ajustes por loja ──
+    // Usuário da Shopee → nome da loja no UpSeller
+    const SHOPEE_USUARIOS = {
+        'lojacasa777': 'Casa 777',
+        'mundocompras028': 'Mundo das Compras',
+        'leaohome': 'Leão Home',
+        'apollocasa': 'Apollo Home',
+        'lojaachadosdolar': 'Achados do Lar'
+    };
+
+    async function resLerExtratos(files) {
+        files = [...(files || [])];
+        if (!files.length)
+            return;
+        const status = document.getElementById('res-extrato-status');
+        status.textContent = 'Lendo extratos...';
+        const msgs = [];
+        try {
+            await carregarSheetJS();
+            for (const file of files) {
+                const wb = XLSX.read(await file.arrayBuffer(), {
+                    type: 'array'
+                });
+                const linhas = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], {
+                    header: 1,
+                    raw: true,
+                    defval: ''
+                });
+                const achar = rot => linhas.find(l => normCab(l[0]) === normCab(rot));
+                const usuario = String(achar('Nome de usuário (vendedor)')?.[1] || '').trim();
+                const de = resData(achar('De')?.[1]);
+                const iCab = linhas.findIndex(l => normCab(l[0]) === 'data' && l.some(c => normCab(c) === 'tipo de transacao'));
+                if (!usuario || !de || iCab < 0)
+                    throw new Error(`${file.name}: não parece um extrato da carteira Shopee (my_balance_transaction_report)`);
+                const cab = linhas[iCab].map(normCab);
+                const ci = n => cab.findIndex(c => c.startsWith(n));
+                const cTipo = ci('tipo de transacao'),
+                    cDesc = ci('descricao'),
+                    cValor = ci('valor');
+                let ads = 0,
+                    aj = 0;
+                linhas.slice(iCab + 1).forEach(l => {
+                    const tipo = normCab(l[cTipo]),
+                        desc = normCab(l[cDesc]),
+                        v = resNum(l[cValor]);
+                    if (!tipo)
+                        return;
+                    if (/\bads\b/.test(desc) && v < 0 && !tipo.startsWith('saque') && tipo !== 'ajuste')
+                        ads += -v;
+                    else if (tipo === 'ajuste')
+                        aj += v;
+                });
+                const mes = de.slice(0, 7);
+                const loja = SHOPEE_USUARIOS[usuario.toLowerCase()] || usuario;
+                if (!RES.porMes[mes])
+                    await resCarregarNotion(mes);
+                const dados = RES.porMes[mes] || (RES.porMes[mes] = {
+                    mes,
+                    lojas: [],
+                    fonte: 'arquivo',
+                    temAnalise: false
+                });
+                let L = dados.lojas.find(l => l.plataforma.toLowerCase() === 'shopee' && l.loja === loja);
+                if (!L) {
+                    L = {
+                        plataforma: 'Shopee',
+                        loja,
+                        pedidos: 0,
+                        valor: 0,
+                        vendas: 0,
+                        desc: 0,
+                        comissao: 0,
+                        servico: 0,
+                        outras: 0,
+                        reemb: 0,
+                        qtdReemb: 0,
+                        receb: 0,
+                        custo: 0,
+                        vendasSemCusto: 0
+                    };
+                    dados.lojas.push(L);
+                }
+                L.ads = Math.round(ads * 100) / 100;
+                L.ajCarteira = Math.round(aj * 100) / 100;
+                if (dados.fonte === 'notion')
+                    dados.fonte = 'arquivo';
+                document.getElementById('res-mes-sel').value = mes;
+                msgs.push(`${loja}: ADS ${fmtBRL(ads)} · ajustes ${fmtBRL(aj)}${SHOPEE_USUARIOS[usuario.toLowerCase()] ? '' : ' ⚠️ usuário não reconhecido'}`);
+            }
+            status.innerHTML = '✓ ' + msgs.join('<br>✓ ') + '<br>Lembre de salvar o fechamento no Notion.';
+            await resTrocarMes();
+        } catch (e) {
+            console.error(e);
+            status.innerHTML = msgs.length ? '✓ ' + msgs.join('<br>✓ ') : '';
+            showToast('Não consegui ler o extrato', e.message, 'error');
         }
     }
 
@@ -6168,7 +6498,7 @@
             plataforma: col('plataforma'),
             loja: col('loja'),
             valor: col('valor do pedido'),
-            receb: col('recebimento'),
+            receb: col('recebimento', 'valor de liquidacao'),
             vendas: col('vendas de produtos'),
             desc: col('descontos'),
             comissao: col('comissao'),
@@ -6229,7 +6559,9 @@
                 qtdReemb: 0,
                 receb: 0,
                 custo: 0,
-                vendasSemCusto: 0
+                vendasSemCusto: 0,
+                ads: 0,
+                ajCarteira: 0
             });
             const sku = String(g(l, 'sku') || '(sem SKU)').trim();
             const qtd = resNum(g(l, 'qtd')) || 1;
@@ -6331,13 +6663,18 @@
         };
     }
 
-    // ── Despesas do mês (contas a pagar, por competência = vencimento) ──
+    // ── Despesas do mês (contas a pagar): pagas entram pela data de pagamento (saída do caixa); pendentes, pelo vencimento ──
+    function resDataDespesa(c) {
+        return c.status === 'Pago' && c.dataPagamento ? c.dataPagamento : c.vencimento;
+    }
+
     function resDespesasMes(mes) {
         const [ano, m] = mes.split('-').map(Number);
         const doMes = DADOS.contas.filter(c => {
-            if (!c.vencimento || c.status === 'Cancelado')
+            const dt = resDataDespesa(c);
+            if (!dt || c.status === 'Cancelado')
                 return false;
-            const d = new Date(c.vencimento + 'T00:00:00');
+            const d = new Date(dt + 'T00:00:00');
             return d.getFullYear() === ano && d.getMonth() + 1 === m;
         });
         const incluidas = doMes.filter(c => !RES.catsExcluidas.has(c.categoria || 'Outros'));
@@ -6352,6 +6689,8 @@
             excluido: doMes.filter(c => RES.catsExcluidas.has(c.categoria || 'Outros')).reduce((s, c) => s + c.valor, 0),
             porCat: Object.entries(porCat).sort((a, b) => b[1] - a[1]),
             qtd: incluidas.length,
+            // juros e multas de qualquer conta paga no mês (inclusive Fornecedor): é custo financeiro
+            juros: doMes.reduce((s, c) => s + (c.jurosMulta || 0), 0),
         };
     }
 
@@ -6368,7 +6707,9 @@
             qtdReemb: 0,
             receb: 0,
             custo: 0,
-            vendasSemCusto: 0
+            vendasSemCusto: 0,
+            ads: 0,
+            ajCarteira: 0
         };
         lojas.forEach(l => Object.keys(t).forEach(k => t[k] += l[k] || 0));
         return t;
@@ -6388,10 +6729,15 @@
             return null;
         const t = resTotais(dados.lojas);
         const custoProduto = -t.custo; // custo vem negativo do UpSeller
-        const margem = t.receb + t.custo;
+        const lucroBruto = t.receb + t.custo;
+        const adsExtra = Math.abs(parseFloat(document.getElementById('res-ads-extra').value) || 0);
+        const ajExtra = parseFloat(document.getElementById('res-aj-extra').value) || 0;
+        const ads = t.ads + adsExtra;
+        const ajustes = t.ajCarteira + ajExtra;
+        const margem = lucroBruto - ads + ajustes;
         const desp = resDespesasMes(mes);
         const antecipacao = Math.abs(parseFloat(document.getElementById('res-antecipacao').value) || 0);
-        const lucro = margem - desp.total - antecipacao;
+        const lucro = margem - desp.total - desp.juros - antecipacao;
         const rateio = document.getElementById('res-rateio').value;
         const baseRateio = rateio === 'vendas' ? t.vendas : t.pedidos;
         return {
@@ -6399,6 +6745,11 @@
             dados,
             t,
             custoProduto,
+            lucroBruto,
+            ads,
+            ajustes,
+            adsExtra,
+            ajExtra,
             margem,
             desp,
             antecipacao,
@@ -6414,13 +6765,13 @@
         document.getElementById('res-conteudo').style.display = r ? 'block' : 'none';
         if (!r)
             return;
-        const {t, custoProduto, margem, desp, antecipacao, lucro, dados} = r;
+        const {t, custoProduto, lucroBruto, ads, ajustes, margem, desp, antecipacao, lucro, dados} = r;
 
         document.getElementById('res-m-vendas').textContent = fmtBRL(t.vendas);
         document.getElementById('res-m-pedidos').textContent = `${t.pedidos.toLocaleString('pt-BR')} pedidos`;
         document.getElementById('res-m-margem').textContent = fmtBRL(margem);
         document.getElementById('res-m-margem-pct').textContent = `${pct(margem, t.vendas)} das vendas`;
-        document.getElementById('res-m-desp').textContent = fmtBRL(desp.total + antecipacao);
+        document.getElementById('res-m-desp').textContent = fmtBRL(desp.total + desp.juros + antecipacao);
         document.getElementById('res-m-desp-sub').textContent = `${desp.qtd} lançamentos${desp.pendentes ? ` · ${desp.pendentes} ainda pendentes` : ''}`;
         const lucroEl = document.getElementById('res-m-lucro');
         lucroEl.textContent = fmtBRL(lucro);
@@ -6451,10 +6802,24 @@
         html += linha('(−) Frete, estornos e outras taxas', t.outras, {
             cls: 'dre-neg'
         });
+        const residual = t.receb - (t.vendas + t.reemb + t.desc + t.comissao + t.servico + t.outras);
+        if (Math.abs(residual) >= 0.01)
+            html += linha('(±) Outros ajustes das plataformas', residual, {
+                cls: 'dre-neg'
+            });
         html += linha('= Recebido das plataformas', t.receb, {
             cls: 'dre-total'
         });
         html += linha('(−) Custo dos produtos (CMV)', -custoProduto, {
+            cls: 'dre-neg'
+        });
+        html += linha('= Lucro bruto', lucroBruto, {
+            cls: 'dre-total'
+        });
+        html += linha('(−) ADS pago com saldo das plataformas', -ads, {
+            cls: 'dre-neg'
+        });
+        html += linha('(±) Ajustes da carteira (devoluções após o repasse, DIFAL…)', ajustes, {
             cls: 'dre-neg'
         });
         html += linha('= Margem de contribuição', margem, {
@@ -6467,6 +6832,10 @@
         });
         if (!desp.porCat.length)
             html += `<div class="dre-linha dre-sub" style="color:var(--yellow)"><span>⚠️ Nenhuma despesa lançada neste mês</span><span></span></div>`;
+        if (desp.juros)
+            html += linha('(−) Juros e multas', -desp.juros, {
+                cls: 'dre-neg dre-sub'
+            });
         if (antecipacao)
             html += linha('(−) Antecipação de recebíveis', -antecipacao, {
                 cls: 'dre-neg dre-sub'
@@ -6479,11 +6848,62 @@
         if (t.vendasSemCusto)
             html += `<div style="font-size:11px;color:var(--red);margin-top:4px">⚠️ ${fmtBRL(t.vendasSemCusto)} em vendas sem custo cadastrado — o lucro está maior do que o real.</div>`;
         document.getElementById('res-dre').innerHTML = html;
+        if (!t.ads && !r.adsExtra && !t.ajCarteira && !r.ajExtra)
+            document.getElementById('res-dre').insertAdjacentHTML('beforeend', `<div style="font-size:11px;color:var(--yellow);margin-top:4px">⚠️ ADS e ajustes de carteira ainda não lançados: importe os extratos da Shopee em "Ajustes do fechamento".</div>`);
+
+        // Cascata
+        const passos = [
+        ['Vendas de produtos', t.vendas, 'total'],
+        ['Taxas, descontos e reembolsos', t.receb - t.vendas, 'delta'],
+        ['Custo dos produtos', t.custo, 'delta'],
+        ['ADS', -ads, 'delta'],
+        ['Ajustes da carteira', ajustes, 'delta'],
+        ['Despesas da operação', -desp.total, 'delta'],
+        ['Juros, multas e antecipação', -(desp.juros + antecipacao), 'delta'],
+        ['Lucro líquido', lucro, 'final']
+        ];
+        let acc = 0;
+        const barras = passos.map(([rot, v, tipo]) => {
+            let x0,
+                x1;
+            if (tipo === 'delta') {
+                x0 = acc;
+                x1 = acc + v;
+                acc = x1;
+            }
+            else {
+                x0 = 0;
+                x1 = v;
+                acc = v;
+            }
+            return {
+                rot,
+                v,
+                tipo,
+                x0,
+                x1
+            };
+        });
+        const lo = Math.min(0, ...barras.map(b => Math.min(b.x0, b.x1)));
+        const hi = Math.max(...barras.map(b => Math.max(b.x0, b.x1)), 1);
+        const esc = v => (v - lo) / (hi - lo) * 78; // 78% da largura, sobra para o valor
+        document.getElementById('res-cascata').innerHTML = barras.map(b => {
+            const a = esc(Math.min(b.x0, b.x1)),
+                w = Math.max(0.3, Math.abs(esc(b.x1) - esc(b.x0)));
+            const cls = b.tipo === 'total' ? 'total' : b.tipo === 'final' ? (b.v < 0 ? 'ruim' : 'bom') : (b.v < 0 ? 'neg' : 'pos');
+            return `<div class="cas-linha"><span>${b.rot}</span><div class="cas-trilho" title="${b.rot}: ${fmtBRL(b.v)} (${pct(b.v, t.vendas)} das vendas)">
+                <div class="cas-barra ${cls}" style="left:${a}%;width:${w}%"></div>
+                <span class="cas-valor" style="left:calc(${a + w}% + 6px)">${fmtBRL(b.v)} <small style="color:var(--text3)">${pct(b.v, t.vendas)}</small></span>
+            </div></div>`
+            ;
+        }).join('');
 
         // Por loja
-        const despTotal = desp.total + antecipacao;
+        const despTotal = desp.total + desp.juros + antecipacao + r.adsExtra - r.ajExtra;
         const linhasLoja = dados.lojas.map(l => {
-            const m = l.receb + l.custo;
+            const lb = l.receb + l.custo;
+            const adsAj = -(l.ads || 0) + (l.ajCarteira || 0);
+            const m = lb + adsAj;
             const share = r.baseRateio ? (r.rateio === 'vendas' ? l.vendas : l.pedidos) / r.baseRateio : 0;
             const rat = despTotal * share;
             const liq = m - rat;
@@ -6493,16 +6913,20 @@
                 <td>${fmtBRL(l.vendas)}</td>
                 <td>${fmtBRL(l.receb)}<div class="td-empresa">${pct(l.receb, l.vendas)}</div></td>
                 <td>${fmtBRL(-l.custo)}<div class="td-empresa">${pct(-l.custo, l.vendas)}${l.vendasSemCusto ? ' · <span style="color:var(--red)">tem SKU sem custo</span>' : ''}</div></td>
+                <td>${fmtBRL(lb)}<div class="td-empresa">${pct(lb, l.vendas)}</div></td>
+                <td>${adsAj ? fmtBRL(adsAj) : '—'}<div class="td-empresa">${l.ads ? 'ADS ' + fmtBRL(l.ads) : ''}</div></td>
                 <td style="font-weight:600">${fmtBRL(m)}<div class="td-empresa">${pct(m, l.vendas)}</div></td>
                 <td>${l.qtdReemb}<div class="td-empresa">${fmtBRL(-l.reemb)}</div></td>
                 <td>${fmtBRL(rat)}<div class="td-empresa">${pct(share, 1)}</div></td>
                 <td style="font-weight:600;color:${liq < 0 ? 'var(--red)' : 'var(--green)'}">${fmtBRL(liq)}<div class="td-empresa">${pct(liq, l.vendas)}</div></td>
             </tr>`
+
             ;
         }).join('');
         document.getElementById('res-lojas').innerHTML = `<table class="data-table res-table"><thead><tr>
-            <th>Loja</th><th>Pedidos</th><th>Vendas</th><th>Recebido</th><th>Custo produto</th><th>Margem</th><th>Reembolsos</th><th>Rateio desp.</th><th>Lucro líquido</th>
+            <th>Loja</th><th>Pedidos</th><th>Vendas</th><th>Recebido</th><th>Custo produto</th><th>Lucro bruto</th><th>ADS + ajustes</th><th>Margem contrib.</th><th>Reembolsos</th><th>Rateio desp.</th><th>Lucro líquido</th>
             </tr></thead><tbody>${
+
         linhasLoja}</tbody></table>`;
 
         // Análises por SKU
@@ -6551,6 +6975,8 @@
         pages.forEach(p => {
             if (p.properties['Tipo']?.select?.name === 'Ajuste') {
                 dados.antecipacao = n(p, 'Antecipação');
+                dados.adsExtra = n(p, 'ADS');
+                dados.ajExtra = n(p, 'Ajustes Carteira');
                 dados.rateio = tx(p, 'Rateio') || 'pedidos';
                 const ex = tx(p, 'Categorias Excluídas');
                 dados.catsExcluidas = ex ? ex.split('|') : [];
@@ -6571,6 +6997,8 @@
                 receb: n(p, 'Recebimento'),
                 custo: -n(p, 'Custo Produto'),
                 vendasSemCusto: n(p, 'Vendas sem Custo'),
+                ads: n(p, 'ADS'),
+                ajCarteira: n(p, 'Ajustes Carteira'),
             });
         });
         dados.lojas.sort((a, b) => b.vendas - a.vendas);
@@ -6635,6 +7063,8 @@
                     'Custo Produto': num(-l.custo),
                     'Margem': num(l.receb + l.custo),
                     'Vendas sem Custo': num(l.vendasSemCusto),
+                    'ADS': num(l.ads || 0),
+                    'Ajustes Carteira': num(l.ajCarteira || 0),
                 });
             }
             await notionCreate(CONFIG.dbFechVendas, {
@@ -6652,12 +7082,16 @@
                     }
                 },
                 'Antecipação': num(r.antecipacao),
+                'ADS': num(r.adsExtra),
+                'Ajustes Carteira': num(r.ajExtra),
                 'Rateio': txt(r.rateio),
                 'Categorias Excluídas': txt([...RES.catsExcluidas].join('|')),
             });
             showToast('Fechamento salvo!', `${resLabelMes(r.mes)} · ${r.dados.lojas.length} lojas`, 'success');
             r.dados.fonte = 'notion';
             r.dados.antecipacao = r.antecipacao;
+            r.dados.adsExtra = r.adsExtra;
+            r.dados.ajExtra = r.ajExtra;
             r.dados.rateio = r.rateio;
             r.dados.catsExcluidas = [...RES.catsExcluidas];
             resRender();
@@ -6675,17 +7109,19 @@
             showToast('Nada para enviar', 'Importe ou carregue um fechamento', 'error');
             return;
         }
-        const {t, margem, desp, antecipacao, lucro} = r;
+        const {t, lucroBruto, ads, ajustes, margem, desp, antecipacao, lucro} = r;
         let msg = `📊 *Resultado ${resLabelMes(r.mes)} — Grupo MC*\n\n`;
         msg += `🛒 Vendas: ${fmtBRL(t.vendas)} (${t.pedidos.toLocaleString('pt-BR')} pedidos)\n`;
         msg += `💳 Recebido das plataformas: ${fmtBRL(t.receb)}\n`;
         msg += `📦 Custo dos produtos: ${fmtBRL(-t.custo)}\n`;
+        msg += `📈 Lucro bruto: ${fmtBRL(lucroBruto)} (${pct(lucroBruto, t.vendas)})\n`;
+        msg += `📣 ADS: ${fmtBRL(ads)} · Ajustes da carteira: ${fmtBRL(ajustes)}\n`;
         msg += `➡️ Margem de contribuição: ${fmtBRL(margem)} (${pct(margem, t.vendas)})\n`;
-        msg += `🏢 Despesas: ${fmtBRL(desp.total + antecipacao)}\n`;
+        msg += `🏢 Despesas: ${fmtBRL(desp.total + desp.juros + antecipacao)}\n`;
         msg += `\n💰 *Lucro líquido: ${fmtBRL(lucro)} (${pct(lucro, t.vendas)})*\n\n`;
         msg += `*Margem por loja*\n`;
         r.dados.lojas.forEach(l => {
-            msg += `• ${l.loja} (${l.plataforma}): ${fmtBRL(l.receb + l.custo)}\n`;
+            msg += `• ${l.loja} (${l.plataforma}): ${fmtBRL(l.receb + l.custo - (l.ads || 0) + (l.ajCarteira || 0))}\n`;
         });
         msg += `\n↩️ Reembolsos: ${t.qtdReemb} pedidos · ${fmtBRL(-t.reemb)}`;
         abrirWhatsappMsg(msg);
@@ -7244,10 +7680,12 @@
         return pares.length ? pares.map(([nome, v, extra]) => `
             <div class="bar-item">
                 <div class="bar-top"><span class="bar-name">${
+
         nome}</span><span class="bar-val">${fmt(v)}${total ? ` <small style="color:var(--text3);font-weight:400">${pct(v, total)}</small>` : ''}</span></div>
                 <div class="bar-track"><div class="bar-fill" style="width:${Math.round(v / max * 100)}%"></div></div>
                 ${extra ? `<div style="font-size:11px;color:var(--text3);margin-top:3px">${extra}</div>` : ''}
             </div>`
+
         ).join('') : '<div class="empty-text" style="color:var(--text3)">Sem dados</div>';
     }
 
@@ -7429,6 +7867,7 @@
                 <div class="dev-st-n">${l.length}</div>
                 <div class="dev-st-sub">${pct(l.length, fisicas.length)} · ${fmtBRL(custo)} ${rotulo}</div>
             </div>`
+
             ;
         }).join('');
 
@@ -7468,8 +7907,11 @@
                 <th>Loja</th><th>Voltaram</th><th>A conferir</th><th>Bom</th><th>Avariado</th><th>Trocado</th><th>Não voltou</th><th>Conferido</th>
             </tr></thead><tbody>${
 
+
+
         linhas}</tbody></table></div>
             <div style="font-size:11px;color:var(--text3);margin-top:8px">Conta só as devoluções em que o produto volta. As de "só reembolso" ficam com o cliente e já entram como perda. Clique em um quadro para ver a lista.</div>`
+
         ;
     }
 
@@ -8065,6 +8507,7 @@
             <textarea id="prod-obs" rows="3" class="prod-input" placeholder="O que travou, o que ficou pendente, ideias..." oninput="PROD.form.obs=this.value">${prodEscapar(f.obs)}</textarea></div></div>`;
         html += `<div class="prod-salvar-bar"><span id="prod-status" style="font-size:12px;color:var(--text3)">${PROD.pageId ? '✓ Relatório deste dia já salvo — pode editar e salvar de novo' : 'Ainda não salvo'}</span>
             <button class="btn-save" id="prod-btn-salvar" style="width:auto;padding:11px 28px;margin:0" onclick="prodSalvar()">Salvar relatório do dia</button></div>`
+
         ;
         html += '</div><div class="card" style="margin-top:1.5rem"><div class="card-header"><span class="card-title">Meus últimos dias</span></div><div class="card-body res-scroll" id="prod-hist"></div></div>';
         document.getElementById('prod-conteudo').innerHTML = html;
@@ -8393,9 +8836,11 @@
         document.getElementById('prod-topo').innerHTML = `
             <select class="res-select" onchange="PROD.periodo=this.value;prodPainelAdmin()">
                 ${
+
         [['hoje', 'Hoje'], ['ontem', 'Ontem'], ['7d', 'Últimos 7 dias'], ['mes', 'Este mês'], ['mesant', 'Mês passado'], ['custom', 'Personalizado']].map(([v, l]) => `<option value="${v}" ${PROD.periodo === v ? 'selected' : ''}>${l}</option>`).join('')}
             </select>
             ${
+
         PROD.periodo === 'custom' ? `<input type="date" id="prod-de" class="res-select" value="${ini}" onchange="prodPainelAdmin()"><input type="date" id="prod-ate" class="res-select" value="${fim}" onchange="prodPainelAdmin()">` : ''}`;
         document.getElementById('prod-conteudo').innerHTML = '<div class="card"><div class="empty-state"><div class="empty-text">Carregando...</div></div></div>';
         const pages = await notionQuery(CONFIG.dbProdutividade, {
@@ -8431,10 +8876,12 @@
                     <span class="prod-pill ${faltando.length ? 'ruim' : 'bom'}">${diasCom.size} de ${diasCobrados.length} dias com relatório</span></div>
                 <div class="card-body" style="padding:1rem 1.25rem">
                     ${
+
             metricas.map(m => {const ref = PROD_REF[m];const media = tot[m] / nd;const sub = ref ? `média ${media.toLocaleString('pt-BR', {maximumFractionDigits: 1})} ${ref.rotulo} · ${pct(tot[m], ref.max * nd)}` : `média ${media.toLocaleString('pt-BR', {maximumFractionDigits: 1})}/dia`;return `<div class="prod-met"><span>${m}</span><span><b>${tot[m].toLocaleString('pt-BR')}</b><small>${sub}</small></span></div>`;}).join('')}
                     ${nome === 'Marcio' ? (() => {const av = {};regs.forEach(r => {if (r.avaliacao)av[r.avaliacao] = (av[r.avaliacao] || 0) + 1;});return `<div class="prod-met"><span>Avaliação da equipe</span><span style="text-align:right">${AVALIACOES.filter(a => av[a]).map(a => `<span class="prod-av prod-av-${AVALIACOES.indexOf(a)}">${a.replace(' do esperado', '')}: ${av[a]}</span>`).join(' ') || '<small>—</small>'}</span></div>`;})() : ''}
                     ${faltando.length ? `<div style="font-size:11px;color:var(--red);margin-top:8px">Sem relatório: ${faltando.slice(-8).map(fmtData).join(', ')}${faltando.length > 8 ? '…' : ''}</div>` : ''}
                 </div></div>`
+
             ;
         });
         html += '</div>';
@@ -8564,10 +9011,12 @@
             return `<div class="tar-col"><div class="tar-col-tit">${st} <span>${itens.length}</span></div>${itens.map(t => {const i = TAR_STATUS.indexOf(st);return `<div class="tar-card ${atrasada(t) ? 'atrasada' : ''}">
                     <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">
                         <div class="tar-tit">${
+
                 prodEscapar(t.titulo)}</div><span class="tar-prio tar-prio-${t.prio === 'Alta' ? 'a' : t.prio === 'Baixa' ? 'b' : 'm'}">${t.prio}</span></div>
                     ${t.desc ? `<div class="tar-desc">${prodEscapar(t.desc)}</div>` : ''}
                     <div class="tar-meta">
                         <span>👤 ${
+
                 prodEscapar(t.resp || '—')}</span>
                         ${t.prazo ? `<span style="${atrasada(t) ? 'color:var(--red);font-weight:600' : ''}">📅 ${fmtData(t.prazo)}${atrasada(t) ? ' · atrasada' : ''}</span>` : ''}
                         ${t.origem === 'Pendência do relatório' ? `<span>🛠️ pendência de ${prodEscapar(t.criadoPor)}</span>` : ''}
@@ -8576,11 +9025,14 @@
                     <div class="tar-acoes">
                         ${
 
+
+
                 i > 0 ? `<button onclick="tarMover('${t.id}',-1)">← ${TAR_STATUS[i - 1]}</button>` : '<span></span>'}
                         ${ehAdmin() ? `<button onclick="tarAbrirModal('${t.id}')">editar</button>` : ''}
                         ${i < 2 ? `<button class="tar-next" onclick="tarMover('${t.id}',1)">${TAR_STATUS[i + 1]} →</button>` : ''}
                     </div>
                 </div>`
+
                 ;}).join('') || '<div class="tar-vazio">nada aqui</div>'}</div>`;
         }).join('');
     }
